@@ -16,6 +16,6 @@
 import Foundation
 
 class PreviewViewModel: ObservableObject, ViewModelProtocol {
-    var viewModelDescription: String = "PreviewViewModel"
+    var description: String = "PreviewViewModel"
     
 }

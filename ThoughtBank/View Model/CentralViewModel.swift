@@ -16,6 +16,6 @@
 import Foundation
 
 class CentralViewModel: ObservableObject, ViewModelProtocol {
-    var viewModelDescription: String = "CentralViewModel"
+    var description: String = "CentralViewModel"
     
 }

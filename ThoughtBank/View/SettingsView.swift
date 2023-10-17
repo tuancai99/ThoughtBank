@@ -17,7 +17,7 @@ struct SettingsView<ViewModel: ViewModelProtocol>: View {
     @StateObject var viewModel: ViewModel
     
     var body: some View {
-        Text(viewModel.viewModelDescription)
+        Text(viewModel.description)
     }
 }
 
