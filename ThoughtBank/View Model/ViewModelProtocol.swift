@@ -4,6 +4,9 @@
 //
 //  Created by Noah Sadir on 10/17/23.
 //
+//  Contributors:
+//  [YOUR NAME HERE]
+//
 //  Define a view model's structure so that it can be implemented
 //  by both the "live" CentralViewModel and the "dummy" PreviewViewModel.
 //

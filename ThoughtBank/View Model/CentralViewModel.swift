@@ -4,6 +4,9 @@
 //
 //  Created by Noah Sadir on 10/17/23.
 //
+//  Contributors:
+//  [YOUR NAME HERE]
+//
 //  Central view model shared by all views.
 //  ** Must conform to ViewModelProtocol **
 //

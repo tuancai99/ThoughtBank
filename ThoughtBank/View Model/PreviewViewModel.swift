@@ -4,6 +4,9 @@
 //
 //  Created by Noah Sadir on 10/17/23.
 //
+//  Contributors:
+//  [YOUR NAME HERE]
+//
 //  Separate view model implementation for generating previews.
 //
 //  This is not used by the live app, but can assist in providing dummy

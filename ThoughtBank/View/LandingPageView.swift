@@ -4,6 +4,9 @@
 //
 //  Created by Noah Sadir on 10/17/23.
 //
+//  Contributors:
+//  [YOUR NAME HERE]
+//  
 //  View for landing page.
 //
 //  --- NOTE ---

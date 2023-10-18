@@ -4,7 +4,8 @@
 //
 //  Created by Noah Sadir on 10/17/23.
 //
-//  View for managing personal thoughts.
+//  Contributors:
+//  [YOUR NAME HERE]
 //
 //  --- NOTE ---
 //  This view should only deal with UI logic.
