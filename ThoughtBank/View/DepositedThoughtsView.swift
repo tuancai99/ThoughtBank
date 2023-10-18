@@ -15,7 +15,7 @@
 import SwiftUI
 
 struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
-    @StateObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         Text(viewModel.description)
@@ -24,6 +24,6 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
 
 struct DepositedThoughtsView_Previews: PreviewProvider {
     static var previews: some View {
-        DepositedThoughtsView(viewModel: PreviewViewModel())
+        DepositedThoughtsView<PreviewViewModel>().environmentObject(PreviewViewModel())
     }
 }

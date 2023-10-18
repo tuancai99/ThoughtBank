@@ -19,6 +19,14 @@
 import Foundation
 
 class PreviewViewModel: ObservableObject, ViewModelProtocol {
+    
+    @Published var user: User = .init()
+    @Published var feedThoughts: [Thought] = []
+    
+    func rejectThought(thought: Thought) {}
+    
+    func depositThought(thought: Thought) {}
+    
     var description: String = "PreviewViewModel"
     
 }

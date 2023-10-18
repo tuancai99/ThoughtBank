@@ -11,7 +11,8 @@ import SwiftUI
 struct ThoughtBankApp: App {
     var body: some Scene {
         WindowGroup {
-            LandingPageView(viewModel: CentralViewModel())
+            LandingPageView<CentralViewModel>()
+                .environmentObject(CentralViewModel())
         }
     }
 }

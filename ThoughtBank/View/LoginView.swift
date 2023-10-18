@@ -15,7 +15,7 @@
 import SwiftUI
 
 struct LoginView<ViewModel: ViewModelProtocol>: View {
-    @StateObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         Text(viewModel.description)
@@ -24,6 +24,6 @@ struct LoginView<ViewModel: ViewModelProtocol>: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewModel: PreviewViewModel())
+        LoginView<PreviewViewModel>().environmentObject(PreviewViewModel())
     }
 }

@@ -17,4 +17,11 @@ protocol ViewModelProtocol: ObservableObject {
     // indicates the type of VM we're looking at (for debugging purposes)
     var description: String { get set }
     
+    var user: User { get set }
+    var feedThoughts: [Thought] { get set }
+    
+    func rejectThought(thought: Thought)
+    
+    func depositThought(thought: Thought)
+    
 }

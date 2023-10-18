@@ -14,5 +14,7 @@
 import Foundation
 
 class User: ObservableObject, Codable {
+        
+    // TODO: add init(), variables, functions, and decoder/encoder.
     
 }

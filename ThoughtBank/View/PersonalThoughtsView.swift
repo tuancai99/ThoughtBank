@@ -15,7 +15,7 @@
 import SwiftUI
 
 struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
-    @StateObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         Text(viewModel.description)
@@ -24,6 +24,6 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
 
 struct PersonalThoughtsView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonalThoughtsView(viewModel: PreviewViewModel())
+        PersonalThoughtsView<PreviewViewModel>().environmentObject(PreviewViewModel())
     }
 }

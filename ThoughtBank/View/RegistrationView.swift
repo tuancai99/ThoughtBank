@@ -15,7 +15,7 @@
 import SwiftUI
 
 struct RegistrationView<ViewModel: ViewModelProtocol>: View {
-    @StateObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         Text(viewModel.description)
@@ -24,6 +24,6 @@ struct RegistrationView<ViewModel: ViewModelProtocol>: View {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(viewModel: PreviewViewModel())
+        RegistrationView<PreviewViewModel>().environmentObject(PreviewViewModel())
     }
 }

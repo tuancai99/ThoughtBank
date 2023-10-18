@@ -14,4 +14,6 @@ import Foundation
 
 class FirebaseManager {
     
+    // TODO: add init(), variables, and functions.
+    
 }

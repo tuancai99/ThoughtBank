@@ -17,7 +17,7 @@
 import SwiftUI
 
 struct LandingPageView<ViewModel: ViewModelProtocol>: View {
-    @StateObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         Text(viewModel.description)
@@ -26,6 +26,6 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
 
 struct LandingPageView_Previews: PreviewProvider {
     static var previews: some View {
-        LandingPageView(viewModel: PreviewViewModel())
+        LandingPageView<PreviewViewModel>().environmentObject(PreviewViewModel())
     }
 }

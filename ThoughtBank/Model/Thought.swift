@@ -17,4 +17,6 @@ import Foundation
 
 struct Thought: Codable {
     
+    // TODO: add init(), variables, functions, and decoder/encoder.
+    
 }

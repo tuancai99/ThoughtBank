@@ -15,7 +15,7 @@
 import SwiftUI
 
 struct MainFeedView<ViewModel: ViewModelProtocol>: View {
-    @StateObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         Text(viewModel.description)
@@ -24,6 +24,6 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
 
 struct MainFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        MainFeedView(viewModel: PreviewViewModel())
+        MainFeedView<PreviewViewModel>().environmentObject(PreviewViewModel())
     }
 }
