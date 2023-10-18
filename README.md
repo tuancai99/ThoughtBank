@@ -6,6 +6,10 @@
 - SettingsView (Jannah Abuhassan)
 - RegistrationView, LoginView (Tuan Cai)
 - PersonalThoughtsView (Jordan)
+- DepositedThoughtsView (Lakima)
+- FeedView (Henry)
+- PostThoughtView (Vamsi)
+- BottomNavigationBar, TopNavigationBar (Ethan)
 
 ## MVVM Setup
 
