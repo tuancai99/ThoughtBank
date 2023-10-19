@@ -34,8 +34,8 @@
 		A382325A2AE1AE6D003DB59D /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A38232592AE1AE6D003DB59D /* FirebaseRemoteConfigSwift */; };
 		A382325C2AE1AE6D003DB59D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A382325B2AE1AE6D003DB59D /* FirebaseStorage */; };
 		A382325E2AE1AE6D003DB59D /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A382325D2AE1AE6D003DB59D /* FirebaseStorageCombine-Community */; };
-		A38232602AE1AED6003DB59D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A382325F2AE1AED6003DB59D /* GoogleService-Info.plist */; };
 		A38232622AE1ED2B003DB59D /* AddThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */; };
+		A38232682AE1F067003DB59D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A38232672AE1F067003DB59D /* GoogleService-Info.plist */; };
 		A3CE61DC2ADF2B9D0039EC83 /* ThoughtBankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */; };
 		A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */; };
 		A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3CE61E22ADF2B9E0039EC83 /* Preview Assets.xcassets */; };
@@ -55,8 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A382325F2AE1AED6003DB59D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtsView.swift; sourceTree = "<group>"; };
+		A38232672AE1F067003DB59D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3CE61D82ADF2B9D0039EC83 /* ThoughtBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThoughtBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtBankApp.swift; sourceTree = "<group>"; };
 		A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		A3CE61DA2ADF2B9D0039EC83 /* ThoughtBank */ = {
 			isa = PBXGroup;
 			children = (
-				A382325F2AE1AED6003DB59D /* GoogleService-Info.plist */,
+				A38232672AE1F067003DB59D /* GoogleService-Info.plist */,
 				A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */,
 				A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */,
 				FFB71ACF2ADF50C80006C762 /* Backend */,
@@ -286,8 +286,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */,
+				A38232682AE1F067003DB59D /* GoogleService-Info.plist in Resources */,
 				A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */,
-				A38232602AE1AED6003DB59D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
