@@ -20,12 +20,33 @@ import Foundation
 
 class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
-    @Published var user: User = .init()
+    @Published var user: User?
     @Published var feedThoughts: [Thought] = []
+    @Published var currentThought: Thought?
     
-    func rejectThought(thought: Thought) {}
+    func createUser(email: String, password: String) { }
     
-    func depositThought(thought: Thought) {}
+    func login(email: String, password: String) { }
+    
+    func popDepositedThought(thought: Thought) { }
+    
+    func createThought(text: String) { }
+    
+    func depositThought(thought: Thought) { }
+    
+    func goToNextThought() { }
+    
+    func getUser() -> User? {
+        return self.user
+    }
+    
+    func getFeedThoughts() -> [Thought] {
+        return self.feedThoughts
+    }
+    
+    func getCurrentThought() -> Thought? {
+        return self.currentThought
+    }
     
     var description: String = "PreviewViewModel"
     

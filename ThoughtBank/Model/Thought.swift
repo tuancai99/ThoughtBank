@@ -15,8 +15,16 @@
 
 import Foundation
 
-struct Thought: Codable {
+struct Thought: Codable, QueryItem {
+    var documentID: String
+    
+    var content: String
+    var userID: String
+    var timestamp: Date
     
     // TODO: add init(), variables, functions, and decoder/encoder.
     
+    func getTimeSinceUpload() -> String {
+        return "0D, 0M, 0Y ago."
+    }
 }
