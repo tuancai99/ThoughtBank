@@ -7,9 +7,9 @@
 - RegistrationView, LoginView (Tuan Cai)
 - PersonalThoughtsView (Jordan)
 - DepositedThoughtsView (Lakima)
-- FeedView (Henry)
+- FeedView (Ethan)
 - PostThoughtView (Vamsi)
-- BottomNavigationBar, TopNavigationBar (Ethan)
+- BottomNavigationBar, TopNavigationBar (Steven)
 
 ## MVVM Setup
 
