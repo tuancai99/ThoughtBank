@@ -35,6 +35,7 @@
 		A382325C2AE1AE6D003DB59D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A382325B2AE1AE6D003DB59D /* FirebaseStorage */; };
 		A382325E2AE1AE6D003DB59D /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A382325D2AE1AE6D003DB59D /* FirebaseStorageCombine-Community */; };
 		A38232602AE1AED6003DB59D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A382325F2AE1AED6003DB59D /* GoogleService-Info.plist */; };
+		A38232622AE1ED2B003DB59D /* AddThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */; };
 		A3CE61DC2ADF2B9D0039EC83 /* ThoughtBankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */; };
 		A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */; };
 		A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3CE61E22ADF2B9E0039EC83 /* Preview Assets.xcassets */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		A382325F2AE1AED6003DB59D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtsView.swift; sourceTree = "<group>"; };
 		A3CE61D82ADF2B9D0039EC83 /* ThoughtBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThoughtBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtBankApp.swift; sourceTree = "<group>"; };
 		A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				FFB71AE32ADF51140006C762 /* LoginView.swift */,
 				FFB71ADF2ADF51140006C762 /* RegistrationView.swift */,
 				FFB71AE22ADF51140006C762 /* MainFeedView.swift */,
+				A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */,
 				FFB71AE52ADF51150006C762 /* PersonalThoughtsView.swift */,
 				FFB71AE02ADF51140006C762 /* DepositedThoughtsView.swift */,
 				FFB71AE42ADF51140006C762 /* SettingsView.swift */,
@@ -303,6 +306,7 @@
 				FFB71ADB2ADF51030006C762 /* PreviewViewModel.swift in Sources */,
 				FFB71ADD2ADF51030006C762 /* ViewModelProtocol.swift in Sources */,
 				FFB71AEA2ADF51150006C762 /* LoginView.swift in Sources */,
+				A38232622AE1ED2B003DB59D /* AddThoughtsView.swift in Sources */,
 				FFB71ADC2ADF51030006C762 /* CentralViewModel.swift in Sources */,
 				FFB71AE82ADF51150006C762 /* LandingPageView.swift in Sources */,
 				FFB71AE92ADF51150006C762 /* MainFeedView.swift in Sources */,

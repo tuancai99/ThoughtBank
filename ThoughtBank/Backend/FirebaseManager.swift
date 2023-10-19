@@ -37,6 +37,17 @@ class FirebaseManager {
     }
     
     /**
+        - important: Use this function in the CentralViewModel to login a user using Firebase -  the CentralViewModel handles the rest.
+        - parameters:
+            - email: as entered by user
+            - password: as entered by user
+    */
+    func login(email: String, password: String) async {
+        
+    }
+
+    
+    /**
         - important: Use this function in the CentralViewModel to fetch any specified collection of data.
         - parameters:
             - collection: the type of collection from which we want to derive our data.
@@ -59,6 +70,14 @@ class FirebaseManager {
     func add(collection: Collection, data: Codable) async throws {
     }
     
+    /**
+        - important: Use this function in the CentralViewModel to update a user's data on Firebase -  the CentralViewModel handles the rest.
+        - parameters:
+            - user: the user corresponding to the ongoing session, and the one who's values we want to update on the cloud.
+    */
+    func updateUserData(user: User) async throws {
+        
+    }
     
     
     
