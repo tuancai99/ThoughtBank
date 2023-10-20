@@ -6,7 +6,7 @@
 - SettingsView (Jannah Abuhassan)
 - RegistrationView, LoginView (Tuan Cai)
 - PersonalThoughtsView (Jordan)
-- DepositedThoughtsView (Lakima)
+- DepositedThoughtsView (Lakish)
 - FeedView (Ethan)
 - PostThoughtView (Vamsi)
 - BottomNavigationBar, TopNavigationBar (Steven)
