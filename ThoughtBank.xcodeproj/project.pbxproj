@@ -41,6 +41,9 @@
 		A3CE61DC2ADF2B9D0039EC83 /* ThoughtBankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */; };
 		A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */; };
 		A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3CE61E22ADF2B9E0039EC83 /* Preview Assets.xcassets */; };
+		DBA414312AEDDF8A00B4F685 /* SmoochSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */; };
+		DBA414342AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */; };
+		DBA414362AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414352AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf */; };
 		FFB71AD12ADF50DB0006C762 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */; };
 		FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD32ADF50EA0006C762 /* Thought.swift */; };
 		FFB71AD62ADF50EA0006C762 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD42ADF50EA0006C762 /* User.swift */; };
@@ -65,6 +68,10 @@
 		A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtBankApp.swift; sourceTree = "<group>"; };
 		A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3CE61E22ADF2B9E0039EC83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-Regular.ttf"; sourceTree = "<group>"; };
+		DBA414322AEDE7F100B4F685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		DBA414352AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FFB71AD32ADF50EA0006C762 /* Thought.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		FFB71AD42ADF50EA0006C762 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -145,6 +152,7 @@
 		A3CE61DA2ADF2B9D0039EC83 /* ThoughtBank */ = {
 			isa = PBXGroup;
 			children = (
+				DBA414322AEDE7F100B4F685 /* Info.plist */,
 				A38232672AE1F067003DB59D /* GoogleService-Info.plist */,
 				A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */,
 				A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */,
@@ -163,6 +171,16 @@
 				A3CE61E22ADF2B9E0039EC83 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DBA4142F2AEDDEEF00B4F685 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				DBA414352AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf */,
+				DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */,
+				DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		FFB71ACF2ADF50C80006C762 /* Backend */ = {
@@ -195,6 +213,7 @@
 		FFB71ADE2ADF51060006C762 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DBA4142F2AEDDEEF00B4F685 /* Font */,
 				FFB71AE12ADF51140006C762 /* LandingPageView.swift */,
 				FFB71AE32ADF51140006C762 /* LoginView.swift */,
 				FFB71ADF2ADF51140006C762 /* RegistrationView.swift */,
@@ -301,7 +320,10 @@
 			files = (
 				A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */,
 				A38232682AE1F067003DB59D /* GoogleService-Info.plist in Resources */,
+				DBA414362AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf in Resources */,
 				A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */,
+				DBA414342AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf in Resources */,
+				DBA414312AEDDF8A00B4F685 /* SmoochSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +487,7 @@
 				DEVELOPMENT_TEAM = D99A6N748V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThoughtBank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -495,6 +518,7 @@
 				DEVELOPMENT_TEAM = D99A6N748V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThoughtBank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
