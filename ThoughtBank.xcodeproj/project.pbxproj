@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352DA71B2AEB5F1B00C9763B /* SmoochSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 352DA71A2AEB5F1B00C9763B /* SmoochSans-SemiBold.ttf */; };
 		A382322A2AE1AE6D003DB59D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A38232292AE1AE6D003DB59D /* FirebaseAnalytics */; };
 		A382322C2AE1AE6D003DB59D /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = A382322B2AE1AE6D003DB59D /* FirebaseAnalyticsOnDeviceConversion */; };
 		A382322E2AE1AE6D003DB59D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A382322D2AE1AE6D003DB59D /* FirebaseAnalyticsSwift */; };
@@ -55,6 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		352DA71A2AEB5F1B00C9763B /* SmoochSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtsView.swift; sourceTree = "<group>"; };
 		A38232672AE1F067003DB59D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3CE61D82ADF2B9D0039EC83 /* ThoughtBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThoughtBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +116,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		352DA7192AEB5F0000C9763B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				352DA71A2AEB5F1B00C9763B /* SmoochSans-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		A3CE61CF2ADF2B9D0039EC83 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,7 @@
 		A3CE61DA2ADF2B9D0039EC83 /* ThoughtBank */ = {
 			isa = PBXGroup;
 			children = (
+				352DA7192AEB5F0000C9763B /* Fonts */,
 				A38232672AE1F067003DB59D /* GoogleService-Info.plist */,
 				A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */,
 				A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */,
@@ -286,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */,
+				352DA71B2AEB5F1B00C9763B /* SmoochSans-SemiBold.ttf in Resources */,
 				A38232682AE1F067003DB59D /* GoogleService-Info.plist in Resources */,
 				A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */,
 			);
