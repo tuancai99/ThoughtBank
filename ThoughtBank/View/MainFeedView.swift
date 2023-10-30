@@ -72,7 +72,6 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
                         Rectangle()
                             .frame(width: 321, height: 0.4)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        
                     }
                     .offset(x:15, y:-3)
                     Rectangle()
@@ -80,6 +79,19 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
                         .foregroundColor(.red)
                         .offset(x:130)
                 }
+                Text("My Biggest Fear")
+                    .font(Font.custom("Arial", size: 25))
+                    .bold()
+                    .offset(x:-40, y: -197)
+                Text("Imagine a world where time flows backward, and people age in reverse. They start as wise elders and gradually become youthful children.")
+                    .frame(width: 273, height:324)
+                    .font(Font.custom("Arial", size: 25))
+                    .offset(x:-10, y: -38).lineSpacing(12)
+                Text("CrunchyPanda4")
+                    .frame(width: 142, height: 22)
+                    .font(Font.custom("Times", size: 17))
+                    .italic()
+                    .offset(x:-80, y:200)
                 
             }
             .offset(x:-8,y:-40)
