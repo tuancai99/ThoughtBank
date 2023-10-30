@@ -22,45 +22,61 @@ struct LoginView<ViewModel: ViewModelProtocol>: View {
     
     var body: some View {
         VStack (){
-            Spacer()
-            Image("go-back").frame(maxWidth: .infinity, alignment: .leading)
+
+            Image("go-back")
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 30)
+                .padding(.top, 10)
             
-            Image("_854593dc-cfb1-4f81-affa-a328401049e9 1")
+            Image("_854593dc-cfb1-4f81-affa-a328401049e9 1").padding(.bottom,-20)
             
-            ZStack() {
-                Text("Welcome").font(Font.custom("SmoochSans-SemiBold", size: 80)).foregroundColor(Color(red: 0.11, green: 0.11, blue: 0.11)).offset(x: 0, y: -15.50)
-                
-                Text("Hello again, login to view thoughts").font(Font.custom("Poppins", size: 14)).foregroundColor(Color(red: 0.11, green: 0.11, blue: 0.11)).offset(x: -2, y: 30)
-            }
-            .frame(width: 347, height: 105)
+            VStack(spacing: 0) {
+                Text("Welcome").font(Font.custom("SmoochSans-SemiBold", size: 80))
+                    .foregroundColor(Color(red: 0.11, green: 0.11, blue: 0.11))
+                Text("Hello again, login to view thoughts")
+                    .font(Font.custom("Poppins", size: 14))
+                    .foregroundColor(Color(red: 0.11, green: 0.11, blue: 0.11))
+                    .padding(.top, -10)
+            }.padding(.vertical, 10)
             
-            ZStack() {
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 364, height: 52)
-                    .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-                    .cornerRadius(13)
-                HStack {
-                    Image("Vector").padding()
-                    TextField("Email", text: $email).font(Font.custom("Poppins", size: 12)).padding()
-                }.padding(.horizontal, 13)
-                
-            }.padding(.horizontal, 0).padding(.bottom, 10)
-            
-            ZStack() {
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 364, height: 52)
-                    .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-                    .cornerRadius(13)
-                
-                HStack {
-                    Image("Frame").padding()
-                    TextField("Password", text: $password).font(Font.custom("Poppins", size: 12)).padding(.horizontal, 10)
-                }
+            Rectangle()
+                .foregroundColor(.clear)
+                .frame(height: 52)
+                .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+                .cornerRadius(13)
                 .padding(.horizontal, 10)
-            }.padding(.horizontal, 0).padding(.bottom, 10)
+            .overlay(
+                HStack {
+                    Image("Vector")
+                        .foregroundColor(.secondary)
+                        .padding(.leading, 24)
+                    TextField("Email", text: $email)
+                        .padding(.leading, 30)
+                        .font(Font.custom("Poppins", size: 12))
+                        .foregroundColor(Color(red: 0.11, green: 0.11, blue: 0.11))
+                }
+                .padding()
+            ).padding(.vertical, 3)
+            
+            Rectangle()
+                .foregroundColor(.clear)
+                .frame(height: 52)
+                .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+                .cornerRadius(13)
+                .padding(.horizontal, 10)
+            .overlay(
+                HStack {
+                    Image("Frame")
+                        .padding(.leading, 20)
+                        .foregroundColor(.secondary)
+                    TextField("Password", text: $password)
+                        .padding(.leading, 26)
+                        .font(Font.custom("Poppins", size: 12))
+                        .foregroundColor(Color(red: 0.11, green: 0.11, blue: 0.11))
+                }
+                .padding()
+            ).padding(.vertical, 3)
+            
             
             
             Button(action: {
@@ -69,31 +85,33 @@ struct LoginView<ViewModel: ViewModelProtocol>: View {
             }) {
                 ZStack {
                     Rectangle()
-                        .foregroundColor(Color(red: 0.11, green: 0.11, blue: 0.11))
-                        .frame(width: 364, height: 52)
+                        .foregroundColor(Color(red: 1, green: 0.64, blue: 0.88).opacity(0.60))
+                        .frame(height: 52)
                         .cornerRadius(13)
+                        .padding(.horizontal, 10)
                     
-                    Text("Login")
+                    Text("Join")
                         .font(Font.custom("Poppins", size: 12)
                         .weight(.bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
-            }.frame(width: 364, height: 52)
+            }.padding(.vertical, 3)
             
             Spacer()
             Spacer()
             Spacer()
             Spacer()
             Spacer()
-            
-            Text("Forgot Password?")
-                .font(Font.custom("Poppins", size: 14))
-                .foregroundColor(Color(red: 0, green: 0.10, blue: 1))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 30)
             Spacer()
-            
-        }.frame(width: 390, height: 844).background(.white)
+            HStack {
+                Text("Already have an account?")
+                    .font(Font.custom("Poppins", size: 14))
+                Text("Sign in")
+                    .font(Font.custom("Poppins", size: 14))
+                    .foregroundColor(Color(red: 0, green: 0.10, blue: 1))
+            }.padding(.bottom, -10)
+            Spacer()
+        }
     }
 }
 
