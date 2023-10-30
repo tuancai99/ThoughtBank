@@ -12,6 +12,7 @@ enum LandingPageOption {
 }
 
 struct MainView<ViewModel: ViewModelProtocol>: View {
+    @EnvironmentObject var viewModel: ViewModel
     @State var landingPageOption: String
     
     let LandingPageOptions = ["Public", "Personal", "Saved"]
@@ -30,27 +31,27 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
             .frame(minWidth: 0, maxWidth: 350, minHeight: 0, maxHeight: 50)
             
             TabView {
-                MainFeedView<PreviewViewModel>()
+                MainFeedView<CentralViewModel>()
                     .tabItem {
                         Label("Browse", systemImage: "magnifyingglass.circle")
                     }
                 
-                DepositedThoughtsView<PreviewViewModel>()
+                DepositedThoughtsView<CentralViewModel>()
                     .tabItem {
                         Label("My Notes", systemImage: "house")
                     }
                 
-                AddThoughtsView<PreviewViewModel>()
+                AddThoughtsView<CentralViewModel>()
                     .tabItem {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
                 
-                LandingPageView<PreviewViewModel>()
+                LandingPageView<CentralViewModel>()
                     .tabItem {
                         Label("Search", systemImage: "magnifyingglass")
                     }
                 
-                SettingsView<PreviewViewModel>()
+                SettingsView<CentralViewModel>()
                     .tabItem {
                         Label("Settings", systemImage: "gearshape")
                     }
@@ -85,7 +86,8 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
     }
 }
 
-#Preview {
-    MainView<PreviewViewModel>(landingPageOption: "Public")
-        .environmentObject(PreviewViewModel())
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView<PreviewViewModel>(landingPageOption: "Public").environmentObject(PreviewViewModel())
+    }
 }
