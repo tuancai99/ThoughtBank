@@ -21,6 +21,7 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
     
     var body: some View {
         Text(viewModel.description)
+        Text("Hello")
     }
 }
 

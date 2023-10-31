@@ -145,6 +145,7 @@
 		A3CE61DA2ADF2B9D0039EC83 /* ThoughtBank */ = {
 			isa = PBXGroup;
 			children = (
+				352DA7192AEB5F0000C9763B /* Fonts */,
 				A38232672AE1F067003DB59D /* GoogleService-Info.plist */,
 				A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */,
 				A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */,
@@ -300,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */,
+				352DA71B2AEB5F1B00C9763B /* SmoochSans-SemiBold.ttf in Resources */,
 				A38232682AE1F067003DB59D /* GoogleService-Info.plist in Resources */,
 				A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */,
 			);
