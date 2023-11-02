@@ -21,16 +21,52 @@ protocol ViewModelProtocol: ObservableObject {
     var feedThoughts: [Thought] { get set }
     var currentFeedThought: Thought? { get set }
     
+    // General hints:
+    // - Use FirebaseManager to interact with Firebase
+    // - Can we call async functions from a synchronous thread? Do we need to spawn a new thread?
+    // - How do we go back to the main thread after handling an async task?
+    
+    /// Create a new user.
+    ///
+    /// Hint: FirebaseManager has a pretty similar function.
+    ///
+    /// - Parameters
+    ///     - email: the email of the user
+    ///     - password: the password of the user
     func createUser(email: String, password: String)
     
+    /// Log in an existing user.
+    ///
+    /// Hint: FirebaseManager has a pretty similar function.
+    ///
+    /// - Parameters
+    ///     - email: the email of the user
+    ///     - password: the password of the user.
     func login(email: String, password: String)
     
+    /// Remove one of the user's thoughts.
+    ///
+    /// - Parameters
+    ///     - thought: the Thought object to remove
     func popDepositedThought(thought: Thought)
     
+    /// Create a new thought for the user.
+    ///
+    /// - Parameters
+    ///     - text: the text of the thought inputted by the user
     func createThought(text: String)
     
+    /// Deposit another user's thought.
+    ///
+    /// Hint: 
+    ///
+    /// - Parameters
+    ///     - thought: a Thought object from another user
     func depositThought(thought: Thought)
     
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
     func goToNextThought()
         
 }
