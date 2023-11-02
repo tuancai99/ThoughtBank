@@ -96,7 +96,6 @@ class FirebaseManager {
     */
     func updateUserData(user: User) async throws {
         
-        db.collection(Collection.users.rawValue).setData(from: user)
         
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
         // HINT: This is an async function, to handle our Firebase server calls, could the 'await' keyword be useful.
