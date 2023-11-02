@@ -20,16 +20,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct ThoughtBankApp: App {
-  // register app delegate for Firebase setup
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-
-  var body: some Scene {
-    WindowGroup {
-      NavigationView {
-          LandingPageView<CentralViewModel>()
-              .environmentObject(CentralViewModel())
-      }
+    // register app delegate for Firebase setup
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
+    
+    var body: some Scene {
+        WindowGroup {
+            NavigationView {
+                LandingPageView<CentralViewModel>()
+                    .environmentObject(CentralViewModel())
+            }
+        }
     }
-  }
 }
