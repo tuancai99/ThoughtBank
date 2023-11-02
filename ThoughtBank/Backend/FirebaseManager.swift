@@ -16,7 +16,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class FirebaseManager {
+final class FirebaseManager {
         
     static var manager = FirebaseManager()
     
@@ -95,7 +95,6 @@ class FirebaseManager {
             - user: the user corresponding to the ongoing session, and the one who's values we want to update on the cloud.
     */
     func updateUserData(user: User) async throws {
-        
         
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
         // HINT: This is an async function, to handle our Firebase server calls, could the 'await' keyword be useful.
