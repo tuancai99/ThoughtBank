@@ -18,7 +18,7 @@ import FirebaseFirestore
 class User: ObservableObject, QueryItem {
     var documentID: String
         
-    // TODO: add init(), functions, and decoder/encoder.
+    // TODO: add decoder/encoder.
     var alias: String
     var userID: String
     var email: String
@@ -41,7 +41,8 @@ class User: ObservableObject, QueryItem {
         
     }
     
-    func popDepositedThought(thought: Thought) { }
+    func popDepositedThought(thought: Thought) {
+    }
     
     func createThought(text: String) { }
     

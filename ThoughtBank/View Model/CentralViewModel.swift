@@ -22,7 +22,11 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     
     @Published var user: User?
     @Published var feedThoughts: [Thought] = []
-    @Published var currentThought: Thought?
+    @Published var currentFeedThought: Thought?
+    @Published var currentDespositedThought: Thought?
+    
+    // TODO: add router for navigation here.
+    // TODO: add booleans for loading transitions (bonus)
     
     func createUser(email: String, password: String) {
         
@@ -38,9 +42,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     
     func depositThought(thought: Thought) { }
     
-    func goToNextThought() {
-        
-    }
+    func goToNextThought() {}
     
     var description: String = "CentralViewModel"
     

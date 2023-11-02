@@ -19,7 +19,7 @@ protocol ViewModelProtocol: ObservableObject {
     
     var user: User? { get set }
     var feedThoughts: [Thought] { get set }
-    var currentThought: Thought? { get set }
+    var currentFeedThought: Thought? { get set }
     
     func createUser(email: String, password: String)
     

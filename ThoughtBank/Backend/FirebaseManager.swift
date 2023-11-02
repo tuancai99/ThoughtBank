@@ -23,7 +23,7 @@ class FirebaseManager {
     static var manager = FirebaseManager()
     
     let db = Firestore.firestore()
-    let auth = Auth.auth()
+    let auth = Auth.auth() // Statefully stores authentication status and information
     
     
     /**
@@ -33,7 +33,11 @@ class FirebaseManager {
             - password: as entered by user
     */
 
-    func createUser(email: String, password: String) async {
+    func createUser(email: String, password: String) async throws {
+        // Step 1: Authenticate with given parameters. Throw error if unsuccessful.
+        // Step 2: Get User information from Firestore using provided result object. Object contains information such as email, documentID.
+        
+        // This is a throwing function, all errors thrown by a the Firebase API function are also thrown by this function.
     }
     
     /**
@@ -42,8 +46,11 @@ class FirebaseManager {
             - email: as entered by user
             - password: as entered by user
     */
-    func login(email: String, password: String) async {
+    func login(email: String, password: String) async throws {
+        // Step 1: Authenticate with given parameters. Throw error if unsuccessful.
+        // Step 2: Get User information from Firestore using provided result object. Object contains information such as email, documentID.
         
+        // This is a throwing function, all errors thrown by a the Firebase API function are also thrown by this function.
     }
 
     
@@ -56,7 +63,10 @@ class FirebaseManager {
             - An array of either "Thought" or "User", depending on the collection specified.
     */
 
-    func fetch(collection: Collection, filterID: (String) -> Bool) async throws -> [QueryItem] {
+    func fetch(collection: Collection, filterID: String) async throws -> [Any] {
+        // Step 1: Await the fetch via Firebase. Make a fetch query that gets documents that match this filter.
+        
+        // Step 2: Map the data to objects using the fetched documents.
         return []
     }
     
@@ -68,6 +78,9 @@ class FirebaseManager {
     */
 
     func add(collection: Collection, data: Codable) async throws {
+        
+        // Step 1: Add the data, encoded, to the specified collection as a document. Firebase API throws an error if adding failed, should also cause function to throw.
+        
     }
     
     /**

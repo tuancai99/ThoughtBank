@@ -22,7 +22,7 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
     @Published var user: User?
     @Published var feedThoughts: [Thought] = []
-    @Published var currentThought: Thought?
+    @Published var currentFeedThought: Thought?
     
     func createUser(email: String, password: String) { }
     
@@ -45,7 +45,7 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     }
     
     func getCurrentThought() -> Thought? {
-        return self.currentThought
+        return self.currentFeedThought
     }
     
     var description: String = "PreviewViewModel"
