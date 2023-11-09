@@ -25,6 +25,9 @@ final class FirebaseManager {
     
     
     /**
+     
+        ASSIGNED TO [JORDAN]
+     
         - important: Use this function in the CentralViewModel to create a user using Firebase -  the CentralViewModel handles the rest.
         - parameters:
             - email: as entered by user
@@ -40,6 +43,9 @@ final class FirebaseManager {
     }
     
     /**
+     
+        ASSIGNED TO [VAMSI]
+
         - important: Use this function in the CentralViewModel to login a user using Firebase -  the CentralViewModel handles the rest.
         - parameters:
             - email: as entered by user
@@ -55,6 +61,9 @@ final class FirebaseManager {
 
     
     /**
+     
+        ASSIGNED TO [SOHAM]
+
         - important: A general purpose fetch used to receive an array query items. In the case of our app, we will always want the query to return a list of Thoughts, or an array of size 1 containing the user with the documentID at "filterID". Use this function in the CentralViewModel to fetch the specified collection of data.
         - parameters:
             - collection: the type of collection from which we want to derive our data.
@@ -74,6 +83,8 @@ final class FirebaseManager {
     }
     
     /**
+        ASSIGNED TO [TUAN]
+
         - important: Use this function in the CentralViewModel to add any given data to a specified collection.
         - parameters:
             - collection: the type of collection to which we want to add our data.
@@ -90,6 +101,9 @@ final class FirebaseManager {
     }
     
     /**
+     
+        ASSIGNED TO [ETHAN]
+
         - important: Use this function in the CentralViewModel to update a user's data on Firebase -  the CentralViewModel handles the rest.
         - parameters:
             - user: the user corresponding to the ongoing session, and the one who's values we want to update on the cloud.
