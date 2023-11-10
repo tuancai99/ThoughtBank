@@ -48,9 +48,8 @@ final class FirebaseManager {
     func login(email: String, password: String) async throws {
         // Step 1: Authenticate with given parameters. Throw error if unsuccessful.
         // Step 2: Get user information from Firestore using provided result from authentication. Authentication result contains information such as email, documentID, etc.
-        
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
-        // HINT: This is an async function, to handle our Firebase server calls, could the 'await' keyword be useful.
+            try await auth.signIn(withEmail: email, password: password)
     }
 
     
