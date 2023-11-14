@@ -23,8 +23,8 @@ protocol ViewModelProtocol: ObservableObject {
     
     // General hints:
     // - Use FirebaseManager to interact with Firebase
-    // - Can we call async functions from a synchronous thread? Do we need to spawn a new thread?
-    // - How do we go back to the main thread after handling an async task?
+    // - Can we call async functions from a synchronous thread? Do we need to spawn a new thread?  (key components: the "Task" wrapper)
+    // - How do we go back to the main thread after handling an async task? (key components: the DispatchQueue.main.async wrapper)
     
     /// Create a new user.
     ///
