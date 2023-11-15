@@ -27,22 +27,24 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
             }
             .padding(EdgeInsets(top: 96, leading: 32, bottom: 64, trailing: 32))
             .offset(x:-8,y:-40)
-            HStack (spacing: 40) {
-                RoundedButton(text: "Reject", image: "chevron.left", size: 8, action: {
+            HStack {
+                RoundedButton(text: "Reject", image: "xmark", size: 12, action: {
                     print("Reject")
                     viewModel.goToNextThought()
                 })
+                Spacer()
                 RoundedButton(text: "Add Thought", image: "plus", size: 30, action: {
                     print("Add Thought")
                     // Present modal for AddThoughtsView
                 })
-                RoundedButton(text: "Deposit", image: "chevron.right", size: 8, action: {
+                Spacer()
+                RoundedButton(text: "Deposit", image: "checkmark", size: 12, action: {
                     print("Deposit")
                     viewModel.depositThought(thought: viewModel.currentFeedThought)
                     viewModel.goToNextThought()
                 })
             }
-            .offset(y:0)
+            .padding(EdgeInsets(top: 0, leading: 32, bottom: 32, trailing: 32))
         }
     }
 }

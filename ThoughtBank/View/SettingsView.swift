@@ -30,113 +30,84 @@ struct SettingsView<ViewModel: ViewModelProtocol>: View {
     
     var body: some View {
         ZStack {
-        VStack {
-            HStack {
-                Text("Given Alias:").frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 5).frame(width: UIScreen.main.bounds.size.width * 0.26).bold().font(.system(size: 18))
-                Text("SurfCup30").frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 5).italic().font(.system(size: 18))
-            }.padding(.top, 20)
-            HStack {
-                Text("Thoughts Remaining Today:").frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 5).frame(width: UIScreen.main.bounds.size.width * 0.6).bold().font(.system(size: 18))
-                Text("0").frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 5).italic().font(.system(size: 18))
-            }
-            Divider().padding(.horizontal, -20)
-            Text("Account Settings").frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 15).foregroundColor(Color(hex: 0xADADAD))
+            VStack {
+                HStack() {
+                    Text("Given Alias:")
+                        .padding(.vertical, 5)
+                        .bold()
+                        .font(.system(size: 18))
+                    Text("SurfCup30")
+                    Spacer()
+                }
+                .padding(.top, 20)
+                
+                HStack {
+                    Text("Thoughts Remaining Today:")
+                        .padding(.vertical, 5)
+                        .bold()
+                        .font(.system(size: 18))
+                    Text("0")
+                        .padding(.vertical, 5)
+                        .italic()
+                        .font(.system(size: 18))
+                    Spacer()
+                }
+                
+                Divider()
+                    .padding(.horizontal, -20)
+                
+                Text("Account Settings")
+                    .padding(.vertical, 15)
+                    .foregroundColor(.secondary)
+                
                 VStack {
-                    HStack {
-                        Button("View profile") {
-                            isProfilePresented.toggle()
-                        }.frame(maxWidth: .infinity, alignment: .leading)
-                            .buttonStyle(PlainButtonStyle())
-                        Image(systemName: "chevron.right")
-                    }.padding(.vertical, 15).contentShape(Rectangle()).onTapGesture {
+                    SettingsListItem(text: "View profile", clickAction: {
                         isProfilePresented.toggle()
-                    }.sheet(isPresented: $isProfilePresented) {
+                    })
+                    .sheet(isPresented: $isProfilePresented) {
                         ProfileView(isSheetPresented: $isProfilePresented)
-                    }.font(.system(size: 18))
+                    }
+                    
                     HStack {
-                        Text("Push notifications").frame(maxWidth: .infinity, alignment: .leading).font(.system(size: 18))
+                        Text("Push notifications")
+                            .font(.system(size: 18))
+                        Spacer()
                         Toggle("", isOn: $isToggleOn)
                             .labelsHidden()
-                            .tint(Color(hex: 0xFF4141))
+                            .tint(.pink)
                     }.padding(.vertical, 15)
                 }
-            Divider().padding(.horizontal, -20)
-            Text("More").frame(maxWidth: .infinity, alignment: .leading).foregroundColor(Color(hex: 0xADADAD)).padding(.vertical, 15).font(.system(size: 18))
-            VStack {
-                HStack {
-                    Button("About us") {
+                
+                Divider().padding(.horizontal, -20)
+                
+                Text("More")
+                    .padding(.vertical, 15)
+                    .foregroundColor(.secondary)
+                
+                VStack {
+                    SettingsListItem(text: "About us", clickAction: {
                         isAboutUsPresented.toggle()
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                        .buttonStyle(PlainButtonStyle())
-                    Image(systemName: "chevron.right")
-                }.padding(.vertical, 15).contentShape(Rectangle()).onTapGesture {
-                    isAboutUsPresented.toggle()
-                }.sheet(isPresented: $isAboutUsPresented) {
-                    AboutView(isSheetPresented: $isAboutUsPresented)
-                }.font(.system(size: 18))
-                HStack {
-                    Button("Privacy policy") {
+                    })
+                    .sheet(isPresented: $isAboutUsPresented) {
+                        AboutView(isSheetPresented: $isAboutUsPresented)
+                    }
+                    
+                    SettingsListItem(text: "Privacy policy", clickAction: {
                         isPrivacyPolicyPresented.toggle()
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                        .buttonStyle(PlainButtonStyle())
-                    Image(systemName: "chevron.right")
-                }.padding(.vertical, 15).contentShape(Rectangle()).onTapGesture {
-                    isPrivacyPolicyPresented.toggle()
-                }.sheet(isPresented: $isPrivacyPolicyPresented) {
-                    PrivacyPolicyView(isSheetPresented: $isPrivacyPolicyPresented)
-                }.font(.system(size: 18))
-                HStack {
-                    Button("Terms and conditions") {
+                    })
+                    .sheet(isPresented: $isPrivacyPolicyPresented) {
+                        PrivacyPolicyView(isSheetPresented: $isPrivacyPolicyPresented)
+                    }
+                    
+                    SettingsListItem(text: "Terms and conditions", clickAction: {
                         isTermsAndConditionsPresented.toggle()
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                        .buttonStyle(PlainButtonStyle())
-                    Image(systemName: "chevron.right")
-                }.padding(.vertical, 15).contentShape(Rectangle()).onTapGesture {
-                    isTermsAndConditionsPresented.toggle()
-                }.sheet(isPresented: $isTermsAndConditionsPresented) {
-                    TermsAndConditionsView(isSheetPresented: $isTermsAndConditionsPresented)
-                }.font(.system(size: 18))
-            }
-            VStack {
-                Spacer()
-                Button {
-                    isActive = true
-                } label: {
-                    Text("Delete Account").foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width * 0.8)
-                        .padding()
-                        .background(Color(hex: 0xFF4141))
-                        .cornerRadius(10)
-                        .font(.system(size: 18))
+                    })
+                    .sheet(isPresented: $isTermsAndConditionsPresented) {
+                        TermsAndConditionsView(isSheetPresented: $isTermsAndConditionsPresented)
+                    }
                 }
-                HStack(alignment: .bottom) {
-                    VStack {
-                        Image(systemName: "text.book.closed")
-                        Text("Browse").font(.system(size: 12))
-                    }
-                    Spacer()
-                    VStack {
-                        Image(systemName: "house")
-                        Text("My Notes").font(.system(size: 12))
-                    }
-                    Spacer()
-                    VStack {
-                        Image(systemName: "square.and.arrow.up")
-                        Text("Share").font(.system(size: 12))
-                    }
-                    Spacer()
-                    VStack {
-                        Image(systemName: "magnifyingglass")
-                        Text("Search").font(.system(size: 12))
-                    }
-                    Spacer()
-                    VStack {
-                        Image(systemName: "gearshape")
-                        Text("Settings").font(.system(size: 12))
-                    }
-                }.padding(.top, 20).frame(maxWidth: .infinity)
-            }.padding(.bottom, -20)
-        }.padding(20)
+                Spacer()
+            }.padding(20)
             if isActive {
                 CustomDialog(isActive: $isActive, isCustomDialog: $isCustomDialog, title: "Still want to delete your account?", message: "Note: This action cannot be changed", buttonTitle: "Give Access") {
                 }
@@ -149,22 +120,36 @@ struct SettingsView<ViewModel: ViewModelProtocol>: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView<PreviewViewModel>().environmentObject(PreviewViewModel())
+struct SettingsListItem: View {
+    var text: String
+    var clickAction: () -> Void
+    
+    var body: some View {
+        HStack {
+            Button(action: clickAction, label: {
+                Text(text)
+            })
+            .buttonStyle(PlainButtonStyle())
+            Spacer()
+            Image(systemName: "chevron.right")
+        }
+        .font(.system(size: 18))
+        .padding(.vertical, 15).onTapGesture {
+            clickAction()
+        }
     }
 }
 
 struct CustomDialog: View {
     @Binding var isActive: Bool
     @Binding var isCustomDialog: Bool
-
+    
     let title: String
     let message: String
     let buttonTitle: String
     let action: () -> ()
     @State private var offset: CGFloat = UIScreen.main.bounds.height / 2
-
+    
     var body: some View {
         ZStack {
             Color(.black)
@@ -172,7 +157,7 @@ struct CustomDialog: View {
                 .onTapGesture {
                     close()
                 }
-
+            
             VStack {
                 Spacer()
                 Text(title)
@@ -181,7 +166,7 @@ struct CustomDialog: View {
                     .padding()
                 
                 Text(message)
-                    .font(.body).padding(.bottom, 30).foregroundColor(Color(hex: 0x54595E))
+                    .font(.body).padding(.bottom, 30).foregroundColor(.gray)
                 HStack {
                     Button {
                         close()
@@ -191,7 +176,7 @@ struct CustomDialog: View {
                                 .foregroundColor(.white)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color(hex: 0x4F4F4F), lineWidth: 1)
+                                        .stroke(.gray, lineWidth: 1)
                                 )
                             Text("No, cancel")
                                 .foregroundColor(.black)
@@ -202,7 +187,7 @@ struct CustomDialog: View {
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color(hex: 0xFF0000))
+                                .foregroundColor(.red)
                             
                             Text("Yes, confirm")
                                 .foregroundColor(.white)
@@ -237,7 +222,7 @@ struct CustomDialog: View {
         }
         .ignoresSafeArea()
     }
-
+    
     func close() {
         withAnimation(.spring()) {
             offset = UIScreen.main.bounds.height / 2
@@ -255,13 +240,13 @@ struct CustomDialog_Previews: PreviewProvider {
 struct CustomDialog2: View {
     @Binding var isActive: Bool
     @Binding var isCustomDialog : Bool
-
+    
     let title: String
     let message: String
     let buttonTitle: String
     let action: () -> ()
     @State private var offset: CGFloat = UIScreen.main.bounds.height / 2
-
+    
     var body: some View {
         ZStack {
             Color(.black)
@@ -269,16 +254,16 @@ struct CustomDialog2: View {
                 .onTapGesture {
                     close2()
                 }
-
+            
             VStack {
                 ZStack {
                     Circle()
                         .fill(Color.white) // Change the color of the circle as needed
                         .frame(width: 40, height: 40).overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color(hex: 0x4F4F4F), lineWidth: 3)
+                                .stroke(.gray, lineWidth: 3)
                         )// Adjust the size of the circle
-
+                    
                     Image(systemName: "checkmark")
                         .foregroundColor(.black)
                         .font(.system(size: 24, weight: .bold))
@@ -289,37 +274,37 @@ struct CustomDialog2: View {
                     .padding()
                 
                 Text(message)
-                    .font(.body).padding(.bottom, 15).foregroundColor(Color(hex: 0x54595E))
-                    Button {
-                        close2()
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color(hex: 0x4F4F4F))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color(hex: 0x4F4F4F), lineWidth: 1)
-                                )
-                            Text("Exit")
-                                .foregroundColor(.white)
-                                .padding()
-                        }
+                    .font(.body).padding(.bottom, 15).foregroundColor(.gray)
+                Button {
+                    close2()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(.gray)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.gray, lineWidth: 1)
+                            )
+                        Text("Exit")
+                            .foregroundColor(.white)
+                            .padding()
                     }
-                    Button {
-                        isCustomDialog = true
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(.white).overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color(hex: 0x4F4F4F), lineWidth: 1)
-                                )
-                            
-                            Text("Undo")
-                                .foregroundColor(Color(hex: 0x4F4F4F))
-                                .padding()
-                        }
+                }
+                Button {
+                    isCustomDialog = true
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(.white).overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.gray, lineWidth: 1)
+                            )
+                        
+                        Text("Undo")
+                            .foregroundColor(.gray)
+                            .padding()
                     }
+                }
             }
             .fixedSize(horizontal: false, vertical: true)
             .padding()
@@ -347,7 +332,7 @@ struct CustomDialog2: View {
         }
         .ignoresSafeArea()
     }
-
+    
     func close2() {
         withAnimation(.spring()) {
             offset = UIScreen.main.bounds.height / 2
@@ -369,14 +354,14 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack {
-                    Text("Profile")
-                    
-                    Button("Done") {
-                        isSheetPresented = false
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .topTrailing)
-                }
+            Text("Profile")
+            
+            Button("Done") {
+                isSheetPresented = false
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .topTrailing)
+        }
         Spacer()
     }
 }
@@ -386,14 +371,14 @@ struct AboutView: View {
     
     var body: some View {
         ZStack {
-                    Text("About Us")
-                    
-                    Button("Done") {
-                        isSheetPresented = false
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .topTrailing)
-                }
+            Text("About Us")
+            
+            Button("Done") {
+                isSheetPresented = false
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .topTrailing)
+        }
         Spacer()
     }
 }
@@ -403,14 +388,14 @@ struct PrivacyPolicyView: View {
     
     var body: some View {
         ZStack {
-                    Text("Privacy Policy")
-                    
-                    Button("Done") {
-                        isSheetPresented = false
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .topTrailing)
-                }
+            Text("Privacy Policy")
+            
+            Button("Done") {
+                isSheetPresented = false
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .topTrailing)
+        }
         Spacer()
     }
 }
@@ -420,26 +405,20 @@ struct TermsAndConditionsView: View {
     
     var body: some View {
         ZStack {
-                    Text("Terms and Conditions")
-                    
-                    Button("Done") {
-                        isSheetPresented = false
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .topTrailing)
-                }
+            Text("Terms and Conditions")
+            
+            Button("Done") {
+                isSheetPresented = false
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .topTrailing)
+        }
         Spacer()
     }
 }
 
-extension Color {
-    init(hex: UInt, alpha: Double = 1.0) {
-        self.init(
-            .sRGB,
-            red: Double((hex & 0xFF0000) >> 16) / 255.0,
-            green: Double((hex & 0x00FF00) >> 8) / 255.0,
-            blue: Double(hex & 0x0000FF) / 255.0,
-            opacity: alpha
-        )
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView<PreviewViewModel>().environmentObject(PreviewViewModel())
     }
 }

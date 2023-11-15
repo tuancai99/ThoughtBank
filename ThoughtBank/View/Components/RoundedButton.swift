@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RoundedButton: View {
+    
     var text: String
     var image: String
     var size: CGFloat
@@ -18,9 +19,9 @@ struct RoundedButton: View {
             Button(action: action, label: {
                 ZStack {
                     Circle()
-                        .frame(width: size + 28, height: size + 28)
+                        .frame(width: size + 24, height: size + 24)
                         .shadow(color: .gray, radius: 3, x: 0, y: 2)
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                     Image(systemName: image)
                         .resizable()
                         .foregroundColor(.black)
@@ -31,9 +32,12 @@ struct RoundedButton: View {
             Text(text)
                 .offset(y:5)
         }
+        .frame(width: (size + 24) * 2, height: size + 24)
     }
 }
 
-#Preview {
-    RoundedButton(text: "Hello", image: "chevron.left", size: 8, action: {})
+struct RoundedButton_Previews: PreviewProvider {
+    static var previews: some View {
+        RoundedButton(text: "Deposit", image: "chevron.left", size: 8, action: {})
+    }
 }

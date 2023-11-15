@@ -37,14 +37,14 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
                         Label("Browse", systemImage: "magnifyingglass.circle")
                     }
                 
-                DepositedThoughtsView<ViewModel>()
-                    .tabItem {
-                        Label("Deposited", systemImage: "square.and.arrow.down")
-                    }
-                
                 PersonalThoughtsView<ViewModel>()
                     .tabItem {
                         Label("My Thoughts", systemImage: "square.and.arrow.up")
+                    }
+                
+                DepositedThoughtsView<ViewModel>()
+                    .tabItem {
+                        Label("Deposited", systemImage: "square.and.arrow.down")
                     }
                 
                 SettingsView<ViewModel>()
