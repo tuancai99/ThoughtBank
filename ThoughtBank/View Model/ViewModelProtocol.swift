@@ -14,12 +14,16 @@
 import Foundation
 
 protocol ViewModelProtocol: ObservableObject {
+    
     // indicates the type of VM we're looking at (for debugging purposes)
     var description: String { get set }
     
-    var user: User? { get set }
-    var feedThoughts: [Thought] { get set }
+    var navigationState: NavigationState { get set }
     
+    var user: User? { get set }
+    
+    var currentFeedIndex: Int { get set }
+    var feedThoughts: [Thought] { get set }
     var currentFeedThought: Thought? { get set }
     
     // General hints:

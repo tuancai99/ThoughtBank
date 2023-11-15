@@ -17,13 +17,17 @@
 //
 
 import Foundation
+import UIKit
 
 class CentralViewModel: ObservableObject, ViewModelProtocol {
+    
+    @Published var navigationState: NavigationState = .landing
     
     @Published var user: User?
     @Published var feedThoughts: [Thought] = []
     @Published var currentFeedThought: Thought?
     @Published var currentDespositedThought: Thought?
+    @Published var currentFeedIndex: Int = 0
     
     // TODO: add router for navigation here.
     // TODO: add booleans for loading transitions (bonus)

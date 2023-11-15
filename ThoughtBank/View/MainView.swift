@@ -15,11 +15,12 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
     @State var landingPageOption: String
     
-    let LandingPageOptions = ["Public", "Personal", "Saved"]
+    //let LandingPageOptions = ["Public", "Personal", "Saved"]
 
     var body: some View {
         NavigationStack {
             Divider()
+            /*
             VStack {
                 Picker("hello", selection: $landingPageOption) {
                     ForEach(LandingPageOptions, id: \.self) {
@@ -29,7 +30,7 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
                 .pickerStyle(.segmented)
             }
             .frame(minWidth: 0, maxWidth: 350, minHeight: 0, maxHeight: 50)
-            
+            */
             TabView {
                 MainFeedView<ViewModel>()
                     .tabItem {
@@ -38,17 +39,12 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
                 
                 DepositedThoughtsView<ViewModel>()
                     .tabItem {
-                        Label("My Notes", systemImage: "house")
+                        Label("Deposited", systemImage: "square.and.arrow.down")
                     }
                 
-                AddThoughtsView<ViewModel>()
+                PersonalThoughtsView<ViewModel>()
                     .tabItem {
-                        Label("Share", systemImage: "square.and.arrow.up")
-                    }
-                
-                LandingPageView<ViewModel>()
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
+                        Label("My Thoughts", systemImage: "square.and.arrow.up")
                     }
                 
                 SettingsView<ViewModel>()

@@ -187,7 +187,7 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                         }
                         Text("View More")
                             .font(
-                            Font.custom("Arial", size: 12)
+                                Font.custom("Arial", size: 12)
                             )
                             .multilineTextAlignment(.center)
                             .foregroundColor(.black)
