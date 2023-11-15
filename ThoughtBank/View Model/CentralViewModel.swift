@@ -17,13 +17,21 @@
 //
 
 import Foundation
+import UIKit
 
 class CentralViewModel: ObservableObject, ViewModelProtocol {
+    var description: String = "CentralViewModel"
+    
+    @Published var navigationState: NavigationState = .landing
     
     @Published var user: User?
     @Published var feedThoughts: [Thought] = []
     @Published var currentFeedThought: Thought?
     @Published var currentDespositedThought: Thought?
+    @Published var feedThoughtIndex: Int = 0
+    @Published var depositedThoughtIndex: Int = 0
+    @Published var ownedThoughtIndex: Int = 0
+    @Published var shouldLoadBlocking: Bool = false
     
     // TODO: add router for navigation here.
     // TODO: add booleans for loading transitions (bonus)
@@ -36,14 +44,35 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         
     }
     
-    func popDepositedThought(thought: Thought) { }
+    func popDepositedThought(thought: Thought?) {
+        
+    }
     
-    func createThought(text: String) { }
+    func createThought(text: String) {
+        
+    }
     
-    func depositThought(thought: Thought) { }
+    func depositThought(thought: Thought?) {
+        
+    }
     
-    func goToNextThought() {}
+    func goToNextFeedThought() {
+        
+    }
     
-    var description: String = "CentralViewModel"
+    func goToNextDepositedThought() {
+        
+    }
     
+    func goToPreviousDepositedThought() {
+        
+    }
+    
+    func goToNextOwnedThought() {
+        
+    }
+    
+    func goToPreviousOwnedThought() {
+        
+    }
 }

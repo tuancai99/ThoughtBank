@@ -18,55 +18,35 @@ import SwiftUI
 
 struct LandingPageView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
-  
-
     
     var body: some View {
-        
-        VStack(spacing: 90){
+        VStack(){
             Image("Logo")
-               // Spacer()
-                
-            VStack(spacing: -45){
+            VStack(){
                 Text("See what the \n world is thinking")
                     .font(
-                        Font.custom("SmoochSans-ExtraBold", size: 70)
-                        //.weight(.bold)
+                        Font.custom("SmoochSans-ExtraBold", size: 64)
                     )
                     .kerning(0.35)
-                    .foregroundColor(Color(red: 0.11, green: 0.11, blue: 0.11))
+                    .foregroundStyle(.primary)
                 
-                
-                Button(action:{}, label: {
-                    Text("Create account")
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color.white)
-                        .padding(100)
-                        .background(Color.black
-                            .cornerRadius(13)
-                            .frame(width: 375,height: 50)
-                        )
-                    
-                    
+                LargeFilledButton(text: "Create account", color: .pink, action: {
+                    viewModel.navigationState = .registration
+                })
+                .padding(EdgeInsets(top: -32, leading: 0, bottom: 0, trailing: 0))
+            }
+            Spacer()
+            HStack {
+                Text("Already have an account?")
+                Button(action: {
+                    viewModel.navigationState = .login
+                }, label: {
+                    Text("Sign in")
                 })
             }
-            
-            Spacer()
-            
-                HStack(){
-                    Text("Already have an account?")
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                        Text("Sign in")
-                        
-                    })
-                }
-                
-            
-            
-            
-            
-            
         }
+        .padding(16)
+        .font(Font.custom("Poppins-Regular", size: 14))
     }
     
 }

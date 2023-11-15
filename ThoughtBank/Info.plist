@@ -209,6 +209,8 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-Regular.ttf</string>
 		<string>SmoochSans-ExtraBold.ttf</string>
 		<string>SmoochSans-Regular.ttf</string>
 		<string>SmoochSans-SemiBold.ttf</string>

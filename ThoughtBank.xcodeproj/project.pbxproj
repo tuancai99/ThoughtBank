@@ -45,6 +45,13 @@
 		DBA414312AEDDF8A00B4F685 /* SmoochSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */; };
 		DBA414342AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */; };
 		DBA414362AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414352AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf */; };
+		FF604EEE2B04384A000B80D7 /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604EED2B04384A000B80D7 /* NavigationState.swift */; };
+		FF604EF32B043954000B80D7 /* ManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604EF22B043954000B80D7 /* ManagerView.swift */; };
+		FF604EF62B044315000B80D7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604EF52B044315000B80D7 /* ImageTextField.swift */; };
+		FF604EF82B04439B000B80D7 /* LargeFilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */; };
+		FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F002B046ACF000B80D7 /* ThoughtCard.swift */; };
+		FF604F032B0491B6000B80D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F022B0491B6000B80D7 /* RoundedButton.swift */; };
+		FF604F052B0512F3000B80D7 /* ProgressOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */; };
 		FFB71AD12ADF50DB0006C762 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */; };
 		FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD32ADF50EA0006C762 /* Thought.swift */; };
 		FFB71AD62ADF50EA0006C762 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD42ADF50EA0006C762 /* User.swift */; };
@@ -74,6 +81,16 @@
 		DBA414322AEDE7F100B4F685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		DBA414352AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		FF604EED2B04384A000B80D7 /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
+		FF604EF22B043954000B80D7 /* ManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerView.swift; sourceTree = "<group>"; };
+		FF604EF52B044315000B80D7 /* ImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextField.swift; sourceTree = "<group>"; };
+		FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeFilledButton.swift; sourceTree = "<group>"; };
+		FF604EF92B045E18000B80D7 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		FF604EFD2B045E18000B80D7 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../../../../../../../Users/noahsadir/Downloads/Poppins/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		FF604F002B046ACF000B80D7 /* ThoughtCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCard.swift; sourceTree = "<group>"; };
+		FF604F022B0491B6000B80D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlay.swift; sourceTree = "<group>"; };
 		FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FFB71AD32ADF50EA0006C762 /* Thought.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		FFB71AD42ADF50EA0006C762 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -178,11 +195,26 @@
 		DBA4142F2AEDDEEF00B4F685 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				FF604EF92B045E18000B80D7 /* Poppins-ExtraBold.ttf */,
+				FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */,
+				FF604EFD2B045E18000B80D7 /* Poppins-Regular.ttf */,
 				DBA414352AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf */,
 				DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */,
 				DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		FF604EF42B0442ED000B80D7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FF604EF52B044315000B80D7 /* ImageTextField.swift */,
+				FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */,
+				FF604F022B0491B6000B80D7 /* RoundedButton.swift */,
+				FF604F002B046ACF000B80D7 /* ThoughtCard.swift */,
+				FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		FFB71ACF2ADF50C80006C762 /* Backend */ = {
@@ -197,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				FFB71AD32ADF50EA0006C762 /* Thought.swift */,
+				FF604EED2B04384A000B80D7 /* NavigationState.swift */,
 				FFB71AD42ADF50EA0006C762 /* User.swift */,
 			);
 			path = Model;
@@ -216,17 +249,19 @@
 			isa = PBXGroup;
 			children = (
 				DBA4142F2AEDDEEF00B4F685 /* Font */,
+				3D5E89252AEF135600C74079 /* Keyboard */,
+				FF604EF42B0442ED000B80D7 /* Components */,
 				FFB71AE12ADF51140006C762 /* LandingPageView.swift */,
 				FFB71AE32ADF51140006C762 /* LoginView.swift */,
 				FFB71ADF2ADF51140006C762 /* RegistrationView.swift */,
 				FFB71AE22ADF51140006C762 /* MainFeedView.swift */,
-				A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */,
-				3D5E89252AEF135600C74079 /* Keyboard */,
 				FFB71AE52ADF51150006C762 /* PersonalThoughtsView.swift */,
 				FFB71AE02ADF51140006C762 /* DepositedThoughtsView.swift */,
+				A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */,
 				FFB71AE42ADF51140006C762 /* SettingsView.swift */,
 				7F1890122AEFF99E0099539B /* MainView.swift */,
 				A31484522AF4604A00A81A4A /* TestingView.swift */,
+				FF604EF22B043954000B80D7 /* ManagerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,23 +373,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D5E89272AEF137D00C74079 /* KeyboardAdaptive.swift in Sources */,
+				FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */,
+				FF604EEE2B04384A000B80D7 /* NavigationState.swift in Sources */,
 				FFB71AD62ADF50EA0006C762 /* User.swift in Sources */,
 				FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */,
 				FFB71AEC2ADF51150006C762 /* PersonalThoughtsView.swift in Sources */,
 				FFB71AE72ADF51150006C762 /* DepositedThoughtsView.swift in Sources */,
 				A31484532AF4604A00A81A4A /* TestingView.swift in Sources */,
+				FF604EF62B044315000B80D7 /* ImageTextField.swift in Sources */,
 				FFB71AD12ADF50DB0006C762 /* FirebaseManager.swift in Sources */,
 				FFB71ADB2ADF51030006C762 /* PreviewViewModel.swift in Sources */,
 				FFB71ADD2ADF51030006C762 /* ViewModelProtocol.swift in Sources */,
 				FFB71AEA2ADF51150006C762 /* LoginView.swift in Sources */,
 				A38232622AE1ED2B003DB59D /* AddThoughtsView.swift in Sources */,
+				FF604F052B0512F3000B80D7 /* ProgressOverlay.swift in Sources */,
 				FFB71ADC2ADF51030006C762 /* CentralViewModel.swift in Sources */,
 				7F1890132AEFF99E0099539B /* MainView.swift in Sources */,
 				FFB71AE82ADF51150006C762 /* LandingPageView.swift in Sources */,
 				FFB71AE92ADF51150006C762 /* MainFeedView.swift in Sources */,
 				A3CE61DC2ADF2B9D0039EC83 /* ThoughtBankApp.swift in Sources */,
+				FF604F032B0491B6000B80D7 /* RoundedButton.swift in Sources */,
+				FF604EF32B043954000B80D7 /* ManagerView.swift in Sources */,
 				FFB71AE62ADF51150006C762 /* RegistrationView.swift in Sources */,
 				FFB71AEB2ADF51150006C762 /* SettingsView.swift in Sources */,
+				FF604EF82B04439B000B80D7 /* LargeFilledButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +530,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ThoughtBank/Preview Content\"";
-				DEVELOPMENT_TEAM = KJ7YS82G45;
+				DEVELOPMENT_TEAM = Y7NL9XLUR5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThoughtBank/Info.plist;
@@ -519,7 +561,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ThoughtBank/Preview Content\"";
-				DEVELOPMENT_TEAM = KJ7YS82G45;
+				DEVELOPMENT_TEAM = Y7NL9XLUR5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThoughtBank/Info.plist;

@@ -14,13 +14,23 @@
 import Foundation
 
 protocol ViewModelProtocol: ObservableObject {
+    
     // indicates the type of VM we're looking at (for debugging purposes)
     var description: String { get set }
     
-    var user: User? { get set }
-    var feedThoughts: [Thought] { get set }
+    var navigationState: NavigationState { get set }
     
+    var user: User? { get set }
+    
+    var feedThoughts: [Thought] { get set }
     var currentFeedThought: Thought? { get set }
+    
+    // Index for current stack of cards
+    var feedThoughtIndex: Int { get set }
+    var depositedThoughtIndex: Int { get set }
+    var ownedThoughtIndex: Int { get set }
+    
+    var shouldLoadBlocking: Bool { get set }
     
     // General hints:
     // - Use FirebaseManager to interact with Firebase for each function that involves manipulation of data.
@@ -49,7 +59,7 @@ protocol ViewModelProtocol: ObservableObject {
     ///
     /// - Parameters
     ///     - thought: the Thought object to remove
-    func popDepositedThought(thought: Thought)
+    func popDepositedThought(thought: Thought?)
     
     /// Create a new thought for the user.
     ///
@@ -63,11 +73,31 @@ protocol ViewModelProtocol: ObservableObject {
     ///
     /// - Parameters
     ///     - thought: a Thought object from another user
-    func depositThought(thought: Thought)
+    func depositThought(thought: Thought?)
     
     /// Go to the next thought in the feed.
     ///
     /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
-    func goToNextThought()
+    func goToNextFeedThought()
+    
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func goToNextDepositedThought()
+    
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func goToPreviousDepositedThought()
+    
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func goToNextOwnedThought()
+    
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func goToPreviousOwnedThought()
         
 }
