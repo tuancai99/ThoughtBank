@@ -18,7 +18,7 @@ struct ManagerView<ViewModel: ViewModelProtocol>: View {
             LoginView<ViewModel>().environmentObject(viewModel)
         case .registration:
             RegistrationView<ViewModel>().environmentObject(viewModel)
-        case .main, .add:
+        case .feedThoughts, .depositedThoughts, .ownedThoughts, .settings, .add:
             MainView<ViewModel>().environmentObject(viewModel)
         }
     }
