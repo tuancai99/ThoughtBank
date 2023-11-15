@@ -25,6 +25,8 @@ protocol ViewModelProtocol: ObservableObject {
     var feedThoughts: [Thought] { get set }
     var currentFeedThought: Thought? { get set }
     
+    var shouldLoadBlocking: Bool { get set }
+    
     // General hints:
     // - Use FirebaseManager to interact with Firebase for each function that involves manipulation of data.
     // - Can we call async functions from a synchronous thread? Do we need to spawn a new thread?  (key components: the "Task" wrapper, look into it)

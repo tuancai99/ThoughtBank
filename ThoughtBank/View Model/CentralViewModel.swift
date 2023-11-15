@@ -28,6 +28,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     @Published var feedThoughts: [Thought] = []
     @Published var currentFeedThought: Thought?
     @Published var currentDespositedThought: Thought?
+    @Published var shouldLoadBlocking: Bool = false
     
     // TODO: add router for navigation here.
     // TODO: add booleans for loading transitions (bonus)

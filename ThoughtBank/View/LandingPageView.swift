@@ -31,6 +31,7 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
                     .foregroundStyle(.primary)
                 
                 LargeFilledButton(text: "Create account", color: .pink, action: {
+                    // TODO: Transition to .registration navigation state
                     viewModel.navigationState = .registration
                 })
                 .padding(EdgeInsets(top: -32, leading: 0, bottom: 0, trailing: 0))
@@ -39,11 +40,11 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
             HStack {
                 Text("Already have an account?")
                 Button(action: {
+                    // TODO: Transition to .login navigation state
                     viewModel.navigationState = .login
                 }, label: {
                     Text("Sign in")
                 })
-                .tint(.pink)
             }
         }
         .padding(16)

@@ -18,33 +18,36 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
-        VStack {
+        
+        ZStack {
             ZStack {
                 ForEach(0..<viewModel.feedThoughts.count, id: \.self) { i in
                     ThoughtCard(thought: viewModel.feedThoughts[viewModel.feedThoughts.count - i - 1])
                         .offset(x: CGFloat(i), y: CGFloat(i))
                 }
             }
-            .padding(EdgeInsets(top: 96, leading: 32, bottom: 64, trailing: 32))
-            .offset(x:-8,y:-40)
-            HStack {
-                RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
-                    print("Back")
-                    viewModel.goToNextThought()
-                })
+            .padding(EdgeInsets(top: 64, leading: 32, bottom: 144, trailing: 32))
+            VStack {
                 Spacer()
-                RoundedButton(text: "Forget", image: "brain", size: 30, action: {
-                    print("Forget")
-                    // Pop deposited thought
-                })
-                Spacer()
-                RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
-                    print("Next")
-                    viewModel.depositThought(thought: viewModel.currentFeedThought)
-                    viewModel.goToNextThought()
-                })
+                HStack {
+                    RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
+                        print("Go to previous thought deposited by user")
+                        viewModel.goToNextThought()
+                    })
+                    Spacer()
+                    RoundedButton(text: "Forget", image: "brain", size: 30, action: {
+                        print("Delete this thought from deposited thoughts")
+                        // Pop deposited thought
+                    })
+                    Spacer()
+                    RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
+                        print("Go to next thought deposited by user")
+                        viewModel.depositThought(thought: viewModel.currentFeedThought)
+                        viewModel.goToNextThought()
+                    })
+                }
+                .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))
             }
-            .padding(EdgeInsets(top: 0, leading: 32, bottom: 32, trailing: 32))
         }
     }
 }

@@ -18,33 +18,39 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
-        VStack {
+        ZStack {
             ZStack {
                 ForEach(0..<viewModel.feedThoughts.count, id: \.self) { i in
                     ThoughtCard(thought: viewModel.feedThoughts[viewModel.feedThoughts.count - i - 1])
                         .offset(x: CGFloat(i), y: CGFloat(i))
                 }
             }
-            .padding(EdgeInsets(top: 96, leading: 32, bottom: 64, trailing: 32))
-            .offset(x:-8,y:-40)
-            HStack {
-                RoundedButton(text: "Reject", image: "xmark", size: 12, action: {
-                    print("Reject")
-                    viewModel.goToNextThought()
-                })
+            .padding(EdgeInsets(top: 64, leading: 32, bottom: 144, trailing: 32))
+            
+            VStack {
                 Spacer()
-                RoundedButton(text: "Add Thought", image: "plus", size: 30, action: {
-                    print("Add Thought")
-                    // Present modal for AddThoughtsView
-                })
-                Spacer()
-                RoundedButton(text: "Deposit", image: "checkmark", size: 12, action: {
-                    print("Deposit")
-                    viewModel.depositThought(thought: viewModel.currentFeedThought)
-                    viewModel.goToNextThought()
-                })
+                HStack {
+                    Spacer()
+                    RoundedButton(text: "Reject", image: "xmark", size: 16, action: {
+                        // TODO: Implement "Reject" button
+                        // - If the user is rejecting, what's the sole action we need to take?
+                        print("Call viewModel to go to the next thought")
+                        viewModel.goToNextThought()
+                    })
+                    Spacer()
+                    RoundedButton(text: "Deposit", image: "checkmark", size: 16, action: {
+                        // TODO: Implement "Deposit" button
+                        // - We need to make a call to the viewModel so that the Thought
+                        //   is saved in User's deposited thoughts
+                        // - We also need to show the next card
+                        print("Call viewModel to deposit the current thought and go to the next thought")
+                        viewModel.depositThought(thought: viewModel.currentFeedThought)
+                        viewModel.goToNextThought()
+                    })
+                    Spacer()
+                }
+                .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))
             }
-            .padding(EdgeInsets(top: 0, leading: 32, bottom: 32, trailing: 32))
         }
     }
 }

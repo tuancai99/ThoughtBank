@@ -27,9 +27,9 @@ struct ThoughtBankApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ManagerView<CentralViewModel>()
-                    .environmentObject(CentralViewModel())
+                ManagerView<PreviewViewModel>().environmentObject(PreviewViewModel())
             }
+            .tint(.pink)
         }
     }
 }

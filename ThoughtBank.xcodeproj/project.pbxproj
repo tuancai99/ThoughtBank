@@ -51,6 +51,7 @@
 		FF604EF82B04439B000B80D7 /* LargeFilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */; };
 		FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F002B046ACF000B80D7 /* ThoughtCard.swift */; };
 		FF604F032B0491B6000B80D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F022B0491B6000B80D7 /* RoundedButton.swift */; };
+		FF604F052B0512F3000B80D7 /* ProgressOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */; };
 		FFB71AD12ADF50DB0006C762 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */; };
 		FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD32ADF50EA0006C762 /* Thought.swift */; };
 		FFB71AD62ADF50EA0006C762 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD42ADF50EA0006C762 /* User.swift */; };
@@ -89,6 +90,7 @@
 		FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../../../../../../../Users/noahsadir/Downloads/Poppins/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		FF604F002B046ACF000B80D7 /* ThoughtCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCard.swift; sourceTree = "<group>"; };
 		FF604F022B0491B6000B80D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlay.swift; sourceTree = "<group>"; };
 		FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FFB71AD32ADF50EA0006C762 /* Thought.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		FFB71AD42ADF50EA0006C762 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */,
 				FF604F022B0491B6000B80D7 /* RoundedButton.swift */,
 				FF604F002B046ACF000B80D7 /* ThoughtCard.swift */,
+				FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -245,16 +248,16 @@
 		FFB71ADE2ADF51060006C762 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FF604EF42B0442ED000B80D7 /* Components */,
 				DBA4142F2AEDDEEF00B4F685 /* Font */,
+				3D5E89252AEF135600C74079 /* Keyboard */,
+				FF604EF42B0442ED000B80D7 /* Components */,
 				FFB71AE12ADF51140006C762 /* LandingPageView.swift */,
 				FFB71AE32ADF51140006C762 /* LoginView.swift */,
 				FFB71ADF2ADF51140006C762 /* RegistrationView.swift */,
 				FFB71AE22ADF51140006C762 /* MainFeedView.swift */,
-				A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */,
-				3D5E89252AEF135600C74079 /* Keyboard */,
 				FFB71AE52ADF51150006C762 /* PersonalThoughtsView.swift */,
 				FFB71AE02ADF51140006C762 /* DepositedThoughtsView.swift */,
+				A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */,
 				FFB71AE42ADF51140006C762 /* SettingsView.swift */,
 				7F1890122AEFF99E0099539B /* MainView.swift */,
 				A31484522AF4604A00A81A4A /* TestingView.swift */,
@@ -383,6 +386,7 @@
 				FFB71ADD2ADF51030006C762 /* ViewModelProtocol.swift in Sources */,
 				FFB71AEA2ADF51150006C762 /* LoginView.swift in Sources */,
 				A38232622AE1ED2B003DB59D /* AddThoughtsView.swift in Sources */,
+				FF604F052B0512F3000B80D7 /* ProgressOverlay.swift in Sources */,
 				FFB71ADC2ADF51030006C762 /* CentralViewModel.swift in Sources */,
 				7F1890132AEFF99E0099539B /* MainView.swift in Sources */,
 				FFB71AE82ADF51150006C762 /* LandingPageView.swift in Sources */,

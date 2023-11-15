@@ -12,4 +12,5 @@ enum NavigationState {
     case login
     case registration
     case main
+    case add
 }

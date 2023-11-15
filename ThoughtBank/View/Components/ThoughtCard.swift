@@ -30,7 +30,7 @@ struct ThoughtCard: View {
             Spacer()
         }
         .ignoresSafeArea()
-        .background(NotepadBackground(lineSpacing: lineSpacing, titleHeight: lineSpacing + 12.0))
+        .background(NotepadBackground(isResizable: false, lineSpacing: lineSpacing, topLineMargin: 1, bottomLineMargin: 0))
     }
 }
 
@@ -38,8 +38,10 @@ struct NotepadBackground: View {
     @State var cardSize: CGSize = CGSize(width: 0, height: 0)
     @State var lineCount: Int = 0
     
+    let isResizable: Bool
     let lineSpacing: CGFloat
-    let titleHeight: CGFloat
+    let topLineMargin: Int
+    let bottomLineMargin: Int
     let lineHeight: CGFloat = 1
     
     var body: some View {
@@ -49,10 +51,16 @@ struct NotepadBackground: View {
                 .stroke(.gray, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
                 .onAppear {
                     cardSize = proxy.size
-                    lineCount = Int((cardSize.height / lineSpacing) * 0.7) - 1
+                    lineCount = Int((cardSize.height / lineSpacing) * 0.7) - topLineMargin - bottomLineMargin
+                }
+                .onChange(of: proxy.size) { newSize in
+                    if isResizable {
+                        print(proxy.size)
+                        cardSize = proxy.size
+                        lineCount = Int((cardSize.height / lineSpacing) * 0.7) - topLineMargin - bottomLineMargin
+                    }
                 }
         }
-        .ignoresSafeArea()
         
         ZStack {
             RoundedRectangle(cornerRadius: 8)
@@ -62,12 +70,11 @@ struct NotepadBackground: View {
                 .foregroundColor(.red)
                 .padding(EdgeInsets(top: 0, leading: cardSize.width - 64, bottom: 0, trailing: 0))
             VStack {
-                Rectangle()
-                    .frame(width: cardSize.width, height: 0)
-                    .padding(.bottom, lineSpacing - lineHeight)
-                Rectangle()
-                    .frame(width: cardSize.width, height: 0)
-                    .padding(.bottom, lineSpacing - lineHeight)
+                ForEach(0...topLineMargin, id: \.self) { pos in
+                    Rectangle()
+                        .frame(width: cardSize.width, height: 0)
+                        .padding(.bottom, lineSpacing - lineHeight)
+                }
                 ForEach(0..<lineCount, id: \.self) { pos in
                     Rectangle()
                         .frame(width: cardSize.width, height: lineHeight)

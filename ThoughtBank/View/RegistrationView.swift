@@ -19,7 +19,6 @@ struct RegistrationView<ViewModel: ViewModelProtocol>: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
-    @State private var didClickButton: Bool = false
     
     var body: some View {
         ZStack {
@@ -37,7 +36,8 @@ struct RegistrationView<ViewModel: ViewModelProtocol>: View {
                 ImageTextField(text: $password, placeholder: "Password", image: "password-symbol", secure: true)
                 
                 LargeFilledButton(text: "Register", color: .pink, action: {
-                    didClickButton = true
+                    // TODO: Implement "Register" button
+                    // - Must call viewModel (should be a straightforward call)
                     viewModel.createUser(email: email, password: password)
                 })
                 
@@ -51,28 +51,17 @@ struct RegistrationView<ViewModel: ViewModelProtocol>: View {
                 HStack {
                     Text("Already have an account?")
                     Button(action: {
+                        // TODO: Transition to .login navigation state
                         viewModel.navigationState = .login
                     }, label: {
                         Text("Sign in")
                     })
-                    .tint(.pink)
                 }
             }
-            ZStack {
-                if didClickButton {
-                    Rectangle()
-                        .fill(Color.black).opacity(0.6)
-                        .edgesIgnoringSafeArea(.all)
-                    VStack {
-                        Spacer()
-                        ProgressView()
-                        Spacer()
-                    }
-                }
-            }
+            .padding(16)
+            ProgressOverlay(isVisible: $viewModel.shouldLoadBlocking)
         }
         .font(Font.custom("Poppins-Regular", size: 14))
-        .padding(16)
     }
 }
 

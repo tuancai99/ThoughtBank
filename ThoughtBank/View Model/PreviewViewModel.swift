@@ -33,6 +33,8 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     ]
     @Published var currentFeedThought: Thought?
     
+    @Published var shouldLoadBlocking: Bool = false
+    
     func createUser(email: String, password: String) {
         navigationState = .main
         currentFeedThought = feedThoughts[0]
