@@ -30,9 +30,19 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
     var body: some View {
         ZStack {
             ZStack {
-                ForEach(0..<viewModel.feedThoughts.count, id: \.self) { i in
-                    ThoughtCard(thought: viewModel.feedThoughts[viewModel.feedThoughts.count - i - 1])
-                        .offset(x: CGFloat(i), y: CGFloat(i))
+                if let user = viewModel.user {
+                    let thoughts: [Thought] = user.ownedThoughts
+                    if viewModel.ownedThoughtIndex < thoughts.count {
+                        ForEach(viewModel.ownedThoughtIndex..<thoughts.count,id: \.self) { i in
+                            let flippedIndex: Int = (thoughts.count - i - 1) + viewModel.ownedThoughtIndex
+                            ThoughtCard(thought: thoughts[flippedIndex])
+                                .offset(x: CGFloat(i), y: CGFloat(i))
+                        }
+                    } else {
+                        Text("No more cards to show!")
+                    }
+                } else {
+                    Text("User data is unavailable.")
                 }
             }
             .padding(EdgeInsets(top: 64, leading: 32, bottom: 144, trailing: 32))
@@ -41,12 +51,11 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                 Spacer()
                 HStack {
                     RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
+                        // TODO: Implement "Back" button for owned thoughts
                         print("Go to previous thought created by user")
-                        viewModel.goToNextThought()
                     })
                     Spacer()
                     RoundedButton(text: "Add Thought", image: "plus", size: 30, action: {
-                        print("Present modal for AddThoughtView")
                         shouldShowAddThoughtsView = true
                     })
                     .sheet(isPresented: $shouldShowAddThoughtsView) {
@@ -54,9 +63,8 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                     }
                     Spacer()
                     RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
+                        // TODO: Implement "Next" button for owned thoughts
                         print("Go to next thought created by user")
-                        viewModel.depositThought(thought: viewModel.currentFeedThought)
-                        viewModel.goToNextThought()
                     })
                 }
                 .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))

@@ -21,18 +21,30 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
         
         ZStack {
             ZStack {
-                ForEach(0..<viewModel.feedThoughts.count, id: \.self) { i in
-                    ThoughtCard(thought: viewModel.feedThoughts[viewModel.feedThoughts.count - i - 1])
-                        .offset(x: CGFloat(i), y: CGFloat(i))
+                if let user = viewModel.user {
+                    let thoughts: [Thought] = user.depositedThoughts
+                    if viewModel.depositedThoughtIndex < thoughts.count {
+                        ForEach(viewModel.depositedThoughtIndex..<thoughts.count,id: \.self) { i in
+                            let flippedIndex: Int = (thoughts.count - i - 1) + viewModel.depositedThoughtIndex
+                            ThoughtCard(thought: thoughts[flippedIndex])
+                                .offset(x: CGFloat(i), y: CGFloat(i))
+                        }
+                    } else {
+                        Text("No more cards to show!")
+                    }
+                } else {
+                    Text("User data is unavailable.")
                 }
             }
             .padding(EdgeInsets(top: 64, leading: 32, bottom: 144, trailing: 32))
+            
+            
             VStack {
                 Spacer()
                 HStack {
                     RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
+                        // TODO: Implement "Back" button for deposited thoughts
                         print("Go to previous thought deposited by user")
-                        viewModel.goToNextThought()
                     })
                     Spacer()
                     RoundedButton(text: "Forget", image: "brain", size: 30, action: {
@@ -41,9 +53,8 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
                     })
                     Spacer()
                     RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
+                        // TODO: Implement "Next" button for deposited thoughts
                         print("Go to next thought deposited by user")
-                        viewModel.depositThought(thought: viewModel.currentFeedThought)
-                        viewModel.goToNextThought()
                     })
                 }
                 .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))

@@ -20,9 +20,14 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
     var body: some View {
         ZStack {
             ZStack {
-                ForEach(0..<viewModel.feedThoughts.count, id: \.self) { i in
-                    ThoughtCard(thought: viewModel.feedThoughts[viewModel.feedThoughts.count - i - 1])
-                        .offset(x: CGFloat(i), y: CGFloat(i))
+                if viewModel.feedThoughtIndex < viewModel.feedThoughts.count {
+                    ForEach(viewModel.feedThoughtIndex..<viewModel.feedThoughts.count,id: \.self) { i in
+                        let flippedIndex: Int = (viewModel.feedThoughts.count - i - 1) + viewModel.feedThoughtIndex
+                        ThoughtCard(thought: viewModel.feedThoughts[flippedIndex])
+                            .offset(x: CGFloat(i), y: CGFloat(i))
+                    }
+                } else {
+                    Text("No more cards to show!")
                 }
             }
             .padding(EdgeInsets(top: 64, leading: 32, bottom: 144, trailing: 32))
@@ -35,7 +40,6 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
                         // TODO: Implement "Reject" button
                         // - If the user is rejecting, what's the sole action we need to take?
                         print("Call viewModel to go to the next thought")
-                        viewModel.goToNextThought()
                     })
                     Spacer()
                     RoundedButton(text: "Deposit", image: "checkmark", size: 16, action: {
@@ -44,8 +48,6 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
                         //   is saved in User's deposited thoughts
                         // - We also need to show the next card
                         print("Call viewModel to deposit the current thought and go to the next thought")
-                        viewModel.depositThought(thought: viewModel.currentFeedThought)
-                        viewModel.goToNextThought()
                     })
                     Spacer()
                 }

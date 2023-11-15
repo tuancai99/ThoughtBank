@@ -28,6 +28,9 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     @Published var feedThoughts: [Thought] = []
     @Published var currentFeedThought: Thought?
     @Published var currentDespositedThought: Thought?
+    @Published var feedThoughtIndex: Int = 0
+    @Published var depositedThoughtIndex: Int = 0
+    @Published var ownedThoughtIndex: Int = 0
     @Published var shouldLoadBlocking: Bool = false
     
     // TODO: add router for navigation here.
@@ -53,7 +56,23 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         
     }
     
-    func goToNextThought() {
+    func goToNextFeedThought() {
+        
+    }
+    
+    func goToNextDepositedThought() {
+        
+    }
+    
+    func goToPreviousDepositedThought() {
+        
+    }
+    
+    func goToNextOwnedThought() {
+        
+    }
+    
+    func goToPreviousOwnedThought() {
         
     }
 }

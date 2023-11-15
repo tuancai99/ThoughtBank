@@ -38,7 +38,6 @@ struct LoginView<ViewModel: ViewModelProtocol>: View {
                 LargeFilledButton(text: "Sign in", color: .pink, action: {
                     // TODO: Implement "Sign in" button
                     // - Must call viewModel (should be a straightforward call)
-                    viewModel.login(email: email, password: password)
                 })
                 
                 Spacer()
@@ -51,7 +50,6 @@ struct LoginView<ViewModel: ViewModelProtocol>: View {
                 HStack {
                     Text("Don't have an account?")
                     Button(action: {
-                        // TODO: Transition to .registration navigation state
                         viewModel.navigationState = .registration
                     }, label: {
                         Text("Register")

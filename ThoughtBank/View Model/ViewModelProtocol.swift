@@ -25,6 +25,11 @@ protocol ViewModelProtocol: ObservableObject {
     var feedThoughts: [Thought] { get set }
     var currentFeedThought: Thought? { get set }
     
+    // Index for current stack of cards
+    var feedThoughtIndex: Int { get set }
+    var depositedThoughtIndex: Int { get set }
+    var ownedThoughtIndex: Int { get set }
+    
     var shouldLoadBlocking: Bool { get set }
     
     // General hints:
@@ -73,6 +78,26 @@ protocol ViewModelProtocol: ObservableObject {
     /// Go to the next thought in the feed.
     ///
     /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
-    func goToNextThought()
+    func goToNextFeedThought()
+    
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func goToNextDepositedThought()
+    
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func goToPreviousDepositedThought()
+    
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func goToNextOwnedThought()
+    
+    /// Go to the next thought in the feed.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func goToPreviousOwnedThought()
         
 }
