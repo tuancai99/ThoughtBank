@@ -11,6 +11,9 @@ enum NavigationState {
     case landing
     case login
     case registration
-    case main
+    case feedThoughts
+    case depositedThoughts
+    case ownedThoughts
+    case settings
     case add
 }

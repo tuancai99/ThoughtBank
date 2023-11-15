@@ -22,7 +22,7 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
             if shouldShowAddThoughtsView {
                 viewModel.navigationState = .add
             } else {
-                viewModel.navigationState = .main
+                viewModel.navigationState = .ownedThoughts
             }
         }
     }
