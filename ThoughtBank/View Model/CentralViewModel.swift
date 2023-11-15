@@ -20,6 +20,7 @@ import Foundation
 import UIKit
 
 class CentralViewModel: ObservableObject, ViewModelProtocol {
+    var description: String = "CentralViewModel"
     
     @Published var navigationState: NavigationState = .landing
     
@@ -27,7 +28,6 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     @Published var feedThoughts: [Thought] = []
     @Published var currentFeedThought: Thought?
     @Published var currentDespositedThought: Thought?
-    @Published var currentFeedIndex: Int = 0
     
     // TODO: add router for navigation here.
     // TODO: add booleans for loading transitions (bonus)
@@ -40,14 +40,19 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         
     }
     
-    func popDepositedThought(thought: Thought) { }
+    func popDepositedThought(thought: Thought?) {
+        
+    }
     
-    func createThought(text: String) { }
+    func createThought(text: String) {
+        
+    }
     
-    func depositThought(thought: Thought) { }
+    func depositThought(thought: Thought?) {
+        
+    }
     
-    func goToNextThought() {}
-    
-    var description: String = "CentralViewModel"
-    
+    func goToNextThought() {
+        
+    }
 }

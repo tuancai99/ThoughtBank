@@ -22,7 +22,6 @@ protocol ViewModelProtocol: ObservableObject {
     
     var user: User? { get set }
     
-    var currentFeedIndex: Int { get set }
     var feedThoughts: [Thought] { get set }
     var currentFeedThought: Thought? { get set }
     
@@ -53,7 +52,7 @@ protocol ViewModelProtocol: ObservableObject {
     ///
     /// - Parameters
     ///     - thought: the Thought object to remove
-    func popDepositedThought(thought: Thought)
+    func popDepositedThought(thought: Thought?)
     
     /// Create a new thought for the user.
     ///
@@ -67,7 +66,7 @@ protocol ViewModelProtocol: ObservableObject {
     ///
     /// - Parameters
     ///     - thought: a Thought object from another user
-    func depositThought(thought: Thought)
+    func depositThought(thought: Thought?)
     
     /// Go to the next thought in the feed.
     ///

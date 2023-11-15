@@ -49,6 +49,8 @@
 		FF604EF32B043954000B80D7 /* ManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604EF22B043954000B80D7 /* ManagerView.swift */; };
 		FF604EF62B044315000B80D7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604EF52B044315000B80D7 /* ImageTextField.swift */; };
 		FF604EF82B04439B000B80D7 /* LargeFilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */; };
+		FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F002B046ACF000B80D7 /* ThoughtCard.swift */; };
+		FF604F032B0491B6000B80D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F022B0491B6000B80D7 /* RoundedButton.swift */; };
 		FFB71AD12ADF50DB0006C762 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */; };
 		FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD32ADF50EA0006C762 /* Thought.swift */; };
 		FFB71AD62ADF50EA0006C762 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD42ADF50EA0006C762 /* User.swift */; };
@@ -85,6 +87,8 @@
 		FF604EF92B045E18000B80D7 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		FF604EFD2B045E18000B80D7 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../../../../../../../Users/noahsadir/Downloads/Poppins/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		FF604F002B046ACF000B80D7 /* ThoughtCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCard.swift; sourceTree = "<group>"; };
+		FF604F022B0491B6000B80D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FFB71AD32ADF50EA0006C762 /* Thought.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		FFB71AD42ADF50EA0006C762 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 			children = (
 				FF604EF52B044315000B80D7 /* ImageTextField.swift */,
 				FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */,
+				FF604F022B0491B6000B80D7 /* RoundedButton.swift */,
+				FF604F002B046ACF000B80D7 /* ThoughtCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -364,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D5E89272AEF137D00C74079 /* KeyboardAdaptive.swift in Sources */,
+				FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */,
 				FF604EEE2B04384A000B80D7 /* NavigationState.swift in Sources */,
 				FFB71AD62ADF50EA0006C762 /* User.swift in Sources */,
 				FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */,
@@ -381,6 +388,7 @@
 				FFB71AE82ADF51150006C762 /* LandingPageView.swift in Sources */,
 				FFB71AE92ADF51150006C762 /* MainFeedView.swift in Sources */,
 				A3CE61DC2ADF2B9D0039EC83 /* ThoughtBankApp.swift in Sources */,
+				FF604F032B0491B6000B80D7 /* RoundedButton.swift in Sources */,
 				FF604EF32B043954000B80D7 /* ManagerView.swift in Sources */,
 				FFB71AE62ADF51150006C762 /* RegistrationView.swift in Sources */,
 				FFB71AEB2ADF51150006C762 /* SettingsView.swift in Sources */,
