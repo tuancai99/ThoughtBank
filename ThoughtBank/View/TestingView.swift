@@ -10,8 +10,35 @@ import SwiftUI
 struct TestingView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var vm: ViewModel
     
+    @State var fetched: [Thought] = []
+    @State var alias: String = " "
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button(action: {
+                fetch()
+               
+            }, label: {Text("click to fetch")})
+            
+            ForEach(fetched, id: \.id) { item in
+                Text(item.content)
+            }
+            
+            Text("Alias: \(self.alias)")
+            
+        }
+    }
+    
+    func fetch() {
+        Task {
+            do {
+                let user =  try await FirebaseManager.manager.fetchUser()
+                fetched = user.ownedThoughts
+                self.alias = user.alias
+            } catch {
+                fetched = []
+            }
+        }
     }
 }
 

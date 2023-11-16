@@ -22,14 +22,14 @@ import UIKit
 class CentralViewModel: ObservableObject, ViewModelProtocol {
     var description: String = "CentralViewModel"
     
+    let firebase: FirebaseManager = .manager
+    
     @Published var navigationState: NavigationState = .landing
     
     @Published var user: User?
     
     @Published var feedThoughts: [Thought] = []
-    
-    @Published var currentFeedThought: Thought?
-    
+        
     @Published var feedThoughtIndex: Int = 0
     @Published var depositedThoughtIndex: Int = 0
     @Published var ownedThoughtIndex: Int = 0
@@ -96,7 +96,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         - text: the thought's text
      **/
     func createThought(text: String) {
-        
+
     }
     
     /**
@@ -126,6 +126,18 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     }
     
     /**
+        Helper function that returns the feed item being looked at. Returns nil when no feed thought exists.
+     */
+    func currentFeedThought() -> Thought? {
+        return feedThoughts[feedThoughtIndex]
+    }
+    
+    func feedThoughtsIsEmpty() -> Bool {
+        return feedThoughts.isEmpty
+    }
+    
+    
+    /**
     Present the next thought from our list of deposited thoughts which is stored in our user object.
      
      1. Use the variable 'depositedThoughtIndex' to specify the new active thought.
@@ -145,6 +157,18 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      **/
     func goToPreviousDepositedThought() {
         
+    }
+    
+    /**
+        Helper function that returns the deposited item being looked at. Returns nil when no deposited thought exists.
+     */
+    func currentDepositedThought() -> Thought? {
+        return user?.depositedThoughts[depositedThoughtIndex]
+    }
+    
+    func depositedThoughtsIsEmpty() -> Bool {
+        guard let deposited = user?.depositedThoughts else { return true }
+        return deposited.isEmpty
     }
     
     /**
@@ -168,6 +192,19 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     func goToPreviousOwnedThought() {
         
     }
+    
+    /**
+        Helper function that returns the owned item being looked at. Returns nil when no owned thought exists.
+     */
+    func currentOwnedThought() -> Thought? {
+        return user?.ownedThoughts[ownedThoughtIndex]
+    }
+    
+    func ownedThoughtsIsEmpty() -> Bool {
+        guard let owned = user?.ownedThoughts else { return true }
+        return owned.isEmpty
+    }
+    
     
     /**
     Set the feed thoughts array to an update-to-date collection. of our feed thoughts

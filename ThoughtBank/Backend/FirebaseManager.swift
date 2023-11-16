@@ -23,6 +23,13 @@ final class FirebaseManager {
     let db = Firestore.firestore()
     let auth = Auth.auth() // Statefully stores authentication status and user information.
     
+    var userID: String? {
+        auth.currentUser?.uid
+    }
+    
+    var email: String? {
+        auth.currentUser?.email
+    }
     
     /**
      
@@ -81,12 +88,11 @@ final class FirebaseManager {
         // Step 2: Get user information from Firestore using provided result from authentication. Authentication result contains information such as email, documentID, etc.
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
         
-        let res = try await auth.signIn(withEmail: email, password: password)
-        let uid = res.user.uid
+        try await auth.signIn(withEmail: email, password: password)
         
         do {
             // Will always be a user, hence the forced type cast:
-            let user = try await fetch(collection: .users, filterID: uid).first as! User
+            let user = try await fetchUser()
             
             return user
         } catch {
@@ -123,93 +129,90 @@ final class FirebaseManager {
         }
     }
 
-    
     /**
      
         ASSIGNED TO [SOHAM]
 
-        - important: A general purpose fetch used to receive an array query items. In the case of our app, we will always want the query to return a list of Thoughts, or an array of size 1 containing the user with the documentID at "filterID". Use this function in the CentralViewModel to fetch the specified collection of data.
-        - parameters:
-            - collection: the type of collection from which we want to derive our data.
-            - filterID: the documentID specified to filter our query to one item.
+        - important: A fetch used to receive user's data. Use this function in the CentralViewModel to fetch user data. Throws an error.
+      
         - returns:
-            - An array of either "Thought" or "User", depending on the collection specified.
+            - A User object
     */
 
-    func fetch(collection: Collection, filterID: String?) async throws -> [QueryItem] {
+    func fetchUser() async throws -> User {
         // Step 1: Await the fetch via Firebase. Make a fetch query that gets documents that match this filter.
         
         // Step 2: Map the data to objects using the fetched documents.
         
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
         // HINT: This is an async function, to handle our Firebase server calls, could the 'await' keyword be useful.
-        var query: Query
-        var items: [QueryItem] = []
 
         // TODO: use TaskManager to receive all documents concurrently.
         
-        switch collection {
-        case .thoughts:
-            query = db.collection("thoughts")
-            
-            let docs: QuerySnapshot = try await query.getDocuments()
-            for doc in docs.documents {
-                let data = doc.data()
-                let id = doc.documentID
-                let content: String = data["content"] as? String ?? "empty"
-                let userID: String = data["userID"] as? String ?? "noID"
-                let timeStamp: Date = data["timestamp"] as? Date ?? Date()
-                    
-                // TODO: receive timestamp as Timestamp datatype and convert to Date.
+        //guard let email = email, let userID = userID else { throw FirebaseAuth.AuthErrorCode(.appNotAuthorized) }
                 
-                items.append(Thought(documentID: id, content: content, userID: userID, timestamp: timeStamp))
-            }
-        case .users:
-            let doc = try await db.collection("users").document(filterID!).getDocument()
-            let alias: String = doc["alias"] as? String ?? "empty"
-                let userID: String = doc["userID"] as? String ?? "noID"
-                let email: String = doc["email"] as? String ?? "empty"
-                var ownedThoughts: [Thought] = []
-                let ownedThoughtsID: [String] = doc["myThoughts"] as? [String] ?? []
-                for id in ownedThoughtsID {
-                    let ref = try await db.collection("thoughts").document(id).getDocument()
-                    let content: String = ref["content"] as? String ?? "empty"
-                    let userID: String = ref["userID"] as? String ?? "noID"
-                    let timeStamp: Date = ref["timestamp"] as? Date ?? Date()
-                    
-                    // TODO: receive timestamp as Timestamp datatype and convert to Date.
-
-                    ownedThoughts.append(Thought(documentID: id, content: content, userID: userID, timestamp: timeStamp))
-                }
-                var depositedThoughts: [Thought] = []
-                let depositedThoughtsID: [String] = doc["depositedThoughts"] as? [String] ?? []
-                for id in depositedThoughtsID {
-                    let ref = try await db.collection("thoughts").document(id).getDocument()
-                    let content: String = ref["content"] as? String ?? "empty"
-                    let userID: String = ref["userID"] as? String ?? "noID"
-                    let timeStamp: Date = ref["timestamp"] as? Date ?? Date()
-                    
-                    // TODO: receive timestamp as Timestamp datatype and convert to Date.
-
-                    depositedThoughts.append(Thought(documentID: id, content: content, userID: userID, timestamp: timeStamp))
-                }
-                var viewedThoughts: [Thought] = []
-                let viewedThoughtsID: [String] = doc["viewedThoughts"] as? [String] ?? []
-                for id in viewedThoughtsID {
-                    let ref = try await db.collection("thoughts").document(id).getDocument()
-                    let content: String = ref["content"] as? String ?? "empty"
-                    let userID: String = ref["userID"] as? String ?? "noID"
-                    let timeStamp: Date = ref["timestamp"] as? Date ?? Date()
-                    
-                    // TODO: receive timestamp as Timestamp datatype and convert to Date.
-
-                    viewedThoughts.append(Thought(documentID: id, content: content, userID: userID, timestamp: timeStamp))
-                }
-           items.append(User(alias: alias, userID: userID, email: email, ownedThoughts: ownedThoughts, depositedThoughts: depositedThoughts, viewedThoughts: viewedThoughts))
-        }
-        return items
-
+        let doc = try await db.collection("users").document("fjkrehjgkue").getDocument()
         
+        let alias: String = doc["alias"] as! String
+        
+        // MARK: wrap the 3 tasks in a task group for concurrency.
+        
+        let ownedThoughtsID: [String] = doc["myThoughts"] as! [String]
+
+        let depositedThoughtsID: [String] = doc["deposited"] as! [String]
+    
+        let viewedThoughtsID: [String] = doc["viewedThoughts"] as! [String]
+        
+        async let ownedThoughts: [Thought] = fetchThoughts(filterField: .uuid, filterGroup: Set(ownedThoughtsID))
+
+        async let depositedThoughts: [Thought] = fetchThoughts(filterField: .uuid, filterGroup: Set(depositedThoughtsID))
+        
+        async let viewedThoughts: [Thought] = fetchThoughts(filterField: .uuid, filterGroup: Set(viewedThoughtsID))
+        
+        return await User(alias: alias, userID: "fjkrehjgkue", email: "aziiz", ownedThoughts: try ownedThoughts, depositedThoughts: try depositedThoughts, viewedThoughts: try viewedThoughts)
+
+    }
+    
+    
+    /**
+     
+        ASSIGNED TO [SOHAM]
+
+        - important: A fetch used to receive an array of thought items. Use this function in the CentralViewModel to fetch data. Throws an error.
+        - parameters:
+            - filterField: the parameter we care about filtering
+            - filterGroup: the group of items which we want our filterField to equal to
+                    
+        - returns:
+            - An array of either "Thought".
+    */
+    func fetchThoughts(filterField: ThoughtFilter = .none, filterGroup: Set<String>, _ onCompletion: @escaping () -> Void = {}) async throws -> [Thought] {
+        
+        onCompletion()
+        
+        let query: Query =
+            filterField == .none || filterField == .uuid ?
+                db.collection("thoughts") :
+                db.collection("thoughts").whereField(filterField.key, in: Array(filterGroup) )
+        
+        let docs: [QueryDocumentSnapshot] = 
+            filterField == .uuid ?
+                try await query.getDocuments().documents.filter({ filterGroup.contains($0.documentID) }) :
+                try await query.getDocuments().documents
+
+        let items: [Thought] = docs.map { doc in
+            let data = doc.data()
+            let id = doc.documentID
+            let content: String = data["content"] as! String
+            let userID: String = data["userID"] as! String
+            
+            let timeStamp: Timestamp = data["timestamp"] as! Timestamp
+            let timestampDecoded: Date = timeStamp.dateValue()
+                            
+            return Thought(documentID: id, content: content, userID: userID, timestamp: timestampDecoded)
+        }
+        
+        return items
     }
     
     /**
@@ -221,7 +224,7 @@ final class FirebaseManager {
             - data: the item we want to add to our collection, either a newly created "User", or "Thought".
     */
 
-    func addThought(content: String, userID: String, timestamp: Date) async throws -> Thought? {
+    func addThought(content: String, userID: String, timestamp: Date = .now) async throws -> Thought {
  
         // Step 1: Add the data, encoded, to the specified collection as a document. Firebase API throws an error if adding failed, should also cause function to throw.
         
@@ -230,9 +233,11 @@ final class FirebaseManager {
         let ref: DocumentReference = try await db.collection("thoughts").addDocument(data:  [
             "userID": userID,
             "content": content,
-            "timestamp": timestamp
+            "timestamp": Timestamp(date: timestamp)
         ])
+        
         let addedThought = Thought(documentID: ref.documentID, content: content, userID:userID, timestamp:timestamp)
+        
         return addedThought
     }
     
@@ -364,8 +369,12 @@ final class FirebaseManager {
 }
 
 
-enum Collection: String {
-    case thoughts = "thoughts", users = "users"
+enum ThoughtFilter: String {
+    case uuid, userID = "userID", content = "content", timestamp = "timestamp", none
+    
+    var key: String {
+        return self.rawValue
+    }
     
 }
 

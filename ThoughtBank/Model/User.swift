@@ -18,7 +18,6 @@ import FirebaseFirestore
 class User: ObservableObject, QueryItem {
     var documentID: String
         
-    // TODO: (optional) add decoder/encoder.
     var alias: String
     var userID: String
     var email: String
@@ -56,17 +55,6 @@ class User: ObservableObject, QueryItem {
     func appendViewedThought(thought: Thought) {
         viewedThoughts.append(thought)
     }
-/*
-    func encode(to encoder: Encoder) throws {
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(self)
-        } catch {
-            print("Error encoding User object into JSON object!")
-        }
-        
-    }
-*/
     
 }
 

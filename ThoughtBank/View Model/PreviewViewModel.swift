@@ -28,7 +28,6 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     }
     
     @Published var user: User?
-    @Published var currentFeedThought: Thought?
     @Published var feedThoughtIndex: Int = 0
     @Published var depositedThoughtIndex: Int = 0
     @Published var ownedThoughtIndex: Int = 0
@@ -44,7 +43,6 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
     func createUser(email: String, password: String) {
         navigationState = .feedThoughts
-        currentFeedThought = feedThoughts[0]
         user = User(alias: "NewUser01", userID: "abc123", email: "newuser@example.com", ownedThoughts: [
             
         ], depositedThoughts: [
@@ -56,7 +54,6 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
     func login(email: String, password: String) {
         navigationState = .feedThoughts
-        currentFeedThought = feedThoughts[0]
         user = User(alias: "ExistingUser03", userID: "def456", email: "existinguser@example.com", ownedThoughts: [
             Thought(documentID: "f", content: "Thinking is hard", userID: "def456", timestamp: Date()),
             Thought(documentID: "g", content: "I know that the human being and fish can coexist peacefully.", userID: "def456", timestamp: Date()),
@@ -108,9 +105,12 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
     func goToNextFeedThought() {
         if (feedThoughtIndex < feedThoughts.count) {
-            currentFeedThought = feedThoughts[feedThoughtIndex]
             feedThoughtIndex += 1
         }
+    }
+    
+    func currentFeedThought() -> Thought? {
+        return feedThoughts[feedThoughtIndex]
     }
     
     func goToNextDepositedThought() {
