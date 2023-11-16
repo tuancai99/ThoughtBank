@@ -156,4 +156,7 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
             ownedThoughtIndex -= 1
         }
     }
+    
+    func updateFeedThoughts() {
+    }
 }

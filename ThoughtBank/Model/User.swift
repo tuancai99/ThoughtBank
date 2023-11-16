@@ -18,7 +18,7 @@ import FirebaseFirestore
 class User: ObservableObject, QueryItem {
     var documentID: String
         
-    // TODO: add decoder/encoder.
+    // TODO: (optional) add decoder/encoder.
     var alias: String
     var userID: String
     var email: String
@@ -42,13 +42,20 @@ class User: ObservableObject, QueryItem {
     }
     
     func popDepositedThought(thought: Thought) {
+        depositedThoughts.removeAll(where: { $0.id == thought.id })
     }
     
-    func createThought(text: String) { }
+    func createThought(thought: Thought) {
+        ownedThoughts.append(thought)
+    }
     
-    func depositThought(thought: Thought) { }
+    func depositThought(thought: Thought) { 
+        depositedThoughts.append(thought)
+    }
     
-    func appendViewedThought(thought: Thought) { }
+    func appendViewedThought(thought: Thought) {
+        viewedThoughts.append(thought)
+    }
 /*
     func encode(to encoder: Encoder) throws {
         do {

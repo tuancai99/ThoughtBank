@@ -43,14 +43,27 @@ final class FirebaseManager {
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
         // HINT: This is an async function, to handle our Firebase server calls, could the 'await' keyword be useful.
         let res = try await auth.createUser(withEmail: email, password: password)
-        let user = res.user
+        let uid = res.user.uid
         
-        if let email = user.email {
-            return User(alias: Alias.generateUniqueAlias(), userID: user.uid, email: email, ownedThoughts: [], depositedThoughts: [], viewedThoughts: [])
-        } else {
-            throw AuthErrorCode(.appNotAuthorized)
+        let user = User(
+            alias: Alias.generateUniqueAlias(),
+            userID: uid,
+            email: email,
+            ownedThoughts: [],
+            depositedThoughts: [],
+            viewedThoughts: []
+        )
+        
+        do {
+            try await addUser(user: user)
+        } catch {
+            // Deleting account because the user would have no existence in our database.
+            try await deleteAccount()
+            throw FirestoreErrorCode(.aborted)
+            
         }
-
+        
+        return user
     }
     
     /**
@@ -63,15 +76,51 @@ final class FirebaseManager {
             - password: as entered by user
         - returns: the "User" object given by Firebase with essentiall information such as email, the unique user ID, etc.
     */
-    func login(email: String, password: String) async throws -> FirebaseAuth.User {
+    func login(email: String, password: String) async throws -> ThoughtBank.User {
         // Step 1: Authenticate with given parameters. Throw error if unsuccessful.
         // Step 2: Get user information from Firestore using provided result from authentication. Authentication result contains information such as email, documentID, etc.
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
+        
         let res = try await auth.signIn(withEmail: email, password: password)
+        let uid = res.user.uid
         
-        let user = res.user
+        do {
+            // Will always be a user, hence the forced type cast:
+            let user = try await fetch(collection: .users, filterID: uid).first as! User
+            
+            return user
+        } catch {
+            
+            // Unauthenticate user if we experience trouble retrieving data,
+            signOut()
+            
+            throw FirestoreErrorCode(.cancelled)
+            
+            // TODO: redirect user to registration if previously registered but no database instance exists.
+            
+        }
         
-        return user
+                
+    }
+    
+    /**
+     
+        ASSIGNED TO [VAMSI]
+
+        - important: Use this function in the CentralViewModel to sign out a user using Firebase -  the CentralViewModel handles the rest.
+        - parameters:
+            - email: as entered by user
+            - password: as entered by user
+        - returns: the "User" object given by Firebase with essentiall information such as email, the unique user ID, etc.
+    */
+    func signOut() {
+        do {
+            try auth.signOut()
+        } catch {
+            
+            // Will almost never happen, unless no user has been initialized or a keychain error occurs.
+            print("Sign out failed due to \(error.localizedDescription).")
+        }
     }
 
     
@@ -97,14 +146,14 @@ final class FirebaseManager {
         var query: Query
         var items: [QueryItem] = []
 
-        // TODO: use TaskManager to receive all documents concurrently
+        // TODO: use TaskManager to receive all documents concurrently.
         
         switch collection {
         case .thoughts:
             query = db.collection("thoughts")
             
-            var docs: QuerySnapshot = try await query.getDocuments()
-            for doc in docs.documents{
+            let docs: QuerySnapshot = try await query.getDocuments()
+            for doc in docs.documents {
                 let data = doc.data()
                 let id = doc.documentID
                 let content: String = data["content"] as? String ?? "empty"
@@ -178,21 +227,29 @@ final class FirebaseManager {
         
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
         // HINT: This is an async function, to handle our Firebase server calls, could the 'await' keyword be useful.
-        var ref: DocumentReference = try await db.collection("thoughts").addDocument(data:  ["userID": userID, "content": content,"timestamp": timestamp])
+        let ref: DocumentReference = try await db.collection("thoughts").addDocument(data:  [
+            "userID": userID,
+            "content": content,
+            "timestamp": timestamp
+        ])
         let addedThought = Thought(documentID: ref.documentID, content: content, userID:userID, timestamp:timestamp)
         return addedThought
     }
     
     
-    func addUser(alias: String, userID: String,email: String, ownedThoughts: [Thought], depositedThoughts: [Thought], viewedThoughts: [Thought]) async throws -> User? {
+    func addUser(user: User) async throws {
         // Step 1: Add the data, encoded, to the specified collection as a document. Firebase API throws an error if adding failed, should also cause function to throw.
         
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
         // HINT: This is an async function, to handle our Firebase server calls, could the 'await' keyword be useful.
-        let ref : DocumentReference = db.collection("users").document(userID)
-        try await ref.setData(["alias": alias, "myThoughts": ownedThoughts, "deposited": depositedThoughts, "viewedThoughts": viewedThoughts])
-        let addedUser = User(alias: alias, userID: ref.documentID , email: email , ownedThoughts: ownedThoughts, depositedThoughts: depositedThoughts, viewedThoughts: viewedThoughts)
-        return addedUser
+        let ref : DocumentReference = db.collection("users").document(user.userID)
+        
+        try await ref.setData([
+            "alias": user.alias,
+            "myThoughts": user.ownedThoughts,
+            "deposited": user.depositedThoughts,
+            "viewedThoughts": user.viewedThoughts
+        ])
     }
     
     
@@ -285,10 +342,21 @@ final class FirebaseManager {
         let depositedThoughts = user.depositedThoughts.map({ $0.documentID })
         let viewedThoughts = user.viewedThoughts.map({ $0.documentID })
         let databaseRef = db.collection("users").document(user.documentID)
-        try await databaseRef.setData(["alias": alias,
-                                   "myThoughts": ownedThoughts,
-                                   "deposited": depositedThoughts,
-                                   "viewedThoughts": viewedThoughts])
+        try await databaseRef.setData([
+            "alias": alias,
+            "myThoughts": ownedThoughts,
+            "deposited": depositedThoughts,
+            "viewedThoughts": viewedThoughts
+        ])
+    }
+    
+    func deleteAccount() async throws {
+        
+        if let user = auth.currentUser {
+            try await user.delete()
+        } else {
+            print("Cannot delete non-existent or non-logged user.")
+        }
     }
     
     

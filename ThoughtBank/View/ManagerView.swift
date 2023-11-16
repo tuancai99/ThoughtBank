@@ -12,14 +12,19 @@ struct ManagerView<ViewModel: ViewModelProtocol>: View {
     
     var body: some View {
         switch viewModel.navigationState {
+            
         case .landing:
-            LandingPageView<ViewModel>().environmentObject(viewModel)
+            LandingPageView<ViewModel>()
+            
         case .login:
-            LoginView<ViewModel>().environmentObject(viewModel)
+            LoginView<ViewModel>()
+            
         case .registration:
-            RegistrationView<ViewModel>().environmentObject(viewModel)
+            RegistrationView<ViewModel>()
+            
         case .main, .add:
-            MainView<ViewModel>().environmentObject(viewModel)
+            MainView<ViewModel>()
+            
         }
     }
 }

@@ -99,5 +99,10 @@ protocol ViewModelProtocol: ObservableObject {
     ///
     /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
     func goToPreviousOwnedThought()
+    
+    /// Get all feed thoughts from our database.
+    ///
+    /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
+    func updateFeedThoughts()
         
 }
