@@ -13,6 +13,8 @@ enum LandingPageOption {
 
 struct MainView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
+    @State var tabSelection: NavigationState = .feedThoughts
+    
     //@State var landingPageOption: String
     
     //let LandingPageOptions = ["Public", "Personal", "Saved"]
@@ -32,27 +34,35 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
                  }
                  .frame(minWidth: 0, maxWidth: 350, minHeight: 0, maxHeight: 50)
                  */
-                TabView {
+                TabView(selection: $tabSelection) {
                     MainFeedView<ViewModel>()
                         .tabItem {
                             Label("Browse", systemImage: "magnifyingglass.circle")
                         }
+                        .tag(NavigationState.feedThoughts)
                     
                     PersonalThoughtsView<ViewModel>()
                         .tabItem {
                             Label("My Thoughts", systemImage: "square.and.arrow.up")
                         }
+                        .tag(NavigationState.ownedThoughts)
                     
                     DepositedThoughtsView<ViewModel>()
                         .tabItem {
                             Label("Deposited", systemImage: "square.and.arrow.down")
                         }
+                        .tag(NavigationState.depositedThoughts)
                     
                     SettingsView<ViewModel>()
                         .tabItem {
                             Label("Settings", systemImage: "gearshape")
                         }
+                        .tag(NavigationState.settings)
                 }
+                .onChange(of: tabSelection, perform: { state in
+                    viewModel.navigationState = state
+                })
+                
                 .toolbar {
                     Button {
                         

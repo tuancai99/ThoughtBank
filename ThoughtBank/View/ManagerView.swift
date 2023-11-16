@@ -21,10 +21,8 @@ struct ManagerView<ViewModel: ViewModelProtocol>: View {
             
         case .registration:
             RegistrationView<ViewModel>()
-            
-        case .main, .add:
+        case .feedThoughts, .depositedThoughts, .ownedThoughts, .settings, .add:
             MainView<ViewModel>()
-            
         }
     }
 }
