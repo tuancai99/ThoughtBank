@@ -23,7 +23,6 @@ protocol ViewModelProtocol: ObservableObject {
     var user: User? { get set }
     
     var feedThoughts: [Thought] { get set }
-    var currentFeedThought: Thought? { get set }
     
     // Index for current stack of cards
     var feedThoughtIndex: Int { get set }
@@ -79,6 +78,8 @@ protocol ViewModelProtocol: ObservableObject {
     ///
     /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
     func goToNextFeedThought()
+    
+    func currentFeedThought() -> Thought?
     
     /// Go to the next thought in the feed.
     ///

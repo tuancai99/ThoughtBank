@@ -23,7 +23,7 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
                 if viewModel.feedThoughtIndex < viewModel.feedThoughts.count {
                     ForEach(viewModel.feedThoughtIndex..<viewModel.feedThoughts.count,id: \.self) { i in
                         let flippedIndex: Int = (viewModel.feedThoughts.count - i - 1) + viewModel.feedThoughtIndex
-                        ThoughtCard(thought: viewModel.feedThoughts[flippedIndex])
+                        ThoughtCard(thought: viewModel.feedThoughts[flippedIndex], nextCard: {})
                             .offset(x: CGFloat(i), y: CGFloat(i))
                     }
                 } else {

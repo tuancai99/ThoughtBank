@@ -35,7 +35,7 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                     if viewModel.ownedThoughtIndex < thoughts.count {
                         ForEach(viewModel.ownedThoughtIndex..<thoughts.count,id: \.self) { i in
                             let flippedIndex: Int = (thoughts.count - i - 1) + viewModel.ownedThoughtIndex
-                            ThoughtCard(thought: thoughts[flippedIndex])
+                            ThoughtCard(thought: thoughts[flippedIndex], nextCard: {})
                                 .offset(x: CGFloat(i), y: CGFloat(i))
                         }
                     } else {
