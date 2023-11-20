@@ -96,15 +96,15 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         - text: the thought's text
      **/
     func createThought(text: String) {
-        if user == nil {
+        guard let user = user else {
             return
         }
+        shouldLoadBlocking = true
         Task {
-            shouldLoadBlocking = true
-            let thought = try await firebase.addThought(content: text, userID: user!.userID)
-            
+            let thought = try await firebase.addThought(content: text, userID: user.userID)
             await MainActor.run(body: {
-                user!.ownedThoughts.append(_:thought)
+                
+                user.ownedThoughts.append(_:thought)
                 shouldLoadBlocking = false
             })
         }
