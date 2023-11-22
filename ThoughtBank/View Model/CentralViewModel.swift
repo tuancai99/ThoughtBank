@@ -191,7 +191,11 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
 
      **/
     func goToNextOwnedThought() {
-        
+        if let user = user {
+            let thoughts = user.ownedThoughts
+            if ownedThoughtIndex < thoughts.count - 1 {
+                    ownedThoughtIndex += 1
+        }
     }
     
     /**
@@ -202,7 +206,9 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
 
      **/
     func goToPreviousOwnedThought() {
-        
+        if (ownedThoughtIndex > 0) {
+            ownedThoughtIndex -= 1
+        }
     }
     
     /**
