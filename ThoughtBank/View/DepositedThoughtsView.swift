@@ -44,7 +44,7 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
                 HStack {
                     RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
                         // TODO: Implement "Back" button for deposited thoughts
-                        print("Go to previous thought deposited by user")
+                        viewModel.goToPreviousDepositedThought()
                     })
                     Spacer()
                     RoundedButton(text: "Forget", image: "brain", size: 30, action: {
@@ -54,7 +54,7 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
                     Spacer()
                     RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
                         // TODO: Implement "Next" button for deposited thoughts
-                        print("Go to next thought deposited by user")
+                        viewModel.goToNextDepositedThought()
                     })
                 }
                 .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))
@@ -65,6 +65,6 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
 
 struct DepositedThoughtsView_Previews: PreviewProvider {
     static var previews: some View {
-        DepositedThoughtsView<PreviewViewModel>().environmentObject(PreviewViewModel())
+        DepositedThoughtsView<CentralViewModel>().environmentObject(CentralViewModel())
     }
 }
