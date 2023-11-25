@@ -1,6 +1,22 @@
 # ThoughtBank
 
-## Screens
+## View Model Functions
+
+CentralViewModel Function           | Assignee  | Status
+------------------------------------|-----------|--------
+`createUser()`                      | Janah     | Complete
+`login()`                           | Soham     | Complete
+`createThought()`                   | Vamsi     | Complete
+`popDepositedThought()`             | Tuan      | In Progress
+`depositThought()`                  | Tuan      | Complete
+`goToNextDepositedThought()`        | Jordan    | Complete
+`goToPreviousDepositedThought()`    | Jordan    | Complete
+`goToNextOwnedThought()`            | Ethan     | In Progress
+`goToPreviousOwnedThought()`        | Ethan     | In Progress
+`goToNextFeedThought()`             | Laksh     | Complete
+`updateFeedThoughts()`              | Laksh     | Complete
+
+## Views
 
 - LandingPage (Soham Shetty)
 - SettingsView (Jannah Abuhassan)
