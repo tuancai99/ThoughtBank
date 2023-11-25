@@ -56,6 +56,17 @@ class User: ObservableObject, QueryItem {
         viewedThoughts.append(thought)
     }
     
+    func duplicate() -> User {
+    return User(
+        alias: self.alias,
+        userID: self.userID,
+        email: self.email,
+        ownedThoughts: self.ownedThoughts,
+        depositedThoughts: self.depositedThoughts,
+        viewedThoughts: self.viewedThoughts
+        )
+    }
+    
 }
 
 

@@ -122,7 +122,34 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         - thought: the thought we want to deposit
      **/
     func depositThought(thought: Thought?) {
-        
+        guard let user = user else {
+            return
+        }
+        shouldLoadBlocking = true
+        Task {
+            do {
+                guard let unwrappedThought = thought else {
+                    print("Error: Thought is empty")
+                    shouldLoadBlocking = false
+                    return
+                }
+                // ADD DEPOSITED THOUGHT TO THE ONLINE DB
+                // create a deep copy + deposit thought to the copy and post
+                let duplicate = user.duplicate()
+                duplicate.depositThought(thought: unwrappedThought)
+                try await firebase.updateUserData(user: duplicate)
+                
+                // ADD DEPOSITED THOUGHT LOCALLY
+                await MainActor.run(body: {
+                    user.depositThought(thought: unwrappedThought)
+                    shouldLoadBlocking = false
+                })
+                
+                
+            } catch {
+                print("Error depositing thought: \(error)")
+            }
+        }
     }
     
     /**
