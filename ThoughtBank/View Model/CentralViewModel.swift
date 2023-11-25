@@ -29,7 +29,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     @Published var user: User?
     
     @Published var feedThoughts: [Thought] = []
-        
+    
     @Published var feedThoughtIndex: Int = 0
     @Published var depositedThoughtIndex: Int = 0
     @Published var ownedThoughtIndex: Int = 0
@@ -108,7 +108,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
                 shouldLoadBlocking = false
             })
         }
-
+        
     }
     
     /**
@@ -138,7 +138,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     }
     
     /**
-        Helper function that returns the feed item being looked at. Returns nil when no feed thought exists.
+     Helper function that returns the feed item being looked at. Returns nil when no feed thought exists.
      */
     func currentFeedThought() -> Thought? {
         return feedThoughts[feedThoughtIndex]
@@ -150,7 +150,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     
     
     /**
-    Present the next thought from our list of deposited thoughts which is stored in our user object.
+     Present the next thought from our list of deposited thoughts which is stored in our user object.
      
      1. Use the variable 'depositedThoughtIndex' to specify the new active thought.
      2. Be sure to check for bounds such that we don't reference a nonexistent thought.
@@ -179,7 +179,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     }
     
     /**
-        Helper function that returns the deposited item being looked at. Returns nil when no deposited thought exists.
+     Helper function that returns the deposited item being looked at. Returns nil when no deposited thought exists.
      */
     func currentDepositedThought() -> Thought? {
         return user?.depositedThoughts[depositedThoughtIndex]
@@ -191,7 +191,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     }
     
     /**
-    Present the next thought from our list of owned thoughts which is stored in our user object.
+     Present the next thought from our list of owned thoughts which is stored in our user object.
      
      1. Use the variable 'depositedThoughtIndex' to specify the new active thought.
      2. Be sure to check for bounds such that we don't reference a nonexistent thought.
@@ -201,10 +201,11 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         if let user = user {
             let thoughts = user.ownedThoughts
             if ownedThoughtIndex < thoughts.count - 1 {
-                    ownedThoughtIndex += 1
+                ownedThoughtIndex += 1
+            }
         }
     }
-    
+        
     /**
      Present the previous thought from our list of owned thoughts which is stored in our user object.
      
@@ -217,19 +218,6 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
             ownedThoughtIndex -= 1
         }
     }
-    
-    /**
-        Helper function that returns the owned item being looked at. Returns nil when no owned thought exists.
-     */
-    func currentOwnedThought() -> Thought? {
-        return user?.ownedThoughts[ownedThoughtIndex]
-    }
-    
-    func ownedThoughtsIsEmpty() -> Bool {
-        guard let owned = user?.ownedThoughts else { return true }
-        return owned.isEmpty
-    }
-    
     
     /**
      Helper function that returns the owned item being looked at. Returns nil when no owned thought exists.
@@ -273,3 +261,4 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         }
     }
 }
+
