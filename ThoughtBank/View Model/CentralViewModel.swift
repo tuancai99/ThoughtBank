@@ -30,12 +30,20 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     
     @Published var feedThoughts: [Thought] = []
     
-    // NOTE: I have removed the @Published for these temporarily, because
-    var feedThoughtIndex: Int = 0
-    var depositedThoughtIndex: Int = 0
-    var ownedThoughtIndex: Int = 0
+    @Published var feedThoughtIndex: Int = 0
+    @Published var depositedThoughtIndex: Int = 0
+    @Published var ownedThoughtIndex: Int = 0
     
     @Published var shouldLoadBlocking: Bool = false
+    @Published var shouldShowAddThoughtsView: Bool = false {
+        didSet {
+            if shouldShowAddThoughtsView {
+                navigationState = .add
+            } else {
+                navigationState = .ownedThoughts
+            }
+        }
+    }
     
     @Published var bannerError: Error? = nil
     
@@ -133,15 +141,29 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
             bannerError = .notLoggedIn
             return
         }
+        
         shouldLoadBlocking = true
         Task {
-            let thought = try await firebase.addThought(content: text, userID: user.userID)
-            await MainActor.run(body: {
-                
-                user.ownedThoughts.append(_:thought)
-                shouldLoadBlocking = false
-                
-            })
+            do {
+                let thought = try await firebase.addThought(content: text, userID: user.userID)
+                await MainActor.run(body: {
+                    
+                    user.ownedThoughts.append(_:thought)
+                    shouldShowAddThoughtsView = false
+                    shouldLoadBlocking = false
+                    
+                })
+                try await firebase.updateUserData(user: user)
+            } catch {
+                await MainActor.run(body: {
+                    
+                    shouldLoadBlocking = false
+                    bannerError = .uploadError
+                    
+                })
+                print("error")
+            }
+            
         }
         
     }

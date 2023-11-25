@@ -18,62 +18,68 @@ struct AddThoughtsView<ViewModel: ViewModelProtocol>: View {
     var fontSize: CGFloat = 25
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("My Thought")
-                    .padding(.leading, 16)
-                    .font(.custom("AlegreyaSans", size: 17))
-                Spacer()
-                Text(Date.now, format: .dateTime.day().month().year())
-                    .padding([.trailing], maxLength * 0.06)
-                    .font(.system(.subheadline, design: .rounded, weight: .regular))
-            }
-            .padding(.top, 20)
+        ZStack {
             
-            TextField("Enter a thought...", text: $thought,axis: .vertical)
-                .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 32))
-                .font(.system(size: fontSize, weight: .regular, design: .serif))
-                .lineSpacing(3)
-            Spacer()
-            
-            HStack {
-                Spacer()
-                Button(action: {
-                    // TODO: Implement "Draft" button
-                    // - We need to call the viewModel to store a thought locally
-                    print("Save thought in drafts by calling viewModel")
-                }) {
-                    Text("Draft")
-                        .bold()
-                        .frame(width: 92, height: 30)
+            VStack {
+                HStack {
+                    Text("My Thought")
+                        .padding(.leading, 16)
+                        .font(.custom("AlegreyaSans", size: 17))
+                    Spacer()
+                    Text(Date.now, format: .dateTime.day().month().year())
+                        .padding([.trailing], maxLength * 0.06)
+                        .font(.system(.subheadline, design: .rounded, weight: .regular))
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.gray)
+                .padding(.top, 20)
                 
+                TextField("Enter a thought...", text: $thought,axis: .vertical)
+                    .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 32))
+                    .font(.system(size: fontSize, weight: .regular, design: .serif))
+                    .lineSpacing(3)
                 Spacer()
                 
-                Button(action: {
-                    // TODO: Implement "Post" button
-                    // - We need to call the viewModel to create a thought
-                    print("Post thought by calling viewModel")
-                }) {
-                    Text("Post")
-                        .bold()
-                        .frame(width: 92, height: 30)
-                }
-                .buttonStyle(.borderedProminent)
-                Spacer()
-            }
-            .padding(.bottom, 32)
-        }
-        // Buggy with keyboard -- supposed to display background as notepad style
-        //.background(NotepadBackground(isResizable: true, lineSpacing: fontSize, topLineMargin: 2, bottomLineMargin: 2))
-        
-    }
-}
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        // TODO: Implement "Draft" button
+                        // - We need to call the viewModel to store a thought locally
+                        print("Save thought in drafts by calling viewModel")
+                    }) {
+                        Text("Draft")
+                            .bold()
+                            .frame(width: 92, height: 30)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.gray)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        // TODO: Implement "Post" button
+                        // - We need to call the viewModel to create a thought
+                        print("Post thought by calling viewModel")
+                        
+                        viewModel.createThought(text: thought)
 
-func nothing() {
-    
+                    }) {
+                        Text("Post")
+                            .bold()
+                            .frame(width: 92, height: 30)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    Spacer()
+                }
+                .padding(.bottom, 32)
+            }
+            // Buggy with keyboard -- supposed to display background as notepad style
+            //.background(NotepadBackground(isResizable: true, lineSpacing: fontSize, topLineMargin: 2, bottomLineMargin: 2))
+            
+            
+            ProgressOverlay(isVisible: $viewModel.shouldLoadBlocking)
+
+        }
+       
+    }
 }
 
 struct AddThoughtsView_Previews: PreviewProvider {

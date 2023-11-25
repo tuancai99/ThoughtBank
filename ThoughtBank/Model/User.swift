@@ -22,9 +22,21 @@ class User: ObservableObject, QueryItem {
     var userID: String
     var email: String
     
-    @Published var ownedThoughts: [Thought]
-    @Published var depositedThoughts: [Thought]
-    @Published var viewedThoughts: [Thought]
+    @Published var ownedThoughts: [Thought] {
+        didSet {
+            self.objectWillChange.send()
+        }
+    }
+    @Published var depositedThoughts: [Thought] {
+        didSet {
+            self.objectWillChange.send()
+        }
+    }
+    @Published var viewedThoughts: [Thought] {
+        didSet {
+            self.objectWillChange.send()
+        }
+    }
 
     
     init(alias: String, userID: String, email: String, ownedThoughts: [Thought], depositedThoughts: [Thought], viewedThoughts: [Thought]) {
@@ -34,6 +46,7 @@ class User: ObservableObject, QueryItem {
         self.alias = alias
         self.userID = userID
         self.email = email
+        
         self.ownedThoughts = ownedThoughts
         self.depositedThoughts = depositedThoughts
         self.viewedThoughts = viewedThoughts

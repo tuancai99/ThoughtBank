@@ -149,7 +149,7 @@ final class FirebaseManager {
 
         // TODO: use TaskManager to receive all documents concurrently.
         
-        guard let userID = userID else { throw FirebaseAuth.AuthErrorCode(.appNotAuthorized) }
+        guard let userID = userID, let email = email else { throw FirebaseAuth.AuthErrorCode(.appNotAuthorized) }
                 
         let doc = try await db.collection("users").document(userID).getDocument()
         
@@ -169,7 +169,7 @@ final class FirebaseManager {
         
         async let viewedThoughts: [Thought] = fetchThoughts(filterField: .uuid, filterGroup: Set(viewedThoughtsID))
         
-        return await User(alias: alias, userID: "fjkrehjgkue", email: "aziiz", ownedThoughts: try ownedThoughts, depositedThoughts: try depositedThoughts, viewedThoughts: try viewedThoughts)
+        return await User(alias: alias, userID: userID, email: email, ownedThoughts: try ownedThoughts, depositedThoughts: try depositedThoughts, viewedThoughts: try viewedThoughts)
 
     }
     
@@ -341,12 +341,15 @@ final class FirebaseManager {
         
         // This is a throwing function, all errors thrown by a the Firebase API function are also implicitly thrown by this function, the 'try' keyword is useful here.
         // HINT: This is an async function, to handle our Firebase server calls, could the 'await' keyword be useful.
+        guard let userID = userID else {
+            return
+        }
         
         let alias = user.alias
         let ownedThoughts = user.ownedThoughts.map({ $0.documentID })
         let depositedThoughts = user.depositedThoughts.map({ $0.documentID })
         let viewedThoughts = user.viewedThoughts.map({ $0.documentID })
-        let databaseRef = db.collection("users").document(user.documentID)
+        let databaseRef = db.collection("users").document(userID)
         try await databaseRef.setData([
             "alias": alias,
             "myThoughts": ownedThoughts,

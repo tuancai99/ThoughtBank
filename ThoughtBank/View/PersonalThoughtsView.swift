@@ -15,17 +15,8 @@
 import SwiftUI
 
 struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
-    @EnvironmentObject var viewModel: ViewModel
     
-    @State var shouldShowAddThoughtsView: Bool = false {
-        didSet {
-            if shouldShowAddThoughtsView {
-                viewModel.navigationState = .add
-            } else {
-                viewModel.navigationState = .ownedThoughts
-            }
-        }
-    }
+    @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         ZStack {
@@ -54,15 +45,16 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                 HStack {
                     RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
                         // TODO: Implement "Back" button for owned thoughts
-                        print("Go to previous thought created by user")
+                        print("Go to previous thought created by user.")
+                        viewModel.goToPreviousOwnedThought()
                     })
                     
                     Spacer()
                     
                     RoundedButton(text: "Add Thought", image: "plus", size: 30, action: {
-                        shouldShowAddThoughtsView = true
+                        viewModel.shouldShowAddThoughtsView = true
                     })
-                    .sheet(isPresented: $shouldShowAddThoughtsView) {
+                    .sheet(isPresented: $viewModel.shouldShowAddThoughtsView) {
                         AddThoughtsView<ViewModel>().environmentObject(viewModel)
                     }
                     
@@ -71,6 +63,7 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                     RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
                         // TODO: Implement "Next" button for owned thoughts
                         print("Go to next thought created by user")
+                        viewModel.goToNextOwnedThought()
                     })
                 }
                 .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))

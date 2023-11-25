@@ -19,6 +19,8 @@
 import Foundation
 
 class PreviewViewModel: ObservableObject, ViewModelProtocol {
+    
+    
     var description: String = "PreviewViewModel"
     
     @Published var navigationState: NavigationState = .landing
@@ -29,7 +31,12 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     var feedThoughtIndex: Int = 0
     var depositedThoughtIndex: Int = 0
     var ownedThoughtIndex: Int = 0
+    
     @Published var shouldLoadBlocking: Bool = false
+    @Published var shouldShowAddThoughtsView: Bool = false
+    
+    var bannerError: Error?
+    
     @Published var feedThoughts: [Thought] = Thought.testingThoughts
     
     func createUser(email: String, password: String) {

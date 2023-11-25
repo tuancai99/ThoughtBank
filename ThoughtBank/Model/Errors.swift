@@ -8,5 +8,5 @@
 import Foundation
 
 enum Error {
-    case authenticationFailure, fetchingError, notLoggedIn
+    case authenticationFailure, fetchingError, notLoggedIn, uploadError
 }
