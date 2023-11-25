@@ -157,11 +157,10 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      
      **/
     func goToNextDepositedThought() {
-        if user == nil {
+        guard let count = user?.depositedThoughts.count else {
             return
         }
-        
-        if (depositedThoughtIndex < user!.depositedThoughts.count - 1) {
+        if (depositedThoughtIndex < count - 1) {
             depositedThoughtIndex += 1
         }
         
@@ -175,6 +174,9 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      
      **/
     func goToPreviousDepositedThought() {
+        if (depositedThoughtIndex > 0) {
+            depositedThoughtIndex -= 1
+        }
         
     }
     
