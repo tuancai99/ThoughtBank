@@ -27,15 +27,24 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
         }
     }
     
-    @Published var user: User? = User(alias: "car99", userID: "1234", email: "smith@gmail.com", ownedThoughts: [], depositedThoughts: Thought.testingThoughts, viewedThoughts: [])
+    @Published var user: User?
+    @Published var currentFeedThought: Thought?
     @Published var feedThoughtIndex: Int = 0
     @Published var depositedThoughtIndex: Int = 0
     @Published var ownedThoughtIndex: Int = 0
     @Published var shouldLoadBlocking: Bool = false
-    @Published var feedThoughts: [Thought] = Thought.testingThoughts
+    @Published var feedThoughts: [Thought] = [
+        Thought(documentID: "a", content: "The quick brown fox jumps over the lazy dog.", userID: "eee444", timestamp: Date()),
+        Thought(documentID: "b", content: "This is a second thought.", userID: "ghi789", timestamp: Date()),
+        Thought(documentID: "i", content: "The existing user has already seen this thought. It should not be visible in the feed.", userID: "pqr567", timestamp: Date()),
+        Thought(documentID: "c", content: "This is a very long thought. Think about how the UI should handle thoughts like these. Should it be scrollable? Should it be truncated? Should it be in another view? These are important design decisions that you need to make while developing an app that recieves user input which can be erratic and unexpected. But anyways, hope this extremely long thought doesn't mess things up.", userID: "abcdefghijklmnopqrstuvwxyz1234567890", timestamp: Date()),
+        Thought(documentID: "d", content: "This is a much smaller thought in comparison.", userID: "jkl012", timestamp: Date()),
+        Thought(documentID: "e", content: "This 👇 thought 💭 has ☺️ special ✨ characters 😍. \tIt also has unusual line\n\nbreaks\nthat\nmight\nmake\nthings\nlook\na\nbit\nweird.", userID: "mno234", timestamp: Date())
+    ]
     
     func createUser(email: String, password: String) {
         navigationState = .feedThoughts
+        currentFeedThought = feedThoughts[0]
         user = User(alias: "NewUser01", userID: "abc123", email: "newuser@example.com", ownedThoughts: [
             
         ], depositedThoughts: [
@@ -47,6 +56,7 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
     func login(email: String, password: String) {
         navigationState = .feedThoughts
+        currentFeedThought = feedThoughts[0]
         user = User(alias: "ExistingUser03", userID: "def456", email: "existinguser@example.com", ownedThoughts: [
             Thought(documentID: "f", content: "Thinking is hard", userID: "def456", timestamp: Date()),
             Thought(documentID: "g", content: "I know that the human being and fish can coexist peacefully.", userID: "def456", timestamp: Date()),
@@ -98,12 +108,9 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
     func goToNextFeedThought() {
         if (feedThoughtIndex < feedThoughts.count) {
+            currentFeedThought = feedThoughts[feedThoughtIndex]
             feedThoughtIndex += 1
         }
-    }
-    
-    func currentFeedThought() -> Thought? {
-        return feedThoughts[feedThoughtIndex]
     }
     
     func goToNextDepositedThought() {
