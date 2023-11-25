@@ -11,6 +11,20 @@ struct ThoughtCard: View {
     var thought: Thought
     let lineSpacing: CGFloat = 24.0
     
+    @State var offset: CGSize = .zero
+    
+    func swipeCard(width: CGFloat) {
+        switch width {
+        case (150) ... (500):
+            offset = CGSize(width: 500, height: 0)
+            nextCard()
+        default:
+            offset = .zero
+        }
+    }
+    
+    var nextCard: () -> Void
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -31,7 +45,22 @@ struct ThoughtCard: View {
         }
         .ignoresSafeArea()
         .background(NotepadBackground(isResizable: false, lineSpacing: lineSpacing, topLineMargin: 1, bottomLineMargin: 0))
+        .offset(x: offset.width, y: 0.4 * offset.height)
+        .rotationEffect(.degrees(Double(offset.width / 40)))
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    offset = gesture.translation
+                }
+                .onEnded { _ in
+                    withAnimation{
+                        swipeCard(width: offset.width)
+                    }
+                }
+        )
+        
     }
+    
 }
 
 struct NotepadBackground: View {
@@ -90,8 +119,8 @@ struct NotepadBackground: View {
 
 struct ThoughtCard_Previews: PreviewProvider {
     static var previews: some View {
-        ThoughtCard(thought: Thought(documentID: "a", content: "The quick brown fox jumps over the lazy dog.", userID: "User 1", timestamp: Date()))
+        ThoughtCard(thought: Thought(documentID: "a", content: "The quick brown fox jumps over the lazy dog.", userID: "User 1", timestamp: Date()), nextCard: {})
             .frame(height: 400)
-            .padding(8)
+            .padding(16)
     }
 }

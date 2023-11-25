@@ -4,17 +4,17 @@
 
 CentralViewModel Function           | Assignee  | Status
 ------------------------------------|-----------|--------
-`createUser()`                      | Janah     | In Progress
-`login()`                           | Soham     | In Progress
-`createThought()`                   | Vamsi     | In Progress
-`addThought()`                      | Tuan      | In Progress
-`depositThought()`                  | Tuan      | In Progress
-`goToNextDepositedThought()`        | Jordan    | In Progress
-`goToPreviousDepositedThought()`    | Jordan    | In Progress
-`goToNextOwnedThought()`            | Ethan     | In Progress
-`goToPreviousOwnedThought()`        | Ethan     | In Progress
-`goToNextFeedThought()`             | Laksh     | In Progress
-`updateFeedThoughts()`              | Laksh     | In Progress
+`createUser()`                      | Janah     | Complete
+`login()`                           | Soham     | Complete
+`createThought()`                   | Vamsi     | Complete
+`popDepositedThought()`             | Tuan      | In Progress
+`depositThought()`                  | Tuan      | Complete
+`goToNextDepositedThought()`        | Jordan    | Complete
+`goToPreviousDepositedThought()`    | Jordan    | Complete
+`goToNextOwnedThought()`            | Ethan     | Complete
+`goToPreviousOwnedThought()`        | Ethan     | Complete
+`goToNextFeedThought()`             | Laksh     | Complete
+`updateFeedThoughts()`              | Laksh     | Complete
 
 ## Views
 

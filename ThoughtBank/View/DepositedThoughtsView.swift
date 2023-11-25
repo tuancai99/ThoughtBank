@@ -17,6 +17,18 @@ import SwiftUI
 struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
     
+    // can we pass in the offset values into thought card as if they were initialization values?
+    // also how is visibility determined?
+    // also can we make deposited thoughts index observable so that this class checks when it is being updated 
+    
+    func nextThought() {
+        viewModel.goToNextDepositedThought()
+    }
+    
+    func prevThought() {
+        viewModel.goToPreviousDepositedThought()
+    }
+    
     var body: some View {
         
         ZStack {
@@ -26,7 +38,7 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
                     if viewModel.depositedThoughtIndex < thoughts.count {
                         ForEach(viewModel.depositedThoughtIndex..<thoughts.count,id: \.self) { i in
                             let flippedIndex: Int = (thoughts.count - i - 1) + viewModel.depositedThoughtIndex
-                            ThoughtCard(thought: thoughts[flippedIndex])
+                            ThoughtCard(thought: thoughts[flippedIndex], nextCard: nextThought)
                                 .offset(x: CGFloat(i), y: CGFloat(i))
                         }
                     } else {
