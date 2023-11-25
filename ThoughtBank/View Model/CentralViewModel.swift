@@ -123,7 +123,34 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      - thought: the thought we want to deposit
      **/
     func depositThought(thought: Thought?) {
-        
+        guard let user = user else {
+            return
+        }
+        shouldLoadBlocking = true
+        Task {
+            do {
+                guard let unwrappedThought = thought else {
+                    print("Error: Thought is empty")
+                    shouldLoadBlocking = false
+                    return
+                }
+                // ADD DEPOSITED THOUGHT TO THE ONLINE DB
+                // create a deep copy + deposit thought to the copy and post
+                let duplicate = user.duplicate()
+                duplicate.depositThought(thought: unwrappedThought)
+                try await firebase.updateUserData(user: duplicate)
+                
+                // ADD DEPOSITED THOUGHT LOCALLY
+                await MainActor.run(body: {
+                    user.depositThought(thought: unwrappedThought)
+                    shouldLoadBlocking = false
+                })
+                
+                
+            } catch {
+                print("Error depositing thought: \(error)")
+            }
+        }
     }
     
     /**
@@ -158,11 +185,10 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      
      **/
     func goToNextDepositedThought() {
-        if user == nil {
+        guard let count = user?.depositedThoughts.count else {
             return
         }
-        
-        if (depositedThoughtIndex < user!.depositedThoughts.count - 1) {
+        if (depositedThoughtIndex < count - 1) {
             depositedThoughtIndex += 1
         }
         
@@ -176,6 +202,9 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      
      **/
     func goToPreviousDepositedThought() {
+        if (depositedThoughtIndex > 0) {
+            depositedThoughtIndex -= 1
+        }
         
     }
     
