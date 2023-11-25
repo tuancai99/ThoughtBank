@@ -21,15 +21,11 @@ import Foundation
 class PreviewViewModel: ObservableObject, ViewModelProtocol {
     var description: String = "PreviewViewModel"
     
-    @Published var navigationState: NavigationState = .landing {
-        didSet {
-            
-        }
-    }
+    @Published var navigationState: NavigationState = .landing
     
-    @Published var user: User? = User(alias: "car99", userID: "1234", email: "smith@gmail.com", ownedThoughts: Thought.testingThoughts, depositedThoughts: Thought.testingThoughts, viewedThoughts: [])
+    @Published var user: User? = .sampleExistingUser
     
-    // NOTE: I have removed the @Published for these temporarily, because 
+    // NOTE: I have removed the @Published for these temporarily, because of the way we implemented our stack of cards:
     var feedThoughtIndex: Int = 0
     var depositedThoughtIndex: Int = 0
     var ownedThoughtIndex: Int = 0
@@ -38,27 +34,12 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
     func createUser(email: String, password: String) {
         navigationState = .feedThoughts
-        user = User(alias: "NewUser01", userID: "abc123", email: "newuser@example.com", ownedThoughts: [
-            
-        ], depositedThoughts: [
-            
-        ], viewedThoughts: [
-            
-        ])
+        user = User.sampleNewUser
     }
     
     func login(email: String, password: String) {
         navigationState = .feedThoughts
-        user = User(alias: "ExistingUser03", userID: "def456", email: "existinguser@example.com", ownedThoughts: [
-            Thought(documentID: "f", content: "Thinking is hard", userID: "def456", timestamp: Date()),
-            Thought(documentID: "g", content: "I know that the human being and fish can coexist peacefully.", userID: "def456", timestamp: Date()),
-            Thought(documentID: "h", content: "I should probably call mom.", userID: "def456", timestamp: Date())
-        ], depositedThoughts: [
-            Thought(documentID: "j", content: "Before you marry a person, make them use a computer with slow internet to see who they really are.", userID: "aaa000", timestamp: Date()),
-            Thought(documentID: "j", content: "If you think nobody cares if you're alive, try missing a couple of car payments.", userID: "bbb111", timestamp: Date())
-        ], viewedThoughts: [
-            Thought(documentID: "i", content: "The existing user has already seen this thought. It should not be visible in the feed.", userID: "pqr567", timestamp: Date())
-        ])
+        user = User.sampleExistingUser
     }
     
     func popDepositedThought(thought: Thought?) {
@@ -153,5 +134,9 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     }
     
     func updateFeedThoughts() {
+    }
+    
+    func setScreen(to screen: NavigationState)  {
+        navigationState = screen
     }
 }

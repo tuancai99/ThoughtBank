@@ -37,6 +37,8 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     
     @Published var shouldLoadBlocking: Bool = false
     
+    @Published var bannerError: Error? = nil
+    
     // GENERAL HINTS:
     // - Use FirebaseManager to interact with Firebase for each function that involves manipulation of data.
     // - Can we call async functions from a synchronous thread? Do we need to spawn a new thread?  (key components: the "Task" wrapper, look into it)
@@ -54,7 +56,22 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      - password: the password of the user
      **/
     func createUser(email: String, password: String) {
-        
+        shouldLoadBlocking = true
+        Task {
+            do {
+                let fetchedUser = try await firebase.createUser(email: email, password: password)
+                await MainActor.run {
+                    user = fetchedUser
+                    shouldLoadBlocking = false
+                    setScreen(to: .feedThoughts)
+                }
+            } catch {
+                await MainActor.run {
+                    shouldLoadBlocking = false
+                    bannerError = .authenticationFailure
+                }
+            }
+        }
     }
     
     /**
@@ -69,7 +86,22 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      - password: the password of the user
      **/
     func login(email: String, password: String) {
-        
+        shouldLoadBlocking = true
+        Task {
+            do {
+                let fetchedUser = try await firebase.login(email: email, password: password)
+                await MainActor.run {
+                    user = fetchedUser
+                    shouldLoadBlocking = false
+                    setScreen(to: .feedThoughts)
+                }
+            } catch {
+                await MainActor.run {
+                    shouldLoadBlocking = false
+                    bannerError = .authenticationFailure
+                }
+            }
+        }
     }
     
     /**
@@ -98,6 +130,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      **/
     func createThought(text: String) {
         guard let user = user else {
+            bannerError = .notLoggedIn
             return
         }
         shouldLoadBlocking = true
@@ -107,6 +140,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
                 
                 user.ownedThoughts.append(_:thought)
                 shouldLoadBlocking = false
+                
             })
         }
         
@@ -134,6 +168,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
                     shouldLoadBlocking = false
                     return
                 }
+                
                 // ADD DEPOSITED THOUGHT TO THE ONLINE DB
                 // create a deep copy + deposit thought to the copy and post
                 let duplicate = user.duplicate()
@@ -272,23 +307,35 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      
      **/
     func updateFeedThoughts() {
+        guard let user = user else {
+            bannerError = .notLoggedIn
+            return
+        }
+        
         Task {
             do {
                 let response = try await firebase.fetchThoughts(filterGroup: [])
-                for thought in response {
-                    let isViewed = user!.viewedThoughts.contains {t in
-                        t.id == thought.id
+                
+                await MainActor.run {
+                    
+                    feedThoughts = response.filter { thought in
+                        let isViewed = user.viewedThoughts.contains { $0.id == thought.id }
+                        let isOwned = thought.userID == user.userID
+                        
+                        return !isOwned && !isViewed
                     }
-                    if !thought.userID.elementsEqual(user!.userID) && !isViewed {
-                        await MainActor.run {
-                            feedThoughts.append(thought)
-                        }
-                    }
+                    
                 }
+                
             } catch {
-                print("something went wrong!")
+                bannerError = .fetchingError
+                print("Error updating feed!")
             }
         }
+    }
+    
+    func setScreen(to screen: NavigationState)  {
+        navigationState = screen
     }
 }
 

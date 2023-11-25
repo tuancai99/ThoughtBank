@@ -22,44 +22,17 @@ struct LoginView<ViewModel: ViewModelProtocol>: View {
     
     var body: some View {
         ZStack {
-            VStack () {
-                Image("Logo").padding(.bottom,-20)
-                
-                Spacer()
-                
-                VStack(spacing: 0) {
-                    Text("Welcome").font(Font.custom("SmoochSans-SemiBold", size: 80))
-                    Text("Hello again, login to view thoughts")
-                }.padding(.vertical, 10)
-                
-                ImageTextField(text: $email, placeholder: "Email", image: "user-symbol")
-                ImageTextField(text: $password, placeholder: "Password", image: "password-symbol", secure: true)
-                
-                LargeFilledButton(text: "Sign in", color: .pink, action: {
-                    // TODO: Implement "Sign in" button
-                    // - Must call viewModel (should be a straightforward call)
-                })
-                
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                
-                HStack {
-                    Text("Don't have an account?")
-                    Button(action: {
-                        viewModel.navigationState = .registration
-                    }, label: {
-                        Text("Register")
-                    })
-                }
-            }
-            .padding(16)
+            AuthenticationView<ViewModel>(
+                type: "Login",
+                instruction: "Hello again, sign-in to view thoughts:",
+                question: "Don't have an account?",
+                alternativeAction: "Register",
+                alternativeDestination: .registration,
+                authenticationProcedure: viewModel.login, email: $email,
+                password: $password)
+           
             ProgressOverlay(isVisible: $viewModel.shouldLoadBlocking)
         }
-        .font(Font.custom("Poppins-Regular", size: 14))
     }
 }
 

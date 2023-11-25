@@ -149,9 +149,9 @@ final class FirebaseManager {
 
         // TODO: use TaskManager to receive all documents concurrently.
         
-        //guard let email = email, let userID = userID else { throw FirebaseAuth.AuthErrorCode(.appNotAuthorized) }
+        guard let userID = userID else { throw FirebaseAuth.AuthErrorCode(.appNotAuthorized) }
                 
-        let doc = try await db.collection("users").document("fjkrehjgkue").getDocument()
+        let doc = try await db.collection("users").document(userID).getDocument()
         
         let alias: String = doc["alias"] as! String
         

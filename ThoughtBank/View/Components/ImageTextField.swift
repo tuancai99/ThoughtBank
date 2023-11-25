@@ -21,28 +21,34 @@ struct ImageTextField: View {
             .cornerRadius(13)
             .overlay(
                 HStack {
-                    Image(image)
+                    Image(systemName: image)
+                        .font(.title3)
                     .colorMultiply(.secondary)
-                    .padding(.leading, 24)
-                    .frame(width: 36)
+                    .padding(.trailing, 10)
+                    
                     if secure {
                         SecureField(text: $text, prompt: Text(placeholder).foregroundColor(.gray), label: {})
-                            .padding(.leading, 30)
                             .foregroundColor(.primary)
+                            
+
                     } else {
                         TextField(text: $text, prompt: Text(placeholder).foregroundColor(.gray), label: {})
-                            .padding(.leading, 30)
                             .foregroundColor(.primary)
+
                     }
                 }
                 .padding()
-            ).padding(.vertical, 3)
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
+            )
+        
+        
     }
 }
 
 struct ImageTextField_Previews: PreviewProvider {
     @State var text: String
     static var previews: some View {
-        ImageTextField(text: .constant(""), placeholder: "Placeholder", image: "password-symbol")
+        ImageTextField(text: .constant(""), placeholder: "Placeholder", image: "lock.fill")
     }
 }

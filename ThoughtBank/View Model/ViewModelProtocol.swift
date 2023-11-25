@@ -105,5 +105,7 @@ protocol ViewModelProtocol: ObservableObject {
     ///
     /// Hint: You'll need to manipulate feedThoughts and currentFeedThought
     func updateFeedThoughts()
+    
+    func setScreen(to screen: NavigationState)
         
 }

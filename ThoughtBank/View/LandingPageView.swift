@@ -20,35 +20,58 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
-        VStack(){
-            Image("Logo")
-            VStack(){
+        VStack {
+            
+            VStack(spacing: 0) {
                 Text("See what the \n world is thinking")
                     .font(
                         Font.custom("SmoochSans-ExtraBold", size: 64)
                     )
                     .kerning(0.35)
                     .foregroundStyle(.primary)
+                    .padding(.bottom, 30)
                 
-                LargeFilledButton(text: "Create account", color: .pink, action: {
-                    viewModel.navigationState = .registration
-                })
-                .padding(EdgeInsets(top: -32, leading: 0, bottom: 0, trailing: 0))
+                
+                LargeFilledButton(text: "Create account", color: .pink) {
+                    
+                    withAnimation {
+                        viewModel.setScreen(to: .registration)
+                    }
+                }
             }
-            Spacer()
-            HStack {
-                Text("Already have an account?")
-                Button(action: {
-                    viewModel.navigationState = .login
-                }, label: {
-                    Text("Sign in")
-                })
-            }
+            .padding(.bottom, 80)
+                                    
+            TextButtonPair<ViewModel>(question: "Already have an account?", buttonText: "Sign in", destination: .login)
+            
         }
+        .frame(maxHeight: .infinity, alignment: .bottom)
         .padding(16)
-        .font(Font.custom("Poppins-Regular", size: 14))
     }
     
+}
+
+struct TextButtonPair<VM: ViewModelProtocol>: View {
+    
+    @EnvironmentObject var viewModel: VM
+    
+    var question: String
+    var buttonText: String
+    var destination: NavigationState
+    
+    var body: some View {
+        HStack {
+            Text(question)
+            Button(action: {
+                withAnimation {
+                    viewModel.setScreen(to: destination)
+                }
+            }, label: {
+                Text(buttonText)
+                    .fontWeight(.semibold)
+                    .tint(.pink)
+            })
+        }
+    }
 }
 
 struct LandingPageView_Previews: PreviewProvider {

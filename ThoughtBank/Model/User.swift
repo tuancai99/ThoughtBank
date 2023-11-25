@@ -57,7 +57,7 @@ class User: ObservableObject, QueryItem {
     }
     
     func duplicate() -> User {
-    return User(
+        return User(
         alias: self.alias,
         userID: self.userID,
         email: self.email,
@@ -66,6 +66,24 @@ class User: ObservableObject, QueryItem {
         viewedThoughts: self.viewedThoughts
         )
     }
+    
+    static var sampleNewUser = User(
+        alias: "NewUser03",
+        userID: "def456",
+        email: "smith@gmail.com",
+        ownedThoughts: [],
+        depositedThoughts: [],
+        viewedThoughts: []
+    )
+    
+    static var sampleExistingUser = User(
+        alias: "ExistingUser03",
+        userID: "xoxJc0UkFqt7ApHOd74a",
+        email: "existinguser@example.com",
+        ownedThoughts: Thought.testingThoughts,
+        depositedThoughts: Thought.testingThoughts,
+        viewedThoughts: Thought.testingThoughts
+    )
     
 }
 
