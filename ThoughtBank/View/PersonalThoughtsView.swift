@@ -34,8 +34,10 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                     let thoughts: [Thought] = user.ownedThoughts
                     if viewModel.ownedThoughtIndex < thoughts.count {
                         ForEach(viewModel.ownedThoughtIndex..<thoughts.count,id: \.self) { i in
+                            
                             let flippedIndex: Int = (thoughts.count - i - 1) + viewModel.ownedThoughtIndex
-                            ThoughtCard(thought: thoughts[flippedIndex], nextCard: {})
+                            
+                            ThoughtCard(thought: thoughts[flippedIndex], nextCard: viewModel.goToNextOwnedThought)
                                 .offset(x: CGFloat(i), y: CGFloat(i))
                         }
                     } else {
@@ -54,14 +56,18 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                         // TODO: Implement "Back" button for owned thoughts
                         print("Go to previous thought created by user")
                     })
+                    
                     Spacer()
+                    
                     RoundedButton(text: "Add Thought", image: "plus", size: 30, action: {
                         shouldShowAddThoughtsView = true
                     })
                     .sheet(isPresented: $shouldShowAddThoughtsView) {
                         AddThoughtsView<ViewModel>().environmentObject(viewModel)
                     }
+                    
                     Spacer()
+                    
                     RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
                         // TODO: Implement "Next" button for owned thoughts
                         print("Go to next thought created by user")

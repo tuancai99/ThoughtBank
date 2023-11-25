@@ -27,10 +27,12 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
         }
     }
     
-    @Published var user: User? = User(alias: "car99", userID: "1234", email: "smith@gmail.com", ownedThoughts: [], depositedThoughts: Thought.testingThoughts, viewedThoughts: [])
-    @Published var feedThoughtIndex: Int = 0
-    @Published var depositedThoughtIndex: Int = 0
-    @Published var ownedThoughtIndex: Int = 0
+    @Published var user: User? = User(alias: "car99", userID: "1234", email: "smith@gmail.com", ownedThoughts: Thought.testingThoughts, depositedThoughts: Thought.testingThoughts, viewedThoughts: [])
+    
+    // NOTE: I have removed the @Published for these temporarily, because 
+    var feedThoughtIndex: Int = 0
+    var depositedThoughtIndex: Int = 0
+    var ownedThoughtIndex: Int = 0
     @Published var shouldLoadBlocking: Bool = false
     @Published var feedThoughts: [Thought] = Thought.testingThoughts
     

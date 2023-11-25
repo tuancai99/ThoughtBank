@@ -30,9 +30,10 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     
     @Published var feedThoughts: [Thought] = []
     
-    @Published var feedThoughtIndex: Int = 0
-    @Published var depositedThoughtIndex: Int = 0
-    @Published var ownedThoughtIndex: Int = 0
+    // NOTE: I have removed the @Published for these temporarily, because
+    var feedThoughtIndex: Int = 0
+    var depositedThoughtIndex: Int = 0
+    var ownedThoughtIndex: Int = 0
     
     @Published var shouldLoadBlocking: Bool = false
     
