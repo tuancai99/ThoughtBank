@@ -11,8 +11,8 @@ CentralViewModel Function           | Assignee  | Status
 `depositThought()`                  | Tuan      | Complete
 `goToNextDepositedThought()`        | Jordan    | Complete
 `goToPreviousDepositedThought()`    | Jordan    | Complete
-`goToNextOwnedThought()`            | Ethan     | In Progress
-`goToPreviousOwnedThought()`        | Ethan     | In Progress
+`goToNextOwnedThought()`            | Ethan     | Complete
+`goToPreviousOwnedThought()`        | Ethan     | Complete
 `goToNextFeedThought()`             | Laksh     | Complete
 `updateFeedThoughts()`              | Laksh     | Complete
 
