@@ -7,7 +7,7 @@ CentralViewModel Function           | Assignee  | Status
 `createUser()`                      | Janah     | In Progress
 `login()`                           | Soham     | In Progress
 `createThought()`                   | Vamsi     | In Progress
-`addThought()`                      | Tuan      | In Progress
+`popDepositedThought()`             | Tuan      | In Progress
 `depositThought()`                  | Tuan      | In Progress
 `goToNextDepositedThought()`        | Jordan    | In Progress
 `goToPreviousDepositedThought()`    | Jordan    | In Progress
