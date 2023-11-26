@@ -76,8 +76,7 @@ protocol ViewModelProtocol: ObservableObject {
     /// Hint: 
     ///
     /// - Parameters
-    ///     - thought: a Thought object from another user
-    func depositThought(thought: Thought?)
+    func depositThought()
     
     /// Go to the next thought in the feed.
     ///

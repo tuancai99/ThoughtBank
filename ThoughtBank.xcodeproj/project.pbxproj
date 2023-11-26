@@ -44,6 +44,7 @@
 		A3CE61DC2ADF2B9D0039EC83 /* ThoughtBankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */; };
 		A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */; };
 		A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3CE61E22ADF2B9E0039EC83 /* Preview Assets.xcassets */; };
+		A3FD9F012B13F4CB002D9515 /* ThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FD9F002B13F4CB002D9515 /* ThoughtsView.swift */; };
 		DBA414312AEDDF8A00B4F685 /* SmoochSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */; };
 		DBA414342AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */; };
 		DBA414362AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBA414352AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf */; };
@@ -81,6 +82,7 @@
 		A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtBankApp.swift; sourceTree = "<group>"; };
 		A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3CE61E22ADF2B9E0039EC83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A3FD9F002B13F4CB002D9515 /* ThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsView.swift; sourceTree = "<group>"; };
 		DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-Regular.ttf"; sourceTree = "<group>"; };
 		DBA414322AEDE7F100B4F685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				A320061A2B129509003E3ECA /* AuthenticationView.swift */,
 				FFB71AE22ADF51140006C762 /* MainFeedView.swift */,
 				FFB71AE52ADF51150006C762 /* PersonalThoughtsView.swift */,
+				A3FD9F002B13F4CB002D9515 /* ThoughtsView.swift */,
 				FFB71AE02ADF51140006C762 /* DepositedThoughtsView.swift */,
 				A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */,
 				FFB71AE42ADF51140006C762 /* SettingsView.swift */,
@@ -400,6 +403,7 @@
 				FFB71AE82ADF51150006C762 /* LandingPageView.swift in Sources */,
 				FFB71AE92ADF51150006C762 /* MainFeedView.swift in Sources */,
 				A3CE61DC2ADF2B9D0039EC83 /* ThoughtBankApp.swift in Sources */,
+				A3FD9F012B13F4CB002D9515 /* ThoughtsView.swift in Sources */,
 				FF604F032B0491B6000B80D7 /* RoundedButton.swift in Sources */,
 				FF604EF32B043954000B80D7 /* ManagerView.swift in Sources */,
 				FFB71AE62ADF51150006C762 /* RegistrationView.swift in Sources */,

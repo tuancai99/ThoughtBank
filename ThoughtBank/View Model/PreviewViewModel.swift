@@ -87,13 +87,13 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
         user!.ownedThoughts.append(Thought(documentID: Date().timeIntervalSince1970.description, content: text, userID: user!.userID, timestamp: Date()))
     }
     
-    func depositThought(thought: Thought?) {
-        if user == nil || thought == nil {
+    func depositThought() {
+        if user == nil{
             print("ERROR: User or thought is nil")
             return
         }
         
-        user!.depositedThoughts.append(thought!)
+        //user!.depositedThoughts.append(thought!)
         goToNextFeedThought()
     }
     

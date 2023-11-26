@@ -18,49 +18,29 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
     
     @EnvironmentObject var viewModel: ViewModel
     
-    var mappedOwnedThoughts: [(Int, Thought)] {
-        let thoughts = viewModel.ownedThoughts
-        guard viewModel.ownedThoughtIndex < thoughts.count else {
-            return []
-        }
-        
-        return (viewModel.ownedThoughtIndex..<thoughts.count)
-            .map({
-                ($0, thoughts[getFlippedIndex(i: $0)])
-            })
-    }
-    
     var body: some View {
         ZStack {
-            ZStack {
-                if viewModel.user != nil {
-                    if !mappedOwnedThoughts.isEmpty {
-                        
-                        // For each loop orders based on the id we specify, thus we can't just user the index for i (the indices change with add/remove):
-                        ForEach(mappedOwnedThoughts ,id: \.1.self) { (i, thought) in
-                            
-                            ThoughtCard(
-                                thought: thought,
-                                nextCard: viewModel.goToNextOwnedThought
-                            )
-                            .offset(x: CGFloat(i), y: CGFloat(i))
-                        }
-                    } else {
-                        Text("No more cards to show!")
-                    }
-                } else {
-                    Text("User data is unavailable.")
-                }
+            if let user = viewModel.user {
+                ThoughtsView<PreviewViewModel>(
+                    thoughtIndex: $viewModel.ownedThoughtIndex,
+                    thoughts: Binding(get: {user.ownedThoughts}, set: {user.ownedThoughts = $0}),
+                    onNext: onNext
+                )
+                .padding(EdgeInsets(top: 0, leading: 32, bottom: 144, trailing: 32))
+                
+            } else {
+                Text("User data is unavailable.")
             }
-            .padding(EdgeInsets(top: 64, leading: 32, bottom: 144, trailing: 32))
             
             VStack {
                 Spacer()
                 HStack {
                     RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
                         // TODO: Implement "Back" button for owned thoughts
+                        withAnimation {
+                            viewModel.goToPreviousOwnedThought()
+                        }
                         print("Go to previous thought created by user.")
-                        viewModel.goToPreviousOwnedThought()
                     })
                     
                     Spacer()
@@ -84,9 +64,13 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
             }
         }
     }
-    
-    func getFlippedIndex(i: Int) -> Int {
-        return (viewModel.ownedThoughts.count - i - 1) + viewModel.ownedThoughtIndex
+
+    func onNext(current: Thought, first: Thought?, last: Thought?) -> Bool  {
+        guard let first, first != current else {
+            return false
+        }
+        viewModel.goToNextOwnedThought()
+        return true
     }
 }
 

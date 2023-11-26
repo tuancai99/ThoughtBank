@@ -16,14 +16,19 @@ struct ThoughtCard: View {
     func swipeCard(width: CGFloat) {
         switch width {
         case (150) ... (500):
-            offset = CGSize(width: 500, height: 0)
-            nextCard()
+            if nextCard() {
+                offset = CGSize(width: 500, height: 0)
+            } else {
+                withAnimation {
+                    offset = .zero
+                }
+            }
         default:
             offset = .zero
         }
     }
     
-    var nextCard: () -> Void
+    var nextCard: () -> Bool
     
     var body: some View {
         HStack {
@@ -119,7 +124,7 @@ struct NotepadBackground: View {
 
 struct ThoughtCard_Previews: PreviewProvider {
     static var previews: some View {
-        ThoughtCard(thought: Thought(documentID: "a", content: "The quick brown fox jumps over the lazy dog.", userID: "User 1", timestamp: Date()), nextCard: {})
+        ThoughtCard(thought: Thought(documentID: "a", content: "The quick brown fox jumps over the lazy dog.", userID: "User 1", timestamp: Date()), nextCard: {true})
             .frame(height: 400)
             .padding(16)
     }

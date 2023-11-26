@@ -190,18 +190,19 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      - Parameters:
      - thought: the thought we want to deposit
      **/
-    func depositThought(thought: Thought?) {
+    func depositThought() {
         guard let user = user else {
             return
         }
         shouldLoadBlocking = true
         Task {
             do {
-                guard let unwrappedThought = thought else {
-                    print("Error: Thought is empty")
-                    shouldLoadBlocking = false
-                    return
-                }
+                let unwrappedThought = depositedThoughts[
+                    getFlippedIndex(
+                    i: depositedThoughtIndex, 
+                    thoughtIndex: depositedThoughtIndex,
+                    count: depositedThoughts.count
+                    )]
                 
                 // ADD DEPOSITED THOUGHT TO THE ONLINE DB
                 // create a deep copy + deposit thought to the copy and post
@@ -213,10 +214,11 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
                 await MainActor.run(body: {
                     user.depositThought(thought: unwrappedThought)
                     shouldLoadBlocking = false
+                    goToNextFeedThought()
                 })
                 
-                
             } catch {
+                bannerError = .uploadError
                 print("Error depositing thought: \(error)")
             }
         }
@@ -254,9 +256,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      
      **/
     func goToNextDepositedThought() {
-        guard let count = user?.depositedThoughts.count else {
-            return
-        }
+        let count = depositedThoughts.count
         if (depositedThoughtIndex < count - 1) {
             depositedThoughtIndex += 1
         }
@@ -349,16 +349,15 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         Task {
             do {
                 let response = try await firebase.fetchThoughts(filterGroup: [])
-                
-                await MainActor.run {
-                    
-                    feedThoughts = response.filter { thought in
+                    .filter { thought in
                         let isViewed = user.viewedThoughts.contains { $0.id == thought.id }
                         let isOwned = thought.userID == user.userID
                         
                         return !isOwned && !isViewed
                     }
-                    
+                
+                await MainActor.run {
+                    feedThoughts = response
                 }
                 
             } catch {
@@ -370,6 +369,10 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     
     func setScreen(to screen: NavigationState)  {
         navigationState = screen
+    }
+    
+    func getFlippedIndex(i: Int, thoughtIndex: Int, count: Int) -> Int {
+        return (count - i - 1) + thoughtIndex
     }
 }
 

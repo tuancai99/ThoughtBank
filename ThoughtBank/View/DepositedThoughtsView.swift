@@ -17,40 +17,21 @@ import SwiftUI
 struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
     
-    // can we pass in the offset values into thought card as if they were initialization values?
-    // also how is visibility determined?
-    // also can we make deposited thoughts index observable so that this class checks when it is being updated 
-    
-    func nextThought() {
-        viewModel.goToNextDepositedThought()
-    }
-    
-    func prevThought() {
-        viewModel.goToPreviousDepositedThought()
-    }
-    
     var body: some View {
         
         ZStack {
-            ZStack {
-                if let user = viewModel.user {
-                    let thoughts: [Thought] = user.depositedThoughts
-                    if viewModel.depositedThoughtIndex < thoughts.count {
-                        ForEach(viewModel.depositedThoughtIndex..<thoughts.count,id: \.self) { i in
-                            let flippedIndex: Int = (thoughts.count - i - 1) + viewModel.depositedThoughtIndex
-                            ThoughtCard(thought: thoughts[flippedIndex], nextCard: nextThought)
-                                .offset(x: CGFloat(i), y: CGFloat(i))
-                        }
-                    } else {
-                        Text("No more cards to show!")
-                    }
-                } else {
-                    Text("User data is unavailable.")
-                }
+            if let user = viewModel.user {
+                ThoughtsView<PreviewViewModel>(
+                    thoughtIndex: $viewModel.depositedThoughtIndex,
+                    thoughts: Binding(get: {user.depositedThoughts}, set: {user.depositedThoughts = $0}),
+                    onNext: onNext
+                )
+                .padding(EdgeInsets(top: 0, leading: 32, bottom: 144, trailing: 32))
+                
+            } else {
+                Text("User data is unavailable.")
             }
-            .padding(EdgeInsets(top: 64, leading: 32, bottom: 144, trailing: 32))
-            
-            
+                        
             VStack {
                 Spacer()
                 HStack {
@@ -60,7 +41,7 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
                     })
                     Spacer()
                     RoundedButton(text: "Forget", image: "brain", size: 30, action: {
-                        print("Delete this thought from deposited thoughts")
+                        print("Delete this thought from deposited thoughts.")
                         // Pop deposited thought
                     })
                     Spacer()
@@ -72,6 +53,14 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
                 .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))
             }
         }
+    }
+    
+    func onNext(current: Thought, first: Thought?, last: Thought?) -> Bool  {
+        guard let first, first != current else {
+            return false
+        }
+        viewModel.goToNextDepositedThought()
+        return true
     }
 }
 
