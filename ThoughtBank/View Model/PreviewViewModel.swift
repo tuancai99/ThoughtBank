@@ -20,7 +20,6 @@ import Foundation
 
 class PreviewViewModel: ObservableObject, ViewModelProtocol {
     
-    
     var description: String = "PreviewViewModel"
     
     @Published var navigationState: NavigationState = .landing
@@ -38,6 +37,18 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     var bannerError: Error?
     
     @Published var feedThoughts: [Thought] = Thought.testingThoughts
+    var ownedThoughts: [Thought] {
+        guard let user = user else { return [] }
+        return user.ownedThoughts
+    }
+    var depositedThoughts: [Thought] {
+        guard let user = user else { return [] }
+        return user.depositedThoughts
+    }
+    var viewedThoughts: [Thought] {
+        guard let user = user else { return [] }
+        return user.viewedThoughts
+    }
     
     func createUser(email: String, password: String) {
         navigationState = .feedThoughts

@@ -15,7 +15,7 @@
 
 import Foundation
 
-struct Thought: Identifiable, Codable, QueryItem {
+struct Thought: Identifiable, Codable, QueryItem, Hashable {
     var id: String {
         documentID
     }

@@ -18,18 +18,32 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
     
     @EnvironmentObject var viewModel: ViewModel
     
+    var mappedOwnedThoughts: [(Int, Thought)] {
+        let thoughts = viewModel.ownedThoughts
+        guard viewModel.ownedThoughtIndex < thoughts.count else {
+            return []
+        }
+        
+        return (viewModel.ownedThoughtIndex..<thoughts.count)
+            .map({
+                ($0, thoughts[getFlippedIndex(i: $0)])
+            })
+    }
+    
     var body: some View {
         ZStack {
             ZStack {
-                if let user = viewModel.user {
-                    let thoughts: [Thought] = user.ownedThoughts
-                    if viewModel.ownedThoughtIndex < thoughts.count {
-                        ForEach(viewModel.ownedThoughtIndex..<thoughts.count,id: \.self) { i in
+                if viewModel.user != nil {
+                    if !mappedOwnedThoughts.isEmpty {
+                        
+                        // For each loop orders based on the id we specify, thus we can't just user the index for i (the indices change with add/remove):
+                        ForEach(mappedOwnedThoughts ,id: \.1.self) { (i, thought) in
                             
-                            let flippedIndex: Int = (thoughts.count - i - 1) + viewModel.ownedThoughtIndex
-                            
-                            ThoughtCard(thought: thoughts[flippedIndex], nextCard: viewModel.goToNextOwnedThought)
-                                .offset(x: CGFloat(i), y: CGFloat(i))
+                            ThoughtCard(
+                                thought: thought,
+                                nextCard: viewModel.goToNextOwnedThought
+                            )
+                            .offset(x: CGFloat(i), y: CGFloat(i))
                         }
                     } else {
                         Text("No more cards to show!")
@@ -69,6 +83,10 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
                 .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))
             }
         }
+    }
+    
+    func getFlippedIndex(i: Int) -> Int {
+        return (viewModel.ownedThoughts.count - i - 1) + viewModel.ownedThoughtIndex
     }
 }
 

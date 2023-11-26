@@ -23,6 +23,9 @@ protocol ViewModelProtocol: ObservableObject {
     var user: User? { get set }
     
     var feedThoughts: [Thought] { get set }
+    var ownedThoughts: [Thought] {get}
+    var depositedThoughts: [Thought] {get}
+    var viewedThoughts: [Thought] {get}
     
     // Index for current stack of cards
     var feedThoughtIndex: Int { get set }

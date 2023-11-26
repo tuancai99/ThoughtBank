@@ -29,6 +29,18 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     @Published var user: User?
     
     @Published var feedThoughts: [Thought] = []
+    var ownedThoughts: [Thought] {
+        guard let user = user else { return [] }
+        return user.ownedThoughts
+    }
+    var depositedThoughts: [Thought] {
+        guard let user = user else { return [] }
+        return user.depositedThoughts
+    }
+    var viewedThoughts: [Thought] {
+        guard let user = user else { return [] }
+        return user.viewedThoughts
+    }
     
     @Published var feedThoughtIndex: Int = 0
     @Published var depositedThoughtIndex: Int = 0
