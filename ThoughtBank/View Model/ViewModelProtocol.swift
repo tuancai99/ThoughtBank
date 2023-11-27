@@ -61,9 +61,7 @@ protocol ViewModelProtocol: ObservableObject {
     
     /// Remove one of the user's thoughts.
     ///
-    /// - Parameters
-    ///     - thought: the Thought object to remove
-    func popDepositedThought(thought: Thought?)
+    func popDepositedThought()
     
     /// Create a new thought for the user.
     ///
