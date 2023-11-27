@@ -197,12 +197,19 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
         shouldLoadBlocking = true
         Task {
             do {
-                let unwrappedThought = depositedThoughts[
-                    getFlippedIndex(
-                    i: depositedThoughtIndex, 
-                    thoughtIndex: depositedThoughtIndex,
-                    count: depositedThoughts.count
-                    )]
+                
+                if feedThoughtIndex >= feedThoughts.count || feedThoughtIndex < 0 {
+                    // error
+                    print("Attempted to retrieve index \(feedThoughtIndex) from feedThoughts (length \(feedThoughts.count))")
+                    await MainActor.run(body: {
+                        shouldLoadBlocking = false
+                    })
+                    return
+                } else {
+                    print("Deposit thought: " + feedThoughts[feedThoughtIndex].content)
+                }
+                
+                let unwrappedThought = feedThoughts[feedThoughtIndex]
                 
                 // ADD DEPOSITED THOUGHT TO THE ONLINE DB
                 // create a deep copy + deposit thought to the copy and post
@@ -220,6 +227,9 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
             } catch {
                 bannerError = .uploadError
                 print("Error depositing thought: \(error)")
+                await MainActor.run(body: {
+                    shouldLoadBlocking = false
+                })
             }
         }
     }
@@ -233,7 +243,11 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      
      **/
     func goToNextFeedThought() {
-        
+        // we can let it overflow by 1,
+        // since we can go past the last thought for this view
+        if (feedThoughtIndex < feedThoughts.count) {
+            feedThoughtIndex += 1
+        }
     }
     
     /**

@@ -33,8 +33,7 @@ struct ThoughtsView<ViewModel: ViewModelProtocol>: View {
     var body: some View {
         ZStack {
             ZStack {
-                if !mappedThoughts.isEmpty {
-                    
+                if !mappedThoughts.isEmpty && thoughtIndex < thoughts.count {
                     // For each loop orders based on the id we specify, thus we can't just user the index for i (the indices change with add/remove):
                     ForEach(mappedThoughts, id: \.1.self) { (i, thought) in
                         

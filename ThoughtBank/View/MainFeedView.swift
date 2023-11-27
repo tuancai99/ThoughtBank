@@ -21,13 +21,12 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
         ScrollView {
             ZStack {
                 if let user = viewModel.user {
-                    ThoughtsView<PreviewViewModel>(
+                    ThoughtsView<ViewModel>(
                         thoughtIndex: $viewModel.feedThoughtIndex,
                         thoughts: $viewModel.feedThoughts,
                         onNext: onNext
                     )
                     .padding(EdgeInsets(top: 0, leading: 32, bottom: 144, trailing: 32))
-                    
                 } else {
                     Text("User data is unavailable.")
                 }
@@ -40,6 +39,7 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
                             // TODO: Implement "Reject" button
                             // - If the user is rejecting, what's the sole action we need to take?
                             print("Call viewModel to go to the next thought")
+                            viewModel.goToNextFeedThought()
                         })
                         Spacer()
                         RoundedButton(text: "Deposit", image: "checkmark", size: 16, action: {
@@ -67,7 +67,6 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
     }
     
     func onNext(current: Thought, first: Thought?, last: Thought?) -> Bool  {
-        
         viewModel.goToNextFeedThought()
         return true
     }
