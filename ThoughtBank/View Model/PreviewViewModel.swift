@@ -60,7 +60,7 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
         user = User.sampleExistingUser
     }
     
-    func popDepositedThought(thought: Thought?) {
+    func popDepositedThought() {
         if user == nil {
             print("ERROR: User is nil")
             return

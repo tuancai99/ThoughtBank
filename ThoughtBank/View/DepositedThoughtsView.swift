@@ -43,6 +43,7 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
                     RoundedButton(text: "Forget", image: "brain", size: 30, action: {
                         print("Delete this thought from deposited thoughts.")
                         // Pop deposited thought
+                        viewModel.popDepositedThought()
                     })
                     Spacer()
                     RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
