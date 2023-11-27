@@ -21,7 +21,7 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
         
         ZStack {
             if let user = viewModel.user {
-                ThoughtsView<PreviewViewModel>(
+                ThoughtsView<ViewModel>(
                     thoughtIndex: $viewModel.depositedThoughtIndex,
                     thoughts: Binding(get: {user.depositedThoughts}, set: {user.depositedThoughts = $0}),
                     onNext: onNext

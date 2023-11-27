@@ -21,7 +21,7 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
     var body: some View {
         ZStack {
             if let user = viewModel.user {
-                ThoughtsView<PreviewViewModel>(
+                ThoughtsView<ViewModel>(
                     thoughtIndex: $viewModel.ownedThoughtIndex,
                     thoughts: Binding(get: {user.ownedThoughts}, set: {user.ownedThoughts = $0}),
                     onNext: onNext
