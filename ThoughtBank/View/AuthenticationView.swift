@@ -40,6 +40,7 @@ struct AuthenticationView<VM: ViewModelProtocol>: View {
                 // TODO: Implement "Register" button
                 // - Must call viewModel (should be a straightforward call)
                 withAnimation {
+                    print("AuthenticationView --> authenticationProcedure()")
                     authenticationProcedure(email, password)
                 }
                 

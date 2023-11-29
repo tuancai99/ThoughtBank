@@ -35,6 +35,7 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
                 LargeFilledButton(text: "Create account", color: .pink) {
                     
                     withAnimation {
+                        print("LandingPageView --> setScreen(.registration)")
                         viewModel.setScreen(to: .registration)
                     }
                 }
@@ -63,6 +64,7 @@ struct TextButtonPair<VM: ViewModelProtocol>: View {
             Text(question)
             Button(action: {
                 withAnimation {
+                    print("TextButtonPair --> setScreen()")
                     viewModel.setScreen(to: destination)
                 }
             }, label: {

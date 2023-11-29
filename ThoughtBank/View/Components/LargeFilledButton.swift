@@ -16,7 +16,7 @@ struct LargeFilledButton: View {
         Button(action: action, label: {
             Spacer()
             Text(text)
-                .font(Font.system(size: 16))
+                .font(Font.custom("Poppins-Regular", size: 16))
                 .fontWeight(.bold)
                 .frame(height: 32)
             Spacer()

@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum NavigationState {
-    case landing
-    case login
-    case registration
-    case feedThoughts
-    case depositedThoughts
-    case ownedThoughts
-    case settings
-    case add
+enum NavigationState : String {
+    case landing = "Welcome"
+    case login = "Sign in"
+    case registration = "Register"
+    case feedThoughts = "Browse"
+    case depositedThoughts = "Deposited"
+    case ownedThoughts = "My Thoughts"
+    case settings = "Settings"
+    case add = "New Thought"
 }

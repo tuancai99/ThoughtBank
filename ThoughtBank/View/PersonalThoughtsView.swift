@@ -19,51 +19,62 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
-        ZStack {
+        VStack {
             if let user = viewModel.user {
                 ThoughtsView<ViewModel>(
                     thoughtIndex: $viewModel.ownedThoughtIndex,
                     thoughts: Binding(get: {user.ownedThoughts}, set: {user.ownedThoughts = $0}),
+                    refreshAction: nil,
+                    horizontalLineColor: .blue,
+                    verticalLineColor: .green,
                     onNext: onNext
                 )
-                .padding(EdgeInsets(top: 0, leading: 32, bottom: 144, trailing: 32))
-                
-            } else {
-                Text("User data is unavailable.")
-            }
-            
-            VStack {
+                .padding(EdgeInsets(top: 32, leading: 32, bottom: 32, trailing: 32))
                 Spacer()
-                HStack {
-                    RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
-                        // TODO: Implement "Back" button for owned thoughts
-                        withAnimation {
-                            viewModel.goToPreviousOwnedThought()
-                        }
-                        print("Go to previous thought created by user.")
-                    })
-                    
-                    Spacer()
-                    
-                    RoundedButton(text: "Add Thought", image: "plus", size: 30, action: {
-                        viewModel.shouldShowAddThoughtsView = true
-                    })
-                    .sheet(isPresented: $viewModel.shouldShowAddThoughtsView) {
-                        AddThoughtsView<ViewModel>().environmentObject(viewModel)
-                    }
-                    
-                    Spacer()
-                    
-                    RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
-                        // TODO: Implement "Next" button for owned thoughts
-                        print("Go to next thought created by user")
-                        viewModel.goToNextOwnedThought()
-                    })
-                }
-                .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))
+                buttonStack
+                .padding(EdgeInsets(top: 0, leading: 32, bottom: 16, trailing: 32))
+            } else {
+                Spacer()
+                Text("We're having trouble loading your data.")
+                    .bold()
+                LargeFilledButton(text: "Sign in", color: .pink, action: {
+                    print("PersonalThoughtsView --> setScreen(.login)")
+                    viewModel.setScreen(to: .login)
+                })
+                .padding()
+                Spacer()
             }
         }
     }
+    
+    var buttonStack: some View {
+        HStack {
+            RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
+                print("PersonalThoughtsView --> goToPreviousOwnedThought()")
+                withAnimation {
+                    viewModel.goToPreviousOwnedThought()
+                }
+            })
+            
+            Spacer()
+            
+            RoundedButton(text: "Add Thought", image: "plus", size: 30, action: {
+                print("PersonalThoughtsView --> ENABLE shouldShowAddThoughtsView")
+                viewModel.shouldShowAddThoughtsView = true
+            })
+            .sheet(isPresented: $viewModel.shouldShowAddThoughtsView) {
+                AddThoughtsView<ViewModel>().environmentObject(viewModel)
+            }
+            
+            Spacer()
+            
+            RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
+                print("PersonalThoughtsView --> goToNextOwnedThought()")
+                viewModel.goToNextOwnedThought()
+            })
+        }
+    }
+    
 
     func onNext(current: Thought, first: Thought?, last: Thought?) -> Bool  {
         guard let first, first != current else {

@@ -43,7 +43,7 @@ struct AddThoughtsView<ViewModel: ViewModelProtocol>: View {
                     Button(action: {
                         // TODO: Implement "Draft" button
                         // - We need to call the viewModel to store a thought locally
-                        print("Save thought in drafts by calling viewModel")
+                        print("AddThoughtsView --> (not implemented)")
                     }) {
                         Text("Draft")
                             .bold()
@@ -55,10 +55,7 @@ struct AddThoughtsView<ViewModel: ViewModelProtocol>: View {
                     Spacer()
                     
                     Button(action: {
-                        // TODO: Implement "Post" button
-                        // - We need to call the viewModel to create a thought
-                        print("Post thought by calling viewModel")
-                        
+                        print("AddThoughtsView --> createThought(...)")
                         viewModel.createThought(text: thought)
 
                     }) {
@@ -78,7 +75,7 @@ struct AddThoughtsView<ViewModel: ViewModelProtocol>: View {
             ProgressOverlay(isVisible: $viewModel.shouldLoadBlocking)
 
         }
-       
+        .tint(.pink)
     }
 }
 

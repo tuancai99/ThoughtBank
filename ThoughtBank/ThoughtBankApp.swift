@@ -28,6 +28,7 @@ struct ThoughtBankApp: App {
         WindowGroup {
             ManagerView<CentralViewModel>()
                 .environmentObject(CentralViewModel())
+                .environment(\.font, Font.custom("Poppins-Regular", size: 14))
         
         }
     }

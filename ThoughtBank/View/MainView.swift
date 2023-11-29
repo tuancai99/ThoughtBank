@@ -18,6 +18,10 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
     //@State var landingPageOption: String
     
     //let LandingPageOptions = ["Public", "Personal", "Saved"]
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "SmoochSans-ExtraBold", size: 48) ?? .systemFont(ofSize: 32, weight: .bold)]
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.init(name: "Poppins-Regular", size: 12)! ], for: .normal)
+    }
     
     var body: some View {
         ZStack {
@@ -62,7 +66,10 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
                 .onChange(of: tabSelection, perform: { state in
                     viewModel.navigationState = state
                 })
+                .navigationTitle(viewModel.navigationState.rawValue)
                 
+                /*
+                // A little cluttered and not utilized
                 .toolbar {
                     Button {
                         
@@ -86,15 +93,18 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
                     }
                     
                 }
+                 */
                 
             }
             ProgressOverlay(isVisible: $viewModel.shouldLoadBlocking)
         }
+        .tint(.pink)
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView<PreviewViewModel>().environmentObject(PreviewViewModel())
+            .environment(\.font, Font.custom("Poppins-Regular", size: 14))
     }
 }

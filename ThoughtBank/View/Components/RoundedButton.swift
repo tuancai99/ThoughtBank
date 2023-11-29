@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RoundedButton: View {
+    @Environment(\.colorScheme) var colorScheme
     
     var text: String
     var image: String
@@ -20,11 +21,11 @@ struct RoundedButton: View {
                 ZStack {
                     Circle()
                         .frame(width: size + 24, height: size + 24)
-                        .shadow(color: .gray, radius: 3, x: 0, y: 2)
-                        .foregroundStyle(.white)
+                        .shadow(color: .gray, radius: colorScheme == .light ? 3 : 0, x: 0, y: 0)
+                        .foregroundColor(colorScheme == .light ? .white : .pink)
                     Image(systemName: image)
                         .resizable()
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .light ? .black : .white)
                         .aspectRatio(contentMode: .fill)
                         .frame(width: size, height: size)
                 }
@@ -32,7 +33,7 @@ struct RoundedButton: View {
             Text(text)
                 .offset(y:5)
         }
-        .frame(width: (size + 24) * 2, height: size + 24)
+        .frame(width: (size + 24) * 2, height: (size + 24) * 2)
     }
 }
 
