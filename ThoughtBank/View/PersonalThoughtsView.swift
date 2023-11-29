@@ -70,7 +70,9 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
             
             RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
                 print("PersonalThoughtsView --> goToNextOwnedThought()")
-                viewModel.goToNextOwnedThought()
+                withAnimation {
+                    viewModel.goToNextOwnedThought()
+                }
             })
         }
     }

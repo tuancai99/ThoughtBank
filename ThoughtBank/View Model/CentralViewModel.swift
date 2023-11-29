@@ -426,5 +426,6 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     func getFlippedIndex(i: Int, thoughtIndex: Int, count: Int) -> Int {
         return (count - i - 1) + thoughtIndex
     }
+
 }
 

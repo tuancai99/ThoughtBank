@@ -139,6 +139,14 @@ final class FirebaseManager {
             - A User object
     */
 
+    func fetchUserAlias(userID: String) async throws -> String {
+        let doc = try await db.collection("users").document(userID).getDocument()
+        
+        let alias: String = doc["alias"] as! String
+        
+        return alias
+    }
+    
     func fetchUser() async throws -> User {
         // Step 1: Await the fetch via Firebase. Make a fetch query that gets documents that match this filter.
         
@@ -200,16 +208,23 @@ final class FirebaseManager {
                 try await query.getDocuments().documents.filter({ filterGroup.contains($0.documentID) }) :
                 try await query.getDocuments().documents
 
-        let items: [Thought] = docs.map { doc in
+        var items: [Thought] = docs.map { doc in
             let data = doc.data()
             let id = doc.documentID
             let content: String = data["content"] as! String
             let userID: String = data["userID"] as! String
-            
             let timeStamp: Timestamp = data["timestamp"] as! Timestamp
             let timestampDecoded: Date = timeStamp.dateValue()
                             
             return Thought(documentID: id, content: content, userID: userID, timestamp: timestampDecoded)
+        }
+        
+        for i in 0..<items.count {
+            do {
+                items[i].alias = try await fetchUserAlias(userID: items[i].userID)
+            } catch {
+                items[i].alias = ""
+            }
         }
         
         return items
@@ -236,7 +251,13 @@ final class FirebaseManager {
             "timestamp": Timestamp(date: timestamp)
         ])
         
-        let addedThought = Thought(documentID: ref.documentID, content: content, userID:userID, timestamp:timestamp)
+        var addedThought = Thought(documentID: ref.documentID, content: content, userID:userID, timestamp:timestamp)
+        
+        do {
+            addedThought.alias = try await fetchUserAlias(userID: userID)
+        } catch {
+            
+        }
         
         return addedThought
     }

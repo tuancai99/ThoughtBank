@@ -66,13 +66,17 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
             Spacer()
             RoundedButton(text: "Reject", image: "xmark", size: 18, action: {
                 print("MainFeedView --> goToNextFeedThought()")
-                viewModel.goToNextFeedThought()
+                withAnimation {
+                    viewModel.goToNextFeedThought()
+                }
             })
             Spacer()
             Spacer()
             RoundedButton(text: "Deposit", image: "checkmark", size: 18, action: {
                 print("MainFeedView --> depositThought()")
-                viewModel.depositThought()
+                withAnimation {
+                    viewModel.depositThought()
+                }
             })
             Spacer()
         }

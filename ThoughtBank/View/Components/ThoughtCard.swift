@@ -35,7 +35,7 @@ struct ThoughtCard: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(thought.userID)
+                Text(thought.alias ?? "Anonymous")
                     .font(Font(UIFont(name: "Poppins-Bold", size: lineSpacing) ?? UIFont.systemFont(ofSize: lineSpacing)))
                     .fontWeight(.bold)
                     .frame(height: lineSpacing * 2)

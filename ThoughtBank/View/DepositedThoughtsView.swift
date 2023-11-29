@@ -50,7 +50,9 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
         HStack {
             RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
                 print("DepositedThoughtsView --> goToPreviousDepositedThought()")
-                viewModel.goToPreviousDepositedThought()
+                withAnimation {
+                    viewModel.goToPreviousDepositedThought()
+                }
             })
             Spacer()
             RoundedButton(text: "Forget", image: "brain", size: 30, action: {
@@ -60,7 +62,9 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
             Spacer()
             RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
                 print("DepositedThoughtsView --> goToNextDepositedThought()")
-                viewModel.goToNextDepositedThought()
+                withAnimation {
+                    viewModel.goToNextDepositedThought()
+                }
             })
         }
     }
