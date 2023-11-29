@@ -111,6 +111,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
             do {
                 let fetchedUser = try await firebase.login(email: email, password: password)
                 await MainActor.run {
+                    Preferences.saveCredentials(email: email, password: password)
                     user = fetchedUser
                     shouldLoadBlocking = false
                     setScreen(to: .feedThoughts)

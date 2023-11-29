@@ -64,7 +64,7 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
     var buttonStack: some View {
         HStack {
             Spacer()
-            RoundedButton(text: "Reject", image: "xmark", size: 18, action: {
+            RoundedButton(text: "Reject", image: "xmark", size: 18, enabled: viewModel.feedThoughtIndex < viewModel.feedThoughts.count, action: {
                 print("MainFeedView --> goToNextFeedThought()")
                 withAnimation {
                     viewModel.goToNextFeedThought()
@@ -72,7 +72,7 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
             })
             Spacer()
             Spacer()
-            RoundedButton(text: "Deposit", image: "checkmark", size: 18, action: {
+            RoundedButton(text: "Deposit", image: "checkmark", size: 18, enabled: viewModel.feedThoughtIndex < viewModel.feedThoughts.count, action: {
                 print("MainFeedView --> depositThought()")
                 withAnimation {
                     viewModel.depositThought()

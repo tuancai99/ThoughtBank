@@ -33,6 +33,13 @@ struct LoginView<ViewModel: ViewModelProtocol>: View {
            
             ProgressOverlay(isVisible: $viewModel.shouldLoadBlocking)
         }
+        .onAppear() {
+            if let credentials = Preferences.loadCredentials() {
+                email = credentials.email
+                password = credentials.password
+                viewModel.login(email: email, password: password)
+            }
+        }
     }
 }
 

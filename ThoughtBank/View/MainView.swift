@@ -20,6 +20,7 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
     //let LandingPageOptions = ["Public", "Personal", "Saved"]
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "SmoochSans-ExtraBold", size: 48) ?? .systemFont(ofSize: 32, weight: .bold)]
+        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "SmoochSans-ExtraBold", size: 24) ?? .systemFont(ofSize: 32, weight: .bold)]
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.init(name: "Poppins-Regular", size: 12)! ], for: .normal)
     }
     
@@ -98,7 +99,6 @@ struct MainView<ViewModel: ViewModelProtocol>: View {
             }
             ProgressOverlay(isVisible: $viewModel.shouldLoadBlocking)
         }
-        .tint(.pink)
     }
 }
 

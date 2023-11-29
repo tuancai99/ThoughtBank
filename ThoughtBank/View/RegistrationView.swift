@@ -20,6 +20,13 @@ struct RegistrationView<ViewModel: ViewModelProtocol>: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    init() {
+        // jump to login screen if user credentials saved
+        if let credentials = Preferences.loadCredentials() {
+            viewModel.navigationState = .login
+        }
+    }
+    
     var body: some View {
         ZStack {
             

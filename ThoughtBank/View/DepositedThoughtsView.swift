@@ -48,19 +48,19 @@ struct DepositedThoughtsView<ViewModel: ViewModelProtocol>: View {
     
     var buttonStack: some View {
         HStack {
-            RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
+            RoundedButton(text: "Back", image: "chevron.left", size: 12, enabled: (viewModel.depositedThoughtIndex - 1) >= 0, action: {
                 print("DepositedThoughtsView --> goToPreviousDepositedThought()")
                 withAnimation {
                     viewModel.goToPreviousDepositedThought()
                 }
             })
             Spacer()
-            RoundedButton(text: "Forget", image: "brain", size: 30, action: {
+            RoundedButton(text: "Forget", image: "brain", size: 30, enabled: (viewModel.depositedThoughtIndex) < (viewModel.user?.depositedThoughts.count ?? 0), action: {
                 print("DepositedThoughtsView --> popDepositedThought()")
                 viewModel.popDepositedThought()
             })
             Spacer()
-            RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
+            RoundedButton(text: "Next", image: "chevron.right", size: 12, enabled: (viewModel.depositedThoughtIndex + 1) < (viewModel.user?.depositedThoughts.count ?? 0), action: {
                 print("DepositedThoughtsView --> goToNextDepositedThought()")
                 withAnimation {
                     viewModel.goToNextDepositedThought()

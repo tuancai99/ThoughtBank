@@ -75,7 +75,6 @@ struct AddThoughtsView<ViewModel: ViewModelProtocol>: View {
             ProgressOverlay(isVisible: $viewModel.shouldLoadBlocking)
 
         }
-        .tint(.pink)
     }
 }
 

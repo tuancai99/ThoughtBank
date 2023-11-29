@@ -49,7 +49,8 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
     
     var buttonStack: some View {
         HStack {
-            RoundedButton(text: "Back", image: "chevron.left", size: 12, action: {
+            RoundedButton(text: "Back", image: "chevron.left", size: 12,
+                          enabled: (viewModel.ownedThoughtIndex - 1) >= 0, action: {
                 print("PersonalThoughtsView --> goToPreviousOwnedThought()")
                 withAnimation {
                     viewModel.goToPreviousOwnedThought()
@@ -68,7 +69,7 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
             
             Spacer()
             
-            RoundedButton(text: "Next", image: "chevron.right", size: 12, action: {
+            RoundedButton(text: "Next", image: "chevron.right", size: 12, enabled: (viewModel.ownedThoughtIndex + 1) < (viewModel.user?.ownedThoughts.count ?? 0), action: {
                 print("PersonalThoughtsView --> goToNextOwnedThought()")
                 withAnimation {
                     viewModel.goToNextOwnedThought()

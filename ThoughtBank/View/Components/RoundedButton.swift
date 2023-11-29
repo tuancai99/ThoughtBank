@@ -13,6 +13,7 @@ struct RoundedButton: View {
     var text: String
     var image: String
     var size: CGFloat
+    var enabled: Bool = true
     var action: () -> Void
     
     var body: some View {
@@ -21,15 +22,16 @@ struct RoundedButton: View {
                 ZStack {
                     Circle()
                         .frame(width: size + 24, height: size + 24)
-                        .shadow(color: .gray, radius: colorScheme == .light ? 3 : 0, x: 0, y: 0)
-                        .foregroundColor(colorScheme == .light ? .white : .pink)
+                        .shadow(color: .gray, radius: !enabled ? 0 : (colorScheme == .light ? 3 : 0), x: 0, y: 0)
+                        .foregroundColor(!enabled ? .gray : (colorScheme == .light ? .white : .pink))
                     Image(systemName: image)
                         .resizable()
-                        .foregroundColor(colorScheme == .light ? .black : .white)
+                        .foregroundColor(!enabled ? .white : (colorScheme == .light ? .black : .white))
                         .aspectRatio(contentMode: .fill)
                         .frame(width: size, height: size)
                 }
             })
+            .disabled(!enabled)
             Text(text)
                 .offset(y:5)
         }

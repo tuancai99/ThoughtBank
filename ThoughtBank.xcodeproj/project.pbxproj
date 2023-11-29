@@ -55,6 +55,7 @@
 		FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F002B046ACF000B80D7 /* ThoughtCard.swift */; };
 		FF604F032B0491B6000B80D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F022B0491B6000B80D7 /* RoundedButton.swift */; };
 		FF604F052B0512F3000B80D7 /* ProgressOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */; };
+		FF6E3D392B17D5E600DAEF0F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6E3D382B17D5E600DAEF0F /* Preferences.swift */; };
 		FF91050E2B17A8FA0013F0EF /* GenericFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF91050D2B17A8FA0013F0EF /* GenericFeedView.swift */; };
 		FF91050F2B17BFF80013F0EF /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF604EFD2B045E18000B80D7 /* Poppins-Regular.ttf */; };
 		FF9105102B17BFF80013F0EF /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */; };
@@ -101,6 +102,7 @@
 		FF604F002B046ACF000B80D7 /* ThoughtCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCard.swift; sourceTree = "<group>"; };
 		FF604F022B0491B6000B80D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlay.swift; sourceTree = "<group>"; };
+		FF6E3D382B17D5E600DAEF0F /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		FF91050D2B17A8FA0013F0EF /* GenericFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericFeedView.swift; sourceTree = "<group>"; };
 		FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FFB71AD32ADF50EA0006C762 /* Thought.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */,
+				FF6E3D382B17D5E600DAEF0F /* Preferences.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			files = (
 				3D5E89272AEF137D00C74079 /* KeyboardAdaptive.swift in Sources */,
 				FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */,
+				FF6E3D392B17D5E600DAEF0F /* Preferences.swift in Sources */,
 				FF604EEE2B04384A000B80D7 /* NavigationState.swift in Sources */,
 				FFB71AD62ADF50EA0006C762 /* User.swift in Sources */,
 				FF91050E2B17A8FA0013F0EF /* GenericFeedView.swift in Sources */,
