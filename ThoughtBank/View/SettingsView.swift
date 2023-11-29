@@ -158,8 +158,41 @@ struct AboutView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                Text("Thoughtbank - GT iOS Club")
+                Text("Thoughtbank")
+                    .font(
+                        Font.custom("SmoochSans-ExtraBold", size: 48)
+                    )
                     .padding(16)
+                HStack {
+                    Spacer()
+                    Image("tbicon")
+                        .resizable()
+                        .frame(width: 128, height: 128)
+                        .aspectRatio(contentMode: .fill)
+                        .scaledToFit()
+                    Spacer()
+                }
+                .padding(16)
+                HStack {
+                    Text("Development Team")
+                        .font(
+                            Font.custom("SmoochSans-ExtraBold", size: 32)
+                        )
+                    Spacer()
+                }
+                .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                
+                TeamMemberView(image: nil, name: "Abdulaziz Albahar", description: "Senior Tech Lead")
+                TeamMemberView(image: nil, name: "Hsiang-Pin Ko", description: "Senior Developer")
+                TeamMemberView(image: nil, name: "Steven Liu", description: "Senior Developer")
+                TeamMemberView(image: nil, name: "Noah Sadir", description: "Senior Developer")
+                TeamMemberView(image: nil, name: "Melanie Chen", description: "Designer")
+                TeamMemberView(image: nil, name: "Laksh Makhija", description: "Developer")
+                TeamMemberView(image: nil, name: "Tuan Cai", description: "Developer")
+                TeamMemberView(image: nil, name: "Jordan Miao", description: "Developer")
+                TeamMemberView(image: nil, name: "Ethan Kim", description: "Developer")
+                TeamMemberView(image: nil, name: "Janah Abu Hassan", description: "Developer")
+                TeamMemberView(image: nil, name: "Soham Shetty", description: "Developer")
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("About Us")
@@ -169,6 +202,32 @@ struct AboutView: View {
                 }
             }
         }
+    }
+}
+
+struct TeamMemberView: View {
+    let image: String?
+    let name: String
+    let description: String
+    
+    var body: some View {
+        HStack {
+            if let image = image {
+                Image(image)
+                    .resizable()
+                    .frame(width: 64, height: 64)
+            }
+            VStack {
+                Text(name)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(
+                        Font.custom("Poppins-Bold", size: 18)
+                    )
+                Text(description)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
     }
 }
 
