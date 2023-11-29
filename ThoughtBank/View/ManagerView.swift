@@ -36,5 +36,6 @@ struct ManagerView<ViewModel: ViewModelProtocol>: View {
 struct ManagerView_Previews: PreviewProvider {
     static var previews: some View {
         ManagerView<PreviewViewModel>().environmentObject(PreviewViewModel())
+            .environment(\.font, Font.custom("Poppins-Regular", size: 14))
     }
 }

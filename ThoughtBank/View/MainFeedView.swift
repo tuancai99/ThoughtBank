@@ -18,52 +18,70 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
-        ScrollView {
-            ZStack {
-                if let user = viewModel.user {
-                    ThoughtsView<ViewModel>(
-                        thoughtIndex: $viewModel.feedThoughtIndex,
-                        thoughts: $viewModel.feedThoughts,
-                        onNext: onNext
-                    )
-                    .padding(EdgeInsets(top: 0, leading: 32, bottom: 144, trailing: 32))
-                } else {
-                    Text("User data is unavailable.")
-                }
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        RoundedButton(text: "Reject", image: "xmark", size: 16, action: {
-                            // TODO: Implement "Reject" button
-                            // - If the user is rejecting, what's the sole action we need to take?
-                            print("Call viewModel to go to the next thought")
-                            viewModel.goToNextFeedThought()
-                        })
-                        Spacer()
-                        RoundedButton(text: "Deposit", image: "checkmark", size: 16, action: {
-                            // TODO: Implement "Deposit" button
-                            // - We need to make a call to the viewModel so that the Thought
-                            //   is saved in User's deposited thoughts
-                            // - We also need to show the next card
-                            print("Call viewModel to deposit the current thought and go to the next thought")
-                            viewModel.depositThought()
-                        })
-                        Spacer()
-                    }
-                    .padding(EdgeInsets(top: 0, leading: 32, bottom: 48, trailing: 32))
-                }
+        VStack {
+            if let user = viewModel.user {
+                thoughtsView
+                .padding(EdgeInsets(top: 32, leading: 32, bottom: 32, trailing: 32))
+                Spacer()
+                buttonStack
+                .padding(EdgeInsets(top: 0, leading: 32, bottom: 16, trailing: 32))
+            } else {
+                Spacer()
+                Text("We're having trouble loading your data.")
+                    .bold()
+                LargeFilledButton(text: "Sign in", color: .pink, action: {
+                    print("MainFeedView --> setScreen(.login)")
+                    viewModel.setScreen(to: .login)
+                })
+                .padding()
+                Spacer()
             }
-            
-        }.refreshable {
-            viewModel.updateFeedThoughts()
         }
         .onAppear(perform: {
+            print("MainFeedView --> (blocking) updateFeedThoughts()")
             viewModel.shouldLoadBlocking = true
             viewModel.updateFeedThoughts()
             viewModel.shouldLoadBlocking = false
         })
+    }
+    
+    var thoughtsView: some View {
+        ThoughtsView<ViewModel>(
+            thoughtIndex: $viewModel.feedThoughtIndex,
+            thoughts: $viewModel.feedThoughts,
+            refreshAction: {
+                print("MainFeedView --> (blocking) updateFeedThoughts()")
+                viewModel.shouldLoadBlocking = true
+                viewModel.updateFeedThoughts()
+                viewModel.shouldLoadBlocking = false
+            },
+            horizontalLineColor: .blue,
+            verticalLineColor: .red,
+            onNext: onNext
+        )
+    }
+    
+    var buttonStack: some View {
+        HStack {
+            Spacer()
+            RoundedButton(text: "Reject", image: "xmark", size: 18, enabled: viewModel.feedThoughtIndex < viewModel.feedThoughts.count, action: {
+                print("MainFeedView --> goToNextFeedThought()")
+                withAnimation {
+                    viewModel.goToNextFeedThought()
+                }
+            })
+            Spacer()
+            Spacer()
+            RoundedButton(text: "Deposit", image: "checkmark", size: 18, enabled: viewModel.feedThoughtIndex < viewModel.feedThoughts.count, action: {
+                print("MainFeedView --> depositThought()")
+                withAnimation {
+                    viewModel.depositThought()
+                }
+            })
+            Spacer()
+        }
+        .padding(.bottom, 12)
+        .padding(.top, 12)
     }
     
     func onNext(current: Thought, first: Thought?, last: Thought?) -> Bool  {

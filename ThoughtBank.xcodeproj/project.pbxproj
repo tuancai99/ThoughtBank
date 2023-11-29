@@ -55,6 +55,11 @@
 		FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F002B046ACF000B80D7 /* ThoughtCard.swift */; };
 		FF604F032B0491B6000B80D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F022B0491B6000B80D7 /* RoundedButton.swift */; };
 		FF604F052B0512F3000B80D7 /* ProgressOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */; };
+		FF6E3D392B17D5E600DAEF0F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6E3D382B17D5E600DAEF0F /* Preferences.swift */; };
+		FF91050E2B17A8FA0013F0EF /* GenericFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF91050D2B17A8FA0013F0EF /* GenericFeedView.swift */; };
+		FF91050F2B17BFF80013F0EF /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF604EFD2B045E18000B80D7 /* Poppins-Regular.ttf */; };
+		FF9105102B17BFF80013F0EF /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */; };
+		FF9105112B17BFF80013F0EF /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF604EF92B045E18000B80D7 /* Poppins-ExtraBold.ttf */; };
 		FFB71AD12ADF50DB0006C762 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */; };
 		FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD32ADF50EA0006C762 /* Thought.swift */; };
 		FFB71AD62ADF50EA0006C762 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD42ADF50EA0006C762 /* User.swift */; };
@@ -97,6 +102,8 @@
 		FF604F002B046ACF000B80D7 /* ThoughtCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCard.swift; sourceTree = "<group>"; };
 		FF604F022B0491B6000B80D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlay.swift; sourceTree = "<group>"; };
+		FF6E3D382B17D5E600DAEF0F /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		FF91050D2B17A8FA0013F0EF /* GenericFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericFeedView.swift; sourceTree = "<group>"; };
 		FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FFB71AD32ADF50EA0006C762 /* Thought.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		FFB71AD42ADF50EA0006C762 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -218,7 +225,9 @@
 				FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */,
 				FF604F022B0491B6000B80D7 /* RoundedButton.swift */,
 				FF604F002B046ACF000B80D7 /* ThoughtCard.swift */,
+				FF91050D2B17A8FA0013F0EF /* GenericFeedView.swift */,
 				FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */,
+				A3FD9F002B13F4CB002D9515 /* ThoughtsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */,
+				FF6E3D382B17D5E600DAEF0F /* Preferences.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -264,7 +274,6 @@
 				A320061A2B129509003E3ECA /* AuthenticationView.swift */,
 				FFB71AE22ADF51140006C762 /* MainFeedView.swift */,
 				FFB71AE52ADF51150006C762 /* PersonalThoughtsView.swift */,
-				A3FD9F002B13F4CB002D9515 /* ThoughtsView.swift */,
 				FFB71AE02ADF51140006C762 /* DepositedThoughtsView.swift */,
 				A38232612AE1ED2B003DB59D /* AddThoughtsView.swift */,
 				FFB71AE42ADF51140006C762 /* SettingsView.swift */,
@@ -366,7 +375,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */,
+				FF9105112B17BFF80013F0EF /* Poppins-ExtraBold.ttf in Resources */,
 				A38232682AE1F067003DB59D /* GoogleService-Info.plist in Resources */,
+				FF91050F2B17BFF80013F0EF /* Poppins-Regular.ttf in Resources */,
+				FF9105102B17BFF80013F0EF /* Poppins-Bold.ttf in Resources */,
 				DBA414362AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf in Resources */,
 				A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */,
 				DBA414342AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf in Resources */,
@@ -383,8 +395,10 @@
 			files = (
 				3D5E89272AEF137D00C74079 /* KeyboardAdaptive.swift in Sources */,
 				FF604F012B046ACF000B80D7 /* ThoughtCard.swift in Sources */,
+				FF6E3D392B17D5E600DAEF0F /* Preferences.swift in Sources */,
 				FF604EEE2B04384A000B80D7 /* NavigationState.swift in Sources */,
 				FFB71AD62ADF50EA0006C762 /* User.swift in Sources */,
+				FF91050E2B17A8FA0013F0EF /* GenericFeedView.swift in Sources */,
 				A320061B2B129509003E3ECA /* AuthenticationView.swift in Sources */,
 				FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */,
 				FFB71AEC2ADF51150006C762 /* PersonalThoughtsView.swift in Sources */,
@@ -542,15 +556,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ThoughtBank/Preview Content\"";
-				DEVELOPMENT_TEAM = KJ7YS82G45;
+				DEVELOPMENT_TEAM = Y7NL9XLUR5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThoughtBank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -573,15 +587,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ThoughtBank/Preview Content\"";
-				DEVELOPMENT_TEAM = KJ7YS82G45;
+				DEVELOPMENT_TEAM = Y7NL9XLUR5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThoughtBank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

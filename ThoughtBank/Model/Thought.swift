@@ -25,6 +25,7 @@ struct Thought: Identifiable, Codable, QueryItem, Hashable {
     var content: String
     var userID: String
     var timestamp: Date
+    var alias: String?
     
     // TODO: add init(), variables, functions, and decoder/encoder.
     

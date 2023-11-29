@@ -21,7 +21,6 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
     
     var body: some View {
         VStack {
-            
             VStack(spacing: 0) {
                 Text("See what the \n world is thinking")
                     .font(
@@ -35,6 +34,7 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
                 LargeFilledButton(text: "Create account", color: .pink) {
                     
                     withAnimation {
+                        print("LandingPageView --> setScreen(.registration)")
                         viewModel.setScreen(to: .registration)
                     }
                 }
@@ -46,6 +46,11 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
         }
         .frame(maxHeight: .infinity, alignment: .bottom)
         .padding(16)
+        .onAppear() {
+            if let credentials = Preferences.loadCredentials() {
+                viewModel.navigationState = .login
+            }
+        }
     }
     
 }
@@ -63,6 +68,7 @@ struct TextButtonPair<VM: ViewModelProtocol>: View {
             Text(question)
             Button(action: {
                 withAnimation {
+                    print("TextButtonPair --> setScreen()")
                     viewModel.setScreen(to: destination)
                 }
             }, label: {

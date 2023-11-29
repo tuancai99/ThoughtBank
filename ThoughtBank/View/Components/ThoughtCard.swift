@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ThoughtCard: View {
     var thought: Thought
+    let horizontalLineColor: Color
+    let verticalLineColor: Color
     let lineSpacing: CGFloat = 24.0
     
     @State var offset: CGSize = .zero
@@ -33,13 +35,14 @@ struct ThoughtCard: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(thought.userID)
-                    .font(Font.system(size: lineSpacing))
+                Text(thought.alias ?? "Anonymous")
+                    .font(Font(UIFont(name: "Poppins-Bold", size: lineSpacing) ?? UIFont.systemFont(ofSize: lineSpacing)))
                     .fontWeight(.bold)
                     .frame(height: lineSpacing * 2)
                     .padding(8)
+                    .padding(.trailing, 32)
                 Text(thought.content)
-                    .font(Font(UIFont(name: "Poppins-Regular", size: lineSpacing) ?? UIFont.systemFont(ofSize: lineSpacing)))
+                    .font(Font(UIFont(name: "Poppins-Regular", size: lineSpacing - 3.3) ?? UIFont.systemFont(ofSize: lineSpacing)))
                     .lineSpacing(3)
                     .padding(.leading, 8)
                     .padding(.trailing, 32)
@@ -49,7 +52,7 @@ struct ThoughtCard: View {
             Spacer()
         }
         .ignoresSafeArea()
-        .background(NotepadBackground(isResizable: false, lineSpacing: lineSpacing, topLineMargin: 1, bottomLineMargin: 0))
+        .background(NotepadBackground(isResizable: false, lineSpacing: lineSpacing, topLineMargin: 1, bottomLineMargin: 0, horizontalLineColor: horizontalLineColor, verticalLineColor: verticalLineColor))
         .offset(x: offset.width, y: 0.4 * offset.height)
         .rotationEffect(.degrees(Double(offset.width / 40)))
         .gesture(
@@ -77,6 +80,8 @@ struct NotepadBackground: View {
     let topLineMargin: Int
     let bottomLineMargin: Int
     let lineHeight: CGFloat = 1
+    let horizontalLineColor: Color
+    let verticalLineColor: Color
     
     var body: some View {
         // dynamically determine number of positions
@@ -101,7 +106,7 @@ struct NotepadBackground: View {
                 .fill(.ultraThickMaterial)
             Rectangle()
                 .frame(width: 1, height: cardSize.height)
-                .foregroundColor(.red)
+                .foregroundColor(verticalLineColor)
                 .padding(EdgeInsets(top: 0, leading: cardSize.width - 64, bottom: 0, trailing: 0))
             VStack {
                 ForEach(0...topLineMargin, id: \.self) { pos in
@@ -112,7 +117,7 @@ struct NotepadBackground: View {
                 ForEach(0..<lineCount, id: \.self) { pos in
                     Rectangle()
                         .frame(width: cardSize.width, height: lineHeight)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(horizontalLineColor)
                         .padding(.bottom, lineSpacing - lineHeight)
                 }
                 Spacer()
@@ -124,7 +129,7 @@ struct NotepadBackground: View {
 
 struct ThoughtCard_Previews: PreviewProvider {
     static var previews: some View {
-        ThoughtCard(thought: Thought(documentID: "a", content: "The quick brown fox jumps over the lazy dog.", userID: "User 1", timestamp: Date()), nextCard: {true})
+        ThoughtCard(thought: Thought(documentID: "a", content: "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.", userID: "abcdefghijklmnopqrstuvwxyz", timestamp: Date()), horizontalLineColor: .blue, verticalLineColor: .red, nextCard: {true})
             .frame(height: 400)
             .padding(16)
     }
