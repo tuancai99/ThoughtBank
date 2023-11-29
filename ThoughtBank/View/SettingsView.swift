@@ -105,9 +105,20 @@ struct SettingsView<ViewModel: ViewModelProtocol>: View {
                     .sheet(isPresented: $isTermsAndConditionsPresented) {
                         TermsAndConditionsView(isSheetPresented: $isTermsAndConditionsPresented)
                     }
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("Delete Account")
+                            .foregroundStyle(.white)
+                            .frame(width: 300, height: 45)
+                            .background(content: {Color.red})
+                            
+                    })
                 }
                 Spacer()
             }.padding(20)
+            
             if isActive {
                 CustomDialog(isActive: $isActive, isCustomDialog: $isCustomDialog, title: "Still want to delete your account?", message: "Note: This action cannot be changed", buttonTitle: "Give Access") {
                 }
