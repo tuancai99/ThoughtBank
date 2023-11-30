@@ -30,6 +30,7 @@ class PreviewViewModel: ObservableObject, ViewModelProtocol {
     var feedThoughtIndex: Int = 0
     var depositedThoughtIndex: Int = 0
     var ownedThoughtIndex: Int = 0
+    var remainingThoughtsCount: Int = 10
     
     @Published var shouldLoadBlocking: Bool = false
     @Published var shouldShowAddThoughtsView: Bool = false

@@ -35,6 +35,8 @@ protocol ViewModelProtocol: ObservableObject {
     var shouldLoadBlocking: Bool { get set }
     var shouldShowAddThoughtsView: Bool { get set }
     
+    var remainingThoughtsCount: Int { get set }
+    
     var bannerError: Error? {get set}
     // General hints:
     // - Use FirebaseManager to interact with Firebase for each function that involves manipulation of data.

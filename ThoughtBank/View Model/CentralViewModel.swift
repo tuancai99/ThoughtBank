@@ -45,6 +45,7 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
     @Published var feedThoughtIndex: Int = 0
     @Published var depositedThoughtIndex: Int = 0
     @Published var ownedThoughtIndex: Int = 0
+    @Published var remainingThoughtsCount: Int = 5
     
     @Published var shouldLoadBlocking: Bool = false
     @Published var shouldShowAddThoughtsView: Bool = false {

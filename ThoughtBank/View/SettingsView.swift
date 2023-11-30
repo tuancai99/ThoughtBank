@@ -42,7 +42,7 @@ struct SettingsView<ViewModel: ViewModelProtocol>: View {
                     HStack {
                         Text("Thoughts Remaining Today:")
                             .bold()
-                        Text("N/A")
+                        Text(String(viewModel.remainingThoughtsCount))
                         Spacer()
                     }
                     

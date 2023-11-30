@@ -55,9 +55,13 @@ struct AddThoughtsView<ViewModel: ViewModelProtocol>: View {
                     Spacer()
                     
                     Button(action: {
-                        print("AddThoughtsView --> createThought(...)")
-                        viewModel.createThought(text: thought)
-
+                        if (viewModel.remainingThoughtsCount > 0) {
+                            viewModel.remainingThoughtsCount -= 1
+                            print("AddThoughtsView --> createThought(...)")
+                            viewModel.createThought(text: thought)
+                        } else {
+                            print("AddThoughtsView --> Out of thoughts!")
+                        }
                     }) {
                         Text("Post")
                             .bold()

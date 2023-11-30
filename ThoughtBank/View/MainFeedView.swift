@@ -49,9 +49,7 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
             thoughts: $viewModel.feedThoughts,
             refreshAction: {
                 print("MainFeedView --> (blocking) updateFeedThoughts()")
-                viewModel.shouldLoadBlocking = true
                 viewModel.updateFeedThoughts()
-                viewModel.shouldLoadBlocking = false
             },
             horizontalLineColor: .blue,
             verticalLineColor: .red,

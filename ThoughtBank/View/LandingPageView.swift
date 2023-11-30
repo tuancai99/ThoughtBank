@@ -47,7 +47,7 @@ struct LandingPageView<ViewModel: ViewModelProtocol>: View {
         .frame(maxHeight: .infinity, alignment: .bottom)
         .padding(16)
         .onAppear() {
-            if let credentials = Preferences.loadCredentials() {
+            if let _ = Preferences.loadCredentials() {
                 viewModel.navigationState = .login
             }
         }

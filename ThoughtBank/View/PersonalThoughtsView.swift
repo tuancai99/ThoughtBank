@@ -18,6 +18,9 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
     
     @EnvironmentObject var viewModel: ViewModel
     
+    @State var shouldWarnApproachingLimit: Bool = false
+    @State var shouldNotifyOutOfThoughts: Bool = false
+    
     var body: some View {
         VStack {
             if let user = viewModel.user {
@@ -60,12 +63,39 @@ struct PersonalThoughtsView<ViewModel: ViewModelProtocol>: View {
             Spacer()
             
             RoundedButton(text: "Add Thought", image: "plus", size: 30, action: {
-                print("PersonalThoughtsView --> ENABLE shouldShowAddThoughtsView")
-                viewModel.shouldShowAddThoughtsView = true
+                if viewModel.remainingThoughtsCount <= 0 {
+                    print("PersonalThoughtsView --> ENABLE shouldNotifyOutOfThoughts")
+                    shouldNotifyOutOfThoughts = true
+                } else if viewModel.remainingThoughtsCount == 1 {
+                    print("PersonalThoughtsView --> ENABLE shouldWarnApproachingLimit")
+                    shouldWarnApproachingLimit = true
+                } else {
+                    print("PersonalThoughtsView --> ENABLE shouldShowAddThoughtsView")
+                    viewModel.shouldShowAddThoughtsView = true
+                }
             })
             .sheet(isPresented: $viewModel.shouldShowAddThoughtsView) {
                 AddThoughtsView<ViewModel>().environmentObject(viewModel)
             }
+            .alert("Out of thoughts", isPresented: $shouldNotifyOutOfThoughts, actions: {
+                Button(action: {
+                }, label: {
+                    Text("OK")
+                })
+            }, message: {
+                Text("You've reached the daily limit! You can share more thoughts tomorrow.")
+            })
+            .alert("Last daily thought", isPresented: $shouldWarnApproachingLimit, actions: {
+                Button(action: {
+                    print("PersonalThoughtsView --> ENABLE shouldShowAddThoughtsView")
+                    viewModel.shouldShowAddThoughtsView = true
+                }, label: {
+                    Text("OK")
+                })
+            }, message: {
+                Text("You can share one more thought today. Make it count!")
+            })
+            
             
             Spacer()
             
