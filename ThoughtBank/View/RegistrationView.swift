@@ -22,7 +22,7 @@ struct RegistrationView<ViewModel: ViewModelProtocol>: View {
     
     init() {
         // jump to login screen if user credentials saved
-        if let credentials = Preferences.loadCredentials() {
+        if let _ = Preferences.loadCredentials() {
             viewModel.navigationState = .login
         }
     }
