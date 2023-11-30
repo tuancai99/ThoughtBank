@@ -63,6 +63,7 @@ class User: ObservableObject, QueryItem {
     
     func depositThought(thought: Thought) { 
         depositedThoughts.append(thought)
+        appendViewedThought(thought: thought)
     }
     
     func appendViewedThought(thought: Thought) {

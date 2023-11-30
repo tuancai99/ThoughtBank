@@ -259,8 +259,11 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
                 // ADD DEPOSITED THOUGHT LOCALLY
                 await MainActor.run(body: {
                     user.depositThought(thought: unwrappedThought)
+                    // Go to next feed thought:
+                    feedThoughts.removeAll(where: { $0 == unwrappedThought })
+                    //feedThoughtIndex += 1
+
                     shouldLoadBlocking = false
-                    goToNextFeedThought()
                 })
                 
             } catch {
@@ -282,10 +285,31 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
      
      **/
     func goToNextFeedThought() {
+        guard let user = user else { self.bannerError = .notLoggedIn; return }
         // we can let it overflow by 1,
         // since we can go past the last thought for this view
         if (feedThoughtIndex < feedThoughts.count) {
-            feedThoughtIndex += 1
+            
+            Task {
+                do {
+                    let popped = currentFeedThought()!
+                    
+                    let duplicate = user.duplicate()
+                    duplicate.appendViewedThought(thought: popped)
+                    try await firebase.updateUserData(user: duplicate)
+                    
+                    DispatchQueue.main.async {
+                        user.appendViewedThought(thought: popped)
+                        //feedThoughtIndex += 1
+                        self.feedThoughts.removeAll(where: { $0 == popped })
+                        self.shouldLoadBlocking = false
+                    }
+                } catch {
+                    print("Unsuccessfully tried to go to next thought.")
+                    bannerError = .uploadError
+                }
+            }
+
         }
     }
     
