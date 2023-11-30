@@ -208,7 +208,7 @@ final class FirebaseManager {
                 try await query.getDocuments().documents.filter({ filterGroup.contains($0.documentID) }) :
                 try await query.getDocuments().documents
 
-        var items: [Thought] = docs.map { doc in
+        let items: [Thought] = docs.map { doc in
             let data = doc.data()
             let id = doc.documentID
             let content: String = data["content"] as! String
@@ -219,15 +219,30 @@ final class FirebaseManager {
             return Thought(documentID: id, content: content, userID: userID, timestamp: timestampDecoded)
         }
         
-        for i in 0..<items.count {
-            do {
-                items[i].alias = try await fetchUserAlias(userID: items[i].userID)
-            } catch {
-                items[i].alias = ""
+        let res = await withTaskGroup(of: (Int, String).self, body: { group in
+            
+            for i in 0..<items.count {
+                
+                group.addTask(operation: {
+                    do {
+                        return (i, try await self.fetchUserAlias(userID: items[i].userID))
+                    } catch {
+                        return (i, "N/A")
+                    }
+                })
             }
-        }
+            
+            
+            var itemsWithAlias: [Thought] = items
+            
+            for await (i, alias) in group {
+                itemsWithAlias[i].alias = alias
+            }
+            
+            return itemsWithAlias
+        })
         
-        return items
+        return res
     }
     
     /**
