@@ -22,7 +22,7 @@ struct RoundedButton: View {
                 ZStack {
                     Circle()
                         .frame(width: size + 24, height: size + 24)
-                        .shadow(color: .gray, radius: !enabled ? 0 : (colorScheme == .light ? 3 : 0), x: 0, y: 0)
+                        .shadow(color: .gray, radius: !enabled ? 0 : (colorScheme == .light ? 1.5 : 0), x: 0, y: 0)
                         .foregroundColor(!enabled ? .gray : (colorScheme == .light ? .white : .pink))
                     Image(systemName: image)
                         .resizable()

@@ -39,9 +39,7 @@ struct MainFeedView<ViewModel: ViewModelProtocol>: View {
         }
         .onAppear(perform: {
             print("MainFeedView --> (blocking) updateFeedThoughts()")
-            viewModel.shouldLoadBlocking = true
             viewModel.updateFeedThoughts()
-            viewModel.shouldLoadBlocking = false
         })
     }
     

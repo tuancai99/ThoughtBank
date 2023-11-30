@@ -399,7 +399,10 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
             return
         }
         
+        shouldLoadBlocking = true
+
         Task {
+            
             do {
                 let response = try await firebase.fetchThoughts(filterGroup: [])
                     .filter { thought in
@@ -417,6 +420,10 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
                 bannerError = .fetchingError
                 print("Error updating feed!")
             }
+            await MainActor.run {
+                shouldLoadBlocking = false
+            }
+
         }
     }
     
