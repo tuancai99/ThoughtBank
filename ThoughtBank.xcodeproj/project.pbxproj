@@ -58,7 +58,6 @@
 		FF6E3D392B17D5E600DAEF0F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6E3D382B17D5E600DAEF0F /* Preferences.swift */; };
 		FF91050E2B17A8FA0013F0EF /* GenericFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF91050D2B17A8FA0013F0EF /* GenericFeedView.swift */; };
 		FF91050F2B17BFF80013F0EF /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF604EFD2B045E18000B80D7 /* Poppins-Regular.ttf */; };
-		FF9105102B17BFF80013F0EF /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */; };
 		FF9105112B17BFF80013F0EF /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF604EF92B045E18000B80D7 /* Poppins-ExtraBold.ttf */; };
 		FFB71AD12ADF50DB0006C762 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD02ADF50DA0006C762 /* FirebaseManager.swift */; };
 		FFB71AD52ADF50EA0006C762 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AD32ADF50EA0006C762 /* Thought.swift */; };
@@ -87,6 +86,7 @@
 		A3CE61DB2ADF2B9D0039EC83 /* ThoughtBankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtBankApp.swift; sourceTree = "<group>"; };
 		A3CE61DF2ADF2B9E0039EC83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3CE61E22ADF2B9E0039EC83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A3F11B352B18193D001B06D5 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		A3FD9F002B13F4CB002D9515 /* ThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsView.swift; sourceTree = "<group>"; };
 		DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SmoochSans-Regular.ttf"; sourceTree = "<group>"; };
 		DBA414322AEDE7F100B4F685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -98,7 +98,6 @@
 		FF604EF72B04439B000B80D7 /* LargeFilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeFilledButton.swift; sourceTree = "<group>"; };
 		FF604EF92B045E18000B80D7 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		FF604EFD2B045E18000B80D7 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
-		FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../../../../../../../Users/noahsadir/Downloads/Poppins/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		FF604F002B046ACF000B80D7 /* ThoughtCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCard.swift; sourceTree = "<group>"; };
 		FF604F022B0491B6000B80D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		FF604F042B0512F3000B80D7 /* ProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlay.swift; sourceTree = "<group>"; };
@@ -209,8 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				FF604EF92B045E18000B80D7 /* Poppins-ExtraBold.ttf */,
-				FF604EFE2B045FE7000B80D7 /* Poppins-Bold.ttf */,
 				FF604EFD2B045E18000B80D7 /* Poppins-Regular.ttf */,
+				A3F11B352B18193D001B06D5 /* Poppins-Bold.ttf */,
 				DBA414352AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf */,
 				DBA414332AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf */,
 				DBA414302AEDDF8A00B4F685 /* SmoochSans-Regular.ttf */,
@@ -378,7 +377,6 @@
 				FF9105112B17BFF80013F0EF /* Poppins-ExtraBold.ttf in Resources */,
 				A38232682AE1F067003DB59D /* GoogleService-Info.plist in Resources */,
 				FF91050F2B17BFF80013F0EF /* Poppins-Regular.ttf in Resources */,
-				FF9105102B17BFF80013F0EF /* Poppins-Bold.ttf in Resources */,
 				DBA414362AEDEF4300B4F685 /* SmoochSans-ExtraBold.ttf in Resources */,
 				A3CE61E02ADF2B9E0039EC83 /* Assets.xcassets in Resources */,
 				DBA414342AEDEDD300B4F685 /* SmoochSans-SemiBold.ttf in Resources */,
