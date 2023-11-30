@@ -295,6 +295,8 @@ class CentralViewModel: ObservableObject, ViewModelProtocol {
                 do {
                     let popped = currentFeedThought()!
                     
+                    
+                    // Check that operation on cloud succeeds before updating locally:
                     let duplicate = user.duplicate()
                     duplicate.appendViewedThought(thought: popped)
                     try await firebase.updateUserData(user: duplicate)
