@@ -72,6 +72,7 @@
 		FFB71AEA2ADF51150006C762 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AE32ADF51140006C762 /* LoginView.swift */; };
 		FFB71AEB2ADF51150006C762 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AE42ADF51140006C762 /* SettingsView.swift */; };
 		FFB71AEC2ADF51150006C762 /* PersonalThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB71AE52ADF51150006C762 /* PersonalThoughtsView.swift */; };
+		FFF2180A2B1949BF0024C4C9 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3F11B352B18193D001B06D5 /* Poppins-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -374,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3CE61E32ADF2B9E0039EC83 /* Preview Assets.xcassets in Resources */,
+				FFF2180A2B1949BF0024C4C9 /* Poppins-Bold.ttf in Resources */,
 				FF9105112B17BFF80013F0EF /* Poppins-ExtraBold.ttf in Resources */,
 				A38232682AE1F067003DB59D /* GoogleService-Info.plist in Resources */,
 				FF91050F2B17BFF80013F0EF /* Poppins-Regular.ttf in Resources */,
@@ -555,7 +557,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ThoughtBank/Preview Content\"";
-				DEVELOPMENT_TEAM = KJ7YS82G45;
+				DEVELOPMENT_TEAM = Y7NL9XLUR5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThoughtBank/Info.plist;
@@ -587,7 +589,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ThoughtBank/Preview Content\"";
-				DEVELOPMENT_TEAM = KJ7YS82G45;
+				DEVELOPMENT_TEAM = Y7NL9XLUR5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThoughtBank/Info.plist;
