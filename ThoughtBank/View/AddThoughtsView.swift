@@ -22,21 +22,28 @@ struct AddThoughtsView<ViewModel: ViewModelProtocol>: View {
             
             VStack {
                 HStack {
-                    Text("My Thought")
+                    Text("New Thought")
                         .padding(.leading, 16)
                         .font(.custom("AlegreyaSans", size: 17))
                     Spacer()
                     Text(Date.now, format: .dateTime.day().month().year())
-                        .padding([.trailing], maxLength * 0.06)
+                        .padding(.trailing, 16)
                         .font(.system(.subheadline, design: .rounded, weight: .regular))
                 }
                 .padding(.top, 20)
                 
-                TextField("Enter a thought...", text: $thought,axis: .vertical)
-                    .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 32))
-                    .font(.system(size: fontSize, weight: .regular, design: .serif))
-                    .lineSpacing(3)
-                Spacer()
+                VStack {
+                    VStack {
+                        TextField("Enter a thought...", text: $thought,axis: .vertical)
+                            .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                            .font(.system(size: fontSize, weight: .regular, design: .serif))
+                            .lineSpacing(3)
+                        Spacer()
+                    }
+                    .background(.quinary)
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding(8)
                 
                 HStack {
                     Spacer()

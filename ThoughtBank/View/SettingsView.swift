@@ -158,7 +158,7 @@ struct AboutView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                Text("Thoughtbank")
+                Text("ThoughtBank")
                     .font(
                         Font.custom("SmoochSans-ExtraBold", size: 48)
                     )
